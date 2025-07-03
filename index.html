@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz NCC/Taxi</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #f0f8ff, #dfefff);
+  margin: 0;
+  padding: 40px;
+  text-align: center;
+  color: #333;
+}
+
+h1, h2, h3 {
+  color: #003366;
+}
+
+button {
+  margin: 12px;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#home, #quiz, #esercitazione, #risultati, #riepilogoRisposte, #statistiche {
+  display: none;
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.corretto {
+  color: green;
+  font-weight: bold;
+}
+
+.sbagliato {
+  color: red;
+  font-weight: bold;
+}
+
+.domanda-card {
+  background: #ffffff;
+  border-left: 8px solid #007bff;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease;
+}
+
+.domanda-card:hover {
+  transform: translateY(-4px);
+}
+
+.domanda-card h3 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #004080;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+}
+
+.domanda-card p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.domanda-card {
+  background-color: #ffffff;
+  border-left: 8px solid #007bff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.domanda-card h3 {
+  margin-top: 0;
+  color: #007bff;
+  font-size: 20px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 8px;
+}
+
+.domanda-card p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.result-container {
+  background-color: #f5f5f5;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  text-align: center;
+}
+
+.argomento-errori {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.argomento-errori li {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.errore-alto {
+  color: red;
+}
+
+.errore-basso {
+  color: orange;
+}
+
+.corretto {
+  color: green;
+}
+
+.promosso {
+  color: green;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.bocciato {
+  color: red;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.pulsanti-risultato button {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.risposta-button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.risposta-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+  </style>
+</head>
+<style>
+  button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 4px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  button:active {
+    transform: scale(0.97);
+    background-color: #004080;
+  }
+
+  .button-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+</style>
+<body>
+  <div id="home">
+  <h1>Esame per Licenza Taxi/NCC</h1>
+  <button onclick="iniziaSimulazione()">Simulazione Esame</button>
+  <button onclick="mostraSelezioneArgomento()">Esercitazione per Argomento</button>
+  <button onclick="mostraStatistiche()">Statistiche</button>
+<button onclick="riprovaErrori()">Riprova solo errori</button>
+</div>
+
+  <div id="quiz">
+    <button onclick="tornaAllaHome()">Torna alla Home</button>
+    <p id="timer"></p>
+    <div id="contenitoreDomanda"></div>
+    <div id="riepilogo"></div>
+  </div>
+
+  <div id="esercitazione">
+    <button onclick="tornaAllaHome()">Torna alla Home</button>
+    <h2>Esercitazione: <span id="titoloArgomento"></span></h2>
+    <div id="contenitoreEsercitazione"></div>
+    <div id="riepilogoEsercitazione"></div>
+  </div>
+
+  <div id="risultati"></div>
+  <div id="riepilogoRisposte"></div>
+<div id="statistiche" style="display:none;">
+  <h2>Statistiche errori per domanda</h2>
+  <div id="contenutoStatistiche"></div>
+<button onclick="resetStatistiche()">Reset Statistiche</button>
+  <button onclick="tornaAllaHome()">Torna alla Home</button>
+</div>
+
+  <script src="domande.js"></script>
+  <script>
+    const home = document.getElementById("home");
+    const quiz = document.getElementById("quiz");
+    const esercitazione = document.getElementById("esercitazione");
+    const contenitoreDomanda = document.getElementById("contenitoreDomanda");
+    const contenitoreEsercitazione = document.getElementById("contenitoreEsercitazione");
+    const risultati = document.getElementById("risultati");
+    const riepilogo = document.getElementById("riepilogo");
+    const riepilogoEsercitazione = document.getElementById("riepilogoEsercitazione");
+    const riepilogoRisposte = document.getElementById("riepilogoRisposte");
+
+    let timerInterval;
+    let tempoRimasto = 1800;
+    let domandeSimulazione = [];
+    let indiceDomanda = 0;
+    let erroriTotali = 0;
+    let erroriPerArgomento = { GEOGRAFIA: 0, LINGUA: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+    let risposteDate = [];
+
+    home.style.display = "block";
+
+function iniziaSimulazione() {
+  clearInterval(timerInterval);
+  tempoRimasto = 1800;
+  indiceDomanda = 0;
+  erroriTotali = 0;
+  erroriPerArgomento = { GEOGRAFIA: 0, LINGUA: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+  risposteDate = [];
+  domandeSimulazione = estraiDomandeSimulazione();
+
+  home.style.display = "none";
+  risultati.style.display = "none";  // Nascondi eventuali risultati o riepilogo
+  riepilogoRisposte.style.display = "none";
+  quiz.style.display = "block";
+
+  mostraDomanda();
+  avviaTimer();
+}
+
+    function estraiDomandeSimulazione() {
+      const perArgomento = { GEOGRAFIA: [], LINGUA: [], NORMATIVA: [], REGOLAMENTO: [] };
+      tutteLeDomande.forEach(d => perArgomento[d.argomento].push(d));
+      let scelte = [];
+      Object.keys(perArgomento).forEach(arg => {
+        scelte = scelte.concat(perArgomento[arg].sort(() => 0.5 - Math.random()).slice(0, 4));
+      });
+      return scelte.sort(() => 0.5 - Math.random());
+    }
+
+    function mostraDomanda() {
+      if (indiceDomanda >= domandeSimulazione.length) return mostraRisultati();
+      const d = domandeSimulazione[indiceDomanda];
+     contenitoreDomanda.innerHTML = `
+  <div class="domanda-card">
+    <h3>${indiceDomanda + 1}/16 - ${d.argomento}</h3>
+    <p>${d.domanda}</p>
+    ${d.risposte.map((r, i) => `<button class="risposta-button" onclick="validaRisposta(${i})">${r}</button>`).join("")}
+    <div id="feedback" style="margin-top:10px;"></div>
+  </div>
+`;
+      aggiornaRiepilogo();
+    }
+
+    function validaRisposta(scelta) {
+      const d = domandeSimulazione[indiceDomanda];
+      const feedback = document.getElementById("feedback");
+      const corretta = scelta === d.corretta;
+      feedback.innerHTML = corretta
+        ? "<p class='corretto'>Corretto!</p>"
+        : `<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>`;
+      if (!corretta) {
+  erroriTotali++;
+  erroriPerArgomento[d.argomento]++;
+  aggiornaStatisticheDomanda(d.domanda);
+}
+
+function aggiornaStatisticheDomanda(domanda) {
+  const stats = JSON.parse(localStorage.getItem("statisticheErrori")) || {};
+  stats[domanda] = (stats[domanda] || 0) + 1;
+  localStorage.setItem("statisticheErrori", JSON.stringify(stats));
+
+  // Salva errorStats per "Riprova solo errori"
+  const errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
+  errorStats[domanda] = (errorStats[domanda] || 0) + 1;
+  localStorage.setItem("errorStats", JSON.stringify(errorStats));
+}
+      risposteDate.push({ ...d, sceltaUtente: scelta });
+      indiceDomanda++;
+      setTimeout(mostraDomanda, 1000);
+    }
+
+function mostraRisultati() {
+  // Nascondi quiz e mostra risultati
+  quiz.style.display = "none";
+  risultati.style.display = "block";
+
+  risultati.innerHTML = `
+    <div class="result-container">
+      <h2>Test completato!</h2>
+      <p><strong>Domande completate:</strong> ${indiceDomanda}/16</p>
+      <p><strong>Errori totali:</strong> ${erroriTotali}</p>
+      <ul class="argomento-errori">
+        ${Object.entries(erroriPerArgomento)
+          .map(
+            ([arg, count]) =>
+              `<li class="${count > 2 ? 'errore-alto' : count > 0 ? 'errore-basso' : 'corretto'}">
+                ${arg}: ${count} errori
+              </li>`
+          )
+          .join("")}
+      </ul>
+      <h3 class="${erroriTotali > 4 || Object.values(erroriPerArgomento).some(e => e > 2) ? 'bocciato' : 'promosso'}">
+        ${
+          erroriTotali > 4 || Object.values(erroriPerArgomento).some(e => e > 2)
+            ? "BOCCIATO"
+            : "PROMOSSO"
+        }
+      </h3>
+      <div class="pulsanti-risultato">
+        <button onclick="iniziaSimulazione()">Ricomincia</button>
+        <button onclick="mostraRiepilogoRisposte()">Rivedi Risposte</button>
+        <button onclick="tornaAllaHome()">Torna alla Home</button>
+      </div>
+    </div>
+  `;
+  clearInterval(timerInterval);
+}
+    function verdetto() {
+      const erroreGrave = Object.values(erroriPerArgomento).some(e => e > 2);
+      return erroriTotali > 4 || erroreGrave ? "BOCCIATO" : "PROMOSSO";
+    }
+
+function mostraRiepilogoRisposte() {
+  quiz.style.display = "none";
+  risultati.style.display = "none";
+  riepilogoRisposte.style.display = "block";
+
+  const html = risposteDate.map((d, i) => {
+    const corretta = d.corretta === d.sceltaUtente;
+    return `
+      <div style="border:1px solid #ccc; margin:10px; padding:10px; background:${corretta ? '#e8f8e8' : '#ffe5e5'};">
+        <strong>${i + 1}) ${d.domanda}</strong><br>
+        Tua risposta: 
+        <span style="color:${corretta ? 'green' : 'red'};">
+          ${d.risposte[d.sceltaUtente] || "Nessuna"}
+        </span><br>
+        Risposta corretta: <strong>${d.risposte[d.corretta]}</strong>
+      </div>
+    `;
+  }).join("");
+
+  riepilogoRisposte.innerHTML = `
+    <h3>Riepilogo Risposte</h3>
+    ${html}
+    <button onclick="location.reload()">Torna alla Home</button>
+  `;
+}
+
+    function aggiornaRiepilogo() {
+      riepilogo.innerHTML = `
+        <p>Domande completate: ${indiceDomanda}/16</p>
+        <p>Errori totali: ${erroriTotali}</p>
+        <ul>
+          ${Object.entries(erroriPerArgomento).map(([arg, err]) =>
+            `<li style="color:${err > 0 ? "red" : "green"}">${arg}: ${err} errori</li>`).join("")}
+        </ul>`;
+    }
+
+    function avviaTimer() {
+      const timer = document.getElementById("timer");
+      timerInterval = setInterval(() => {
+        tempoRimasto--;
+        const min = String(Math.floor(tempoRimasto / 60)).padStart(2, "0");
+        const sec = String(tempoRimasto % 60).padStart(2, "0");
+        timer.textContent = `Tempo: ${min}:${sec}`;
+        if (tempoRimasto <= 0) {
+          clearInterval(timerInterval);
+          mostraRisultati();
+        }
+      }, 1000);
+    }
+
+    // ----------------------------- ESERCITAZIONE -----------------------------
+
+    let domandeArgomento = [];
+    let indiceEsercitazione = 0;
+
+    function mostraSelezioneArgomento() {
+      home.style.display = "none";
+      const categorie = ["GEOGRAFIA", "LINGUA", "NORMATIVA", "REGOLAMENTO"];
+      esercitazione.style.display = "block";
+      contenitoreEsercitazione.innerHTML = `
+        <h2>Scegli un argomento</h2>
+        ${categorie.map(arg => `<button onclick="iniziaEsercitazione('${arg}')">${arg}</button>`).join("")}`;
+    }
+
+    function iniziaEsercitazione(argomento) {
+      domandeArgomento = tutteLeDomande.filter(d => d.argomento === argomento);
+      indiceEsercitazione = 0;
+      document.getElementById("titoloArgomento").textContent = argomento;
+      mostraDomandaEsercitazione();
+    }
+
+    function mostraDomandaEsercitazione() {
+      if (indiceEsercitazione >= domandeArgomento.length) {
+        contenitoreEsercitazione.innerHTML = `<h3>Hai completato l’argomento.</h3>
+        <button onclick="location.reload()">Torna alla Home</button>`;
+        return;
+      }
+
+      const d = domandeArgomento[indiceEsercitazione];
+     contenitoreEsercitazione.innerHTML = `
+  <div class="domanda-card">
+    <h3>${indiceEsercitazione + 1}/${domandeArgomento.length} - ${d.argomento}</h3>
+    <p>${d.domanda}</p>
+    ${d.risposte.map((r, i) =>
+      `<button class="risposta-button" onclick="validaRispostaEsercitazione(${i})">${r}</button>`).join("")}
+    <div id="feedbackEsercitazione" style="margin-top:10px;"></div>
+  </div>
+`;
+      riepilogoEsercitazione.innerHTML = `<p>Domande completate: ${indiceEsercitazione}</p>`;
+    }
+
+    function validaRispostaEsercitazione(scelta) {
+      const d = domandeArgomento[indiceEsercitazione];
+      const feedback = document.getElementById("feedbackEsercitazione");
+      if (scelta === d.corretta) {
+        feedback.innerHTML = "<p class='corretto'>Corretto!</p>";
+      } else {
+        feedback.innerHTML = `<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>`;
+      }
+      indiceEsercitazione++;
+      setTimeout(mostraDomandaEsercitazione, 1500);
+    }
+  </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("home").style.display = "block";
+  });
+
+  function tornaAllaHome() {
+    if (confirm("Sei sicuro di voler tornare alla Home? I progressi andranno persi.")) {
+      location.reload();
+    }
+  }
+
+function mostraStatistiche() {
+  home.style.display = "none";
+  document.getElementById("statistiche").style.display = "block";
+  const container = document.getElementById("contenutoStatistiche");
+  const stats = JSON.parse(localStorage.getItem("statisticheErrori")) || {};
+
+  if (Object.keys(stats).length === 0) {
+    container.innerHTML = "<p>Nessuna statistica disponibile.</p>";
+    return;
+  }
+
+const elenco = Object.entries(stats)
+  .sort((a, b) => (b[1] || 0) - (a[1] || 0))
+  .map(([domanda, count]) => {
+    const errori = typeof count === "number" ? count : (count.errori || 0);
+    return `<li><strong>${domanda}</strong>: ${errori} errori</li>`;
+  })
+  .join("");
+
+  container.innerHTML = `<ul>${elenco}</ul>`;
+}
+
+function riprovaErrori() {
+  const erroriSalvati = JSON.parse(localStorage.getItem("errorStats"));
+  if (!erroriSalvati || Object.keys(erroriSalvati).length === 0) {
+    alert("Non ci sono errori salvati.");
+    return;
+  }
+
+  const domandeErrore = tutteLeDomande.filter(d => erroriSalvati[d.domanda]);
+
+  if (domandeErrore.length === 0) {
+    alert("Non ci sono errori da riprovare.");
+    return;
+  }
+
+  // Avvia esercitazione con le sole domande sbagliate
+  home.style.display = "none";
+  quiz.style.display = "block";
+  domandeSimulazione = domandeErrore;
+  indiceDomanda = 0;
+  erroriTotali = 0;
+  erroriPerArgomento = { GEOGRAFIA: 0, LINGUA: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+  risposteDate = [];
+  mostraDomanda();
+}
+
+function avviaRiprova(listaDomande) {
+    document.getElementById("home-screen").style.display = "none";
+    document.getElementById("quiz-container").style.display = "block";
+    document.getElementById("home-button").style.display = "inline-block";
+    document.getElementById("timer").style.display = "none";
+
+    domande = listaDomande;
+    currentQuestionIndex = 0;
+    punteggio = 0;
+    erroriPerArgomento = {};
+    risposteUtente = [];
+    mostraDomanda();
+}
+
+function resetStatistiche() {
+  if (confirm("Sei sicuro di voler cancellare tutte le statistiche?")) {
+    localStorage.removeItem("statisticheErrori");
+    localStorage.removeItem("errorStats");
+    alert("Statistiche cancellate.");
+    location.reload();
+  }
+}
+</script>
+
+</body>
+</html>
