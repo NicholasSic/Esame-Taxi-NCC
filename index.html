@@ -421,6 +421,7 @@ function mostraRiepilogoRisposte() {
 
     let domandeArgomento = [];
     let indiceEsercitazione = 0;
+let risposteEsercitazioneDate = [];
 
     function mostraSelezioneArgomento() {
       home.style.display = "none";
@@ -432,11 +433,12 @@ function mostraRiepilogoRisposte() {
     }
 
     function iniziaEsercitazione(argomento) {
-      domandeArgomento = tutteLeDomande.filter(d => d.argomento === argomento);
-      indiceEsercitazione = 0;
-      document.getElementById("titoloArgomento").textContent = argomento;
-      mostraDomandaEsercitazione();
-    }
+  domandeArgomento = tutteLeDomande.filter(d => d.argomento === argomento);
+  indiceEsercitazione = 0;
+  risposteEsercitazioneDate = []; // reset risposte
+  document.getElementById("titoloArgomento").textContent = argomento;
+  mostraDomandaEsercitazione();
+}
 
     function mostraDomandaEsercitazione() {
       if (indiceEsercitazione >= domandeArgomento.length) {
@@ -459,16 +461,26 @@ function mostraRiepilogoRisposte() {
     }
 
     function validaRispostaEsercitazione(scelta) {
-      const d = domandeArgomento[indiceEsercitazione];
-      const feedback = document.getElementById("feedbackEsercitazione");
-      if (scelta === d.corretta) {
-        feedback.innerHTML = "<p class='corretto'>Corretto!</p>";
-      } else {
-        feedback.innerHTML = `<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>`;
-      }
-      indiceEsercitazione++;
-      setTimeout(mostraDomandaEsercitazione, 1500);
-    }
+  const d = domandeArgomento[indiceEsercitazione];
+  const feedback = document.getElementById("feedbackEsercitazione");
+  const corretta = scelta === d.corretta;
+  
+  if (corretta) {
+    feedback.innerHTML = "<p class='corretto'>Corretto!</p>";
+  } else {
+    feedback.innerHTML = `<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>`;
+  }
+
+  // Salva la risposta data per il riepilogo
+  risposteEsercitazioneDate.push({ ...d, sceltaUtente: scelta });
+
+  indiceEsercitazione++;
+  if (indiceEsercitazione >= domandeArgomento.length) {
+    setTimeout(mostraRisultatiEsercitazione, 1500);
+  } else {
+    setTimeout(mostraDomandaEsercitazione, 1500);
+  }
+}
   </script>
 
 <script>
@@ -550,6 +562,60 @@ function resetStatistiche() {
     alert("Statistiche cancellate.");
     location.reload();
   }
+}
+
+function mostraRisultatiEsercitazione() {
+  esercitazione.style.display = "none";
+  risultati.style.display = "block";
+
+  const totDomande = risposteEsercitazioneDate.length;
+  const errori = risposteEsercitazioneDate.filter(d => d.sceltaUtente !== d.corretta).length;
+  const corrette = totDomande - errori;
+
+  risultati.innerHTML = `
+    <div class="result-container">
+      <h2>Fine Esercitazione: ${document.getElementById("titoloArgomento").textContent}</h2>
+      <p><strong>Domande totali:</strong> ${totDomande}</p>
+      <p><strong>Risposte corrette:</strong> ${corrette}</p>
+      <p><strong>Risposte sbagliate:</strong> ${errori}</p>
+      <div class="pulsanti-risultato">
+        <button onclick="iniziaEsercitazione('${document.getElementById("titoloArgomento").textContent}')">Ricomincia</button>
+        <button onclick="mostraRiepilogoErroriEsercitazione()">Rivedi Domande Sbagliate</button>
+        <button onclick="tornaAllaHome()">Torna alla Home</button>
+      </div>
+    </div>
+  `;
+}
+
+function mostraRiepilogoErroriEsercitazione() {
+  risultati.style.display = "none";
+  riepilogoRisposte.style.display = "block";
+
+  const errori = risposteEsercitazioneDate.filter(d => d.sceltaUtente !== d.corretta);
+  if (errori.length === 0) {
+    riepilogoRisposte.innerHTML = `
+      <h3>Non ci sono risposte sbagliate da rivedere!</h3>
+      <button onclick="tornaAllaHome()">Torna alla Home</button>
+    `;
+    return;
+  }
+
+  const html = errori.map((d, i) => {
+    return `
+      <div style="border:1px solid #ccc; margin:10px; padding:10px; background:#ffe5e5;">
+        <strong>${i + 1}) ${d.domanda}</strong><br>
+        Tua risposta: <span style="color:red;">${d.risposte[d.sceltaUtente] || "Nessuna"}</span><br>
+        Risposta corretta: <strong>${d.risposte[d.corretta]}</strong>
+      </div>
+    `;
+  }).join("");
+
+  riepilogoRisposte.innerHTML = `
+    <h3>Riepilogo Domande Sbagliate</h3>
+    ${html}
+    <button onclick="mostraRisultatiEsercitazione()">Torna ai Risultati</button>
+    <button onclick="tornaAllaHome()">Torna alla Home</button>
+  `;
 }
 </script>
 
