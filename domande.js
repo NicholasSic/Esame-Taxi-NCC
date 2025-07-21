@@ -2020,7 +2020,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "… are you ? I am in the bedroom",
     "risposte": [
       "Where",
@@ -2030,7 +2030,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "In my course there is only one man and four …",
     "risposte": [
       "women",
@@ -2040,8 +2040,8 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
-    "domanda": "W+B193here … ?",
+    "argomento": "INGLESE",
+    "domanda": "Where … ?",
     "risposte": [
       "do he go ",
       "doesn't he going ",
@@ -2050,7 +2050,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Take an umbrella",
     "risposte": [
       "I'm raining",
@@ -2060,7 +2060,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What …... ? A letter to my pen friend.",
     "risposte": [
       "are you writing",
@@ -2070,7 +2070,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "He was moving the lawn, when I …. him yesterday.",
     "risposte": [
       "saw",
@@ -2080,7 +2080,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "How are you ? ….",
     "risposte": [
       "I am fine",
@@ -2090,7 +2090,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "My sister works in a restaurant. She …. Very well.",
     "risposte": [
       "cook",
@@ -2100,7 +2100,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I'd like some coffee. I'm afraid ther isn't ….",
     "risposte": [
       "anything",
@@ -2110,7 +2110,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "…. you go to the mountains at the weekend ?",
     "risposte": [
       "Did",
@@ -2120,7 +2120,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "This is Mr Taylor and that is …. son.",
     "risposte": [
       "his",
@@ -2130,7 +2130,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "….. like coffee now or later ?",
     "risposte": [
       "Would you",
@@ -2140,7 +2140,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Chinese people …. a lot of rice.",
     "risposte": [
       "eat",
@@ -2150,7 +2150,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What …. your sister do ?",
     "risposte": [
       "do",
@@ -2160,7 +2160,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Look at that girl ! She …. an ice cream",
     "risposte": [
       "drink",
@@ -2170,7 +2170,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I don't like wine. I …. drink it.",
     "risposte": [
       "never",
@@ -2180,7 +2180,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Where are you going …. Friday ?",
     "risposte": [
       "on",
@@ -2190,7 +2190,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I have been learning Eanglish … two years.",
     "risposte": [
       "to",
@@ -2200,7 +2200,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Do you like London ? Yes, ….",
     "risposte": [
       "I do.",
@@ -2210,7 +2210,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "This book is …. that one.",
     "risposte": [
       "old as",
@@ -2220,7 +2220,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "How old is Bill ? …..",
     "risposte": [
       "He is 21.",
@@ -2230,7 +2230,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Is that your car ? No, ….",
     "risposte": [
       "it is.",
@@ -2240,7 +2240,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I …. to the cinema every Friday.",
     "risposte": [
       "go",
@@ -2250,7 +2250,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What were you doing at 7.30 on Sunday evening ? ….. TV",
     "risposte": [
       "Watched",
@@ -2260,7 +2260,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "We're having the party at …..",
     "risposte": [
       "the Deborah's house",
@@ -2270,7 +2270,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "….. go skiing this weekend ?",
     "risposte": [
       "Why do we",
@@ -2280,7 +2280,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Kate and Jenny are sisters and Bill is …. brother.",
     "risposte": [
       "them",
@@ -2290,7 +2290,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I'm afraid I haven't got …..",
     "risposte": [
       "scissor",
@@ -2300,7 +2300,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "My son is afraid … dogs.",
     "risposte": [
       "into",
@@ -2310,7 +2310,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Last Tuesday I … to the Passport Office.",
     "risposte": [
       "must gone",
@@ -2320,7 +2320,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "…. there students in the room ?",
     "risposte": [
       "Are",
@@ -2330,7 +2330,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "My husband usually …. home about 6.",
     "risposte": [
       "arrive",
@@ -2340,7 +2340,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Is that your car ? No, ….",
     "risposte": [
       "is not.",
@@ -2350,7 +2350,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Can you speak French ?",
     "risposte": [
       "Yes, i can't",
@@ -2360,7 +2360,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I have difficulty ….. English.",
     "risposte": [
       "to writing",
@@ -2370,7 +2370,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Anne is 25 years old but still lives …. her parents.",
     "risposte": [
       "on",
@@ -2380,7 +2380,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "There is …. milk in the fridge.",
     "risposte": [
       "a lot",
@@ -2390,7 +2390,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Where …. ? From Japan.",
     "risposte": [
       "are you from",
@@ -2400,7 +2400,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "…. do you go to the gym ?",
     "risposte": [
       "How much",
@@ -2410,7 +2410,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "John and Mary have been married … last october",
     "risposte": [
       "in",
@@ -2420,7 +2420,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Is your English improving ? ….",
     "risposte": [
       "Hoping.",
@@ -2430,7 +2430,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I wish you …",
     "risposte": [
       "are here",
@@ -2440,7 +2440,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I do not like tests. Neither ….",
     "risposte": [
       "do I.",
@@ -2450,7 +2450,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "My friend doesn't speak Chinese. I don't …",
     "risposte": [
       "too",
@@ -2460,7 +2460,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I … John when I was at the bank.",
     "risposte": [
       "see",
@@ -2470,7 +2470,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Tell me, is … your coat ?",
     "risposte": [
       "those",
@@ -2480,7 +2480,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I get up at 8 o'clock … morning",
     "risposte": [
       "in the",
@@ -2490,7 +2490,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "It's time … some work.",
     "risposte": [
       "she did",
@@ -2500,7 +2500,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "This … my friend John.",
     "risposte": [
       "is",
@@ -2510,7 +2510,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "She came to Britain …",
     "risposte": [
       "at four days.",
@@ -2520,7 +2520,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "It's now 9 o'clock and the train … arrive at 8.15.",
     "risposte": [
       "must",
@@ -2530,7 +2530,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "How many people … in your family ?",
     "risposte": [
       "are there",
@@ -2540,7 +2540,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What time … to bed during the week ?",
     "risposte": [
       "you are going",
@@ -2550,7 +2550,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "How much … where you live ?",
     "risposte": [
       "do houses cost",
@@ -2560,7 +2560,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Where …. ?",
     "risposte": [
       "you live",
@@ -2570,7 +2570,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What's the time ? …..",
     "risposte": [
       "A quarter to eight.",
@@ -2580,7 +2580,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "She asked me how big ….",
     "risposte": [
       "is your house",
@@ -2590,7 +2590,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "It's cold today. … you got a jacket ?",
     "risposte": [
       "Have",
@@ -2600,7 +2600,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Good afternoon. Excelsior Hotel. Can I … you ?",
     "risposte": [
       "attend",
@@ -2610,7 +2610,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "My friend let … his bike yesterday.",
     "risposte": [
       "me borrow",
@@ -2620,7 +2620,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Kate and Jenny are sisters and Bill is …. brother.",
     "risposte": [
       "his",
@@ -2630,7 +2630,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I … hungry.",
     "risposte": [
       "have",
@@ -2640,7 +2640,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "How old are you ? ….",
     "risposte": [
       "I'm 30 years old.",
@@ -2650,7 +2650,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What time is it ? ….",
     "risposte": [
       "Ten and a quarter",
@@ -2660,7 +2660,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I'd like some coffee. I'm afraid ther isn't ….",
     "risposte": [
       "more",
@@ -2670,7 +2670,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Anne is 25 years old but still lives …. her parents.",
     "risposte": [
       "with",
@@ -2680,7 +2680,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Paolo can … three languages.",
     "risposte": [
       "speak",
@@ -2690,7 +2690,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Our house has three bedrooms. I have the ….",
     "risposte": [
       "largest",
@@ -2700,7 +2700,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What … in London last weekend ?",
     "risposte": [
       "you did",
@@ -2710,7 +2710,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Shall we go … the cinema tonight ?",
     "risposte": [
       "from",
@@ -2720,7 +2720,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "I'm sorry. I haven't done my report ….",
     "risposte": [
       "yet",
@@ -2730,7 +2730,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What is her job ? … nurse",
     "risposte": [
       "She is a",
@@ -2740,7 +2740,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Where … from ?",
     "risposte": [
       "you are",
@@ -2750,7 +2750,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Tom is … taxi driver.",
     "risposte": [
       "an",
@@ -2760,7 +2760,7 @@ const tutteLeDomande = [
     "corretta": 2
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "How … photos did you take ?",
     "risposte": [
       "many",
@@ -2770,7 +2770,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "How much … it cost ?",
     "risposte": [
       "is",
@@ -2780,7 +2780,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What did you … ?",
     "risposte": [
       "say",
@@ -2790,7 +2790,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "Would you mind … me that pencil ?",
     "risposte": [
       "passing",
@@ -2800,7 +2800,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "How old …. ?",
     "risposte": [
       "are your sister",
@@ -2810,7 +2810,7 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "How are you ?",
     "risposte": [
       "Fine, thanks.",
@@ -2820,7 +2820,7 @@ const tutteLeDomande = [
     "corretta": 0
   },
   {
-    "argomento": "LINGUA",
+    "argomento": "INGLESE",
     "domanda": "What … ? A letter to my pen friend.",
     "risposte": [
       "are you writing",
@@ -2828,6 +2828,486 @@ const tutteLeDomande = [
       "write you"
     ],
     "corretta": 0
+  },
+  {
+    "argomento": "SPAGNOLO",
+    "domanda": "Lidia es una …. Madre, solo piensa en sus hijos",
+    "risposte": [
+      "tercera",
+      "mal",
+      "buena"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "No tiene que decir nada, … claro que el problema no es tuyo.",
+    "risposte": [
+      "siempre",
+      "Es",
+      "Serà"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Juan trabaja en un bar, es … .",
+    "risposte": [
+      "mecànico",
+      "restaurador",
+      "camarero"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Las calles son … estrechas.",
+    "risposte": [
+      "mucho",
+      "cuantas",
+      "muy"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "El joven, … vuelta espero, llega hoy.",
+    "risposte": [
+      "tuya",
+      "cuya",
+      "suy"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Ana y yo … siempre 8 horas.",
+    "risposte": [
+      "dormimos",
+      "duermimos",
+      "durmimos"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Mi apartamento està … la playa.",
+    "risposte": [
+      "cerca",
+      "cerca a",
+      "cerca de"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Elisa, ordena … cosas por favor.",
+    "risposte": [
+      "tu",
+      "tuyas",
+      "tus"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Las profesora es … Argentina.",
+    "risposte": [
+      "de",
+      "a",
+      "desde"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Mi hermano viaja siempre … coche.",
+    "risposte": [
+      "a",
+      "de",
+      "en"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… fumar aquì ?",
+    "risposte": [
+      "Puede",
+      "Se puede",
+      "Poder"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "En esta ciudad hay … lugares muy turísticos.",
+    "risposte": [
+      "unos",
+      "unas",
+      "un"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Begoa y Eugenia estàn … en el despacho.",
+    "risposte": [
+      "leendo",
+      "estudiando",
+      "estudiano"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Dame … libros por favor.",
+    "risposte": [
+      "mas",
+      "tus",
+      "mi"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… una tienda nueva de informatica.",
+    "risposte": [
+      "Han abrido",
+      "Han abierto",
+      "Han habido"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Laura … en Sevilla.",
+    "risposte": [
+      "vivo",
+      "vive",
+      "vives"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Jos … mucho en su próximo examen.",
+    "risposte": [
+      "piensa",
+      "pienso",
+      "pensa"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Nosotros comemos … fruta en verano.",
+    "risposte": [
+      "mucha",
+      "muy",
+      "mucho"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… son los teléfonos de los bomberos ?",
+    "risposte": [
+      "Qué",
+      "Cuàles",
+      "Por"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Carmen y yo somos … amigas.",
+    "risposte": [
+      "mucho",
+      "muy",
+      "nada"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "A qué se dedica Eva ? … enfermera.",
+    "risposte": [
+      "Es",
+      "Esta",
+      "Tiene"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "No gracias, no quiero comer. No … hambre.",
+    "risposte": [
+      "soy",
+      "tengo",
+      "estoy"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Ellos … las manos con jabón.",
+    "risposte": [
+      "se duchan",
+      "se levantan",
+      "se lavan"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Nosotros … varios idiomas, por ejemplo castellano.",
+    "risposte": [
+      "hablamos",
+      "scribi",
+      "vivimos"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "En Agosto de 1968 … mis estudio.",
+    "risposte": [
+      "terminé",
+      "termina",
+      "termino"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… la mùsica.",
+    "risposte": [
+      "Yo gusto",
+      "Me gusto de",
+      "Me gusta"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "A que hora … las noticias ?",
+    "risposte": [
+      "se empiezan",
+      "empiezan",
+      "empezan"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… Juan en casa ?",
+    "risposte": [
+      "Estan",
+      "Està",
+      "Estaban"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Las mesa … de madera.",
+    "risposte": [
+      "es",
+      "està",
+      "eres"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Me alegro de que vosotras … comprado la casa.",
+    "risposte": [
+      "hayàis",
+      "hayan",
+      "hallan"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… casa es muy grande y bonita.",
+    "risposte": [
+      "Aquel",
+      "Aquella",
+      "Aqui"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Los chicos estàn … en su cuarto.",
+    "risposte": [
+      "estudiendo",
+      "estudiandos",
+      "estudiando"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Madrid … en el centro de España.",
+    "risposte": [
+      "està",
+      "es",
+      "estamos"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Pedro … un curso la semana pasada.",
+    "risposte": [
+      "ganò",
+      "ganar",
+      "ganaron"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Vosotras … una gran paella.",
+    "risposte": [
+      "comes",
+      "cocinis",
+      "comen"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Ayer … literatura y hoy leo una novela.",
+    "risposte": [
+      "estudié",
+      "estudiar",
+      "estudiemos"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Ella es muy aburrida, siempre … en las reuniones",
+    "risposte": [
+      "se duerme",
+      "dormirse",
+      "se dorme"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… dònde vienes ?",
+    "risposte": [
+      "A",
+      "De",
+      "En"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Donde … en esta ciudad una farmacia ?",
+    "risposte": [
+      "est",
+      "son",
+      "hay"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Lola … casi siempre a las siete.",
+    "risposte": [
+      "despierta",
+      "despertar",
+      "se despierta"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Estos zapatos son … caros.",
+    "risposte": [
+      "muy",
+      "mucha",
+      "mucho"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Cuando salimos del cine ya … de llover.",
+    "risposte": [
+      "habìa dejado",
+      "habìa comenzado",
+      "habas dejado"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… todos bien, gracias, no te preocupes.",
+    "risposte": [
+      "Somos",
+      "Estamos",
+      "Bienvenidos"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Faltan solo dos meses … terminar el curso.",
+    "risposte": [
+      "para",
+      "por",
+      "porqué"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Lo siento, … no he oído el despertador.",
+    "risposte": [
+      "porque",
+      "es que",
+      "que"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "Ellos … a los nios temprano.",
+    "risposte": [
+      "acuestan",
+      "acuesta",
+      "acostan"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… años tienes Cristina ?",
+    "risposte": [
+      "Dònde",
+      "Que",
+      "Cuantos"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "SPAGNOLO",
+    "domanda": "… se cuece la pasta y después, se añade la salsa.",
+    "risposte": [
+      "Grande",
+      "Primero",
+      "Malo"
+    ],
+    "corretta": 1
   },
   {
     "argomento": "NORMATIVA",

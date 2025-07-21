@@ -234,6 +234,13 @@ button:hover {
   <button onclick="tornaAllaHome()">Torna alla Home</button>
 </div>
 
+<div id="selezioneLinguaSimulazione" style="display:none; padding: 20px; text-align: center;">
+  <h2>Seleziona la lingua per la simulazione</h2>
+  <button onclick="selezionaLingua('INGLESE')">Inglese</button>
+  <button onclick="selezionaLingua('SPAGNOLO')">Spagnolo</button>
+  <button onclick="tornaAllaHome()">Annulla</button>
+</div>
+
   <script src="domande.js"></script>
   <script>
     const home = document.getElementById("home");
@@ -249,24 +256,35 @@ button:hover {
     let timerInterval;
     let tempoRimasto = 1800;
     let domandeSimulazione = [];
+let linguaSimulazione = null;
     let indiceDomanda = 0;
     let erroriTotali = 0;
-    let erroriPerArgomento = { GEOGRAFIA: 0, LINGUA: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+    let erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
     let risposteDate = [];
 
     home.style.display = "block";
 
 function iniziaSimulazione() {
+  home.style.display = "none";
+  document.getElementById("selezioneLinguaSimulazione").style.display = "block";
+}
+
+function selezionaLingua(lingua) {
+  linguaSimulazione = lingua;
+  document.getElementById("selezioneLinguaSimulazione").style.display = "none";
+  avviaSimulazioneConLingua();
+}
+
+function avviaSimulazioneConLingua() {
   clearInterval(timerInterval);
   tempoRimasto = 1800;
   indiceDomanda = 0;
   erroriTotali = 0;
-  erroriPerArgomento = { GEOGRAFIA: 0, LINGUA: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+  erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
   risposteDate = [];
-  domandeSimulazione = estraiDomandeSimulazione();
+  domandeSimulazione = estraiDomandeSimulazione(linguaSimulazione);
 
-  home.style.display = "none";
-  risultati.style.display = "none";  // Nascondi eventuali risultati o riepilogo
+  risultati.style.display = "none";
   riepilogoRisposte.style.display = "none";
   quiz.style.display = "block";
 
@@ -274,15 +292,24 @@ function iniziaSimulazione() {
   avviaTimer();
 }
 
-    function estraiDomandeSimulazione() {
-      const perArgomento = { GEOGRAFIA: [], LINGUA: [], NORMATIVA: [], REGOLAMENTO: [] };
-      tutteLeDomande.forEach(d => perArgomento[d.argomento].push(d));
-      let scelte = [];
-      Object.keys(perArgomento).forEach(arg => {
-        scelte = scelte.concat(perArgomento[arg].sort(() => 0.5 - Math.random()).slice(0, 4));
-      });
-      return scelte.sort(() => 0.5 - Math.random());
+function estraiDomandeSimulazione(lingua) {
+  const perArgomento = { GEOGRAFIA: [], NORMATIVA: [], REGOLAMENTO: [] };
+  perArgomento[lingua] = [];
+  tutteLeDomande.forEach(d => {
+    if (d.argomento === "GEOGRAFIA" || d.argomento === "NORMATIVA" || d.argomento === "REGOLAMENTO") {
+      perArgomento[d.argomento].push(d);
+    } else if (d.argomento === lingua) {
+      perArgomento[lingua].push(d);
     }
+  });
+  let scelte = [];
+  Object.keys(perArgomento).forEach(arg => {
+    if (perArgomento[arg].length > 0) {
+      scelte = scelte.concat(perArgomento[arg].sort(() => 0.5 - Math.random()).slice(0, 4));
+    }
+  });
+  return scelte.sort(() => 0.5 - Math.random());
+}
 
     function mostraDomanda() {
       if (indiceDomanda >= domandeSimulazione.length) return mostraRisultati();
@@ -423,55 +450,61 @@ function mostraRiepilogoRisposte() {
     let indiceEsercitazione = 0;
 let risposteEsercitazioneDate = [];
 
-    function mostraSelezioneArgomento() {
-      home.style.display = "none";
-      const categorie = ["GEOGRAFIA", "LINGUA", "NORMATIVA", "REGOLAMENTO"];
-      esercitazione.style.display = "block";
-      contenitoreEsercitazione.innerHTML = `
-        <h2>Scegli un argomento</h2>
-        ${categorie.map(arg => `<button onclick="iniziaEsercitazione('${arg}')">${arg}</button>`).join("")}`;
-    }
+   function mostraSelezioneArgomento() {
+  home.style.display = "none";
+  const categorie = ["GEOGRAFIA", "INGLESE", "SPAGNOLO", "NORMATIVA", "REGOLAMENTO"];
+  esercitazione.style.display = "block";
+  contenitoreEsercitazione.innerHTML = `
+    <h2>Scegli un argomento</h2>
+    ${categorie.map(arg => `<button onclick="iniziaEsercitazione('${arg}')">${arg}</button>`).join("")}
+  `;
+}
 
-    function iniziaEsercitazione(argomento) {
+function iniziaEsercitazione(argomento) {
+  console.log("Inizio esercitazione con argomento:", argomento);
   domandeArgomento = tutteLeDomande.filter(d => d.argomento === argomento);
+  console.log("Domande trovate:", domandeArgomento.length);
   indiceEsercitazione = 0;
-  risposteEsercitazioneDate = []; // reset risposte
+  risposteEsercitazioneDate = [];
   document.getElementById("titoloArgomento").textContent = argomento;
   mostraDomandaEsercitazione();
 }
 
     function mostraDomandaEsercitazione() {
-      if (indiceEsercitazione >= domandeArgomento.length) {
-        contenitoreEsercitazione.innerHTML = `<h3>Hai completato l’argomento.</h3>
-        <button onclick="location.reload()">Torna alla Home</button>`;
-        return;
-      }
+  if (indiceEsercitazione >= domandeArgomento.length) {
+    contenitoreEsercitazione.innerHTML = `
+      <h3>Hai completato l’argomento.</h3>
+      <button onclick="mostraSelezioneArgomento()">Torna alla selezione argomenti</button>
+    `;
+    return;
+  }
 
-      const d = domandeArgomento[indiceEsercitazione];
-     contenitoreEsercitazione.innerHTML = `
-  <div class="domanda-card">
-    <h3>${indiceEsercitazione + 1}/${domandeArgomento.length} - ${d.argomento}</h3>
-    <p>${d.domanda}</p>
-    ${d.risposte.map((r, i) =>
-      `<button class="risposta-button" onclick="validaRispostaEsercitazione(${i})">${r}</button>`).join("")}
-    <div id="feedbackEsercitazione" style="margin-top:10px;"></div>
-  </div>
-`;
-      riepilogoEsercitazione.innerHTML = `<p>Domande completate: ${indiceEsercitazione}</p>`;
-    }
+  const d = domandeArgomento[indiceEsercitazione];
+  contenitoreEsercitazione.innerHTML = `
+    <div class="domanda-card">
+      <h3>${indiceEsercitazione + 1}/${domandeArgomento.length} - ${d.argomento}</h3>
+      <p>${d.domanda}</p>
+      ${d.risposte.map((r, i) =>
+        `<button class="risposta-button" onclick="validaRispostaEsercitazione(${i})">${r}</button>`
+      ).join("")}
+      <div id="feedbackEsercitazione" style="margin-top:10px;"></div>
+    </div>
+  `;
+
+  riepilogoEsercitazione.innerHTML = `<p>Domande completate: ${indiceEsercitazione}</p>`;
+}
 
     function validaRispostaEsercitazione(scelta) {
   const d = domandeArgomento[indiceEsercitazione];
   const feedback = document.getElementById("feedbackEsercitazione");
   const corretta = scelta === d.corretta;
-  
+
   if (corretta) {
     feedback.innerHTML = "<p class='corretto'>Corretto!</p>";
   } else {
     feedback.innerHTML = `<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>`;
   }
 
-  // Salva la risposta data per il riepilogo
   risposteEsercitazioneDate.push({ ...d, sceltaUtente: scelta });
 
   indiceEsercitazione++;
@@ -536,7 +569,7 @@ function riprovaErrori() {
   domandeSimulazione = domandeErrore;
   indiceDomanda = 0;
   erroriTotali = 0;
-  erroriPerArgomento = { GEOGRAFIA: 0, LINGUA: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+  erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
   risposteDate = [];
   mostraDomanda();
 }
