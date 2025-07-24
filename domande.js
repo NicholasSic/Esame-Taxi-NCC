@@ -3310,6 +3310,546 @@ const tutteLeDomande = [
     "corretta": 1
   },
   {
+    "argomento": "TEDESCO",
+    "domanda": "Ich lese gerne Bücher, aber ich gehe … ins Kino",
+    "risposte": [
+      "lieber",
+      "gerner",
+      "besser"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Kommst du auch zur Party ? Tut mir Leid, ich … leider nicht kommen.",
+    "risposte": [
+      "will",
+      "muss",
+      "kann"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Ich wohone in Lecco und habe … schönes Haus.",
+    "risposte": [
+      "ein",
+      "eines",
+      "einem"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Ich gehe … Hause",
+    "risposte": [
+      "nach",
+      "von",
+      "aus"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Heute ist Donnerstag, Gestern … Mittwoch.",
+    "risposte": [
+      "ist",
+      "war",
+      "bist"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Wie finden Sie meinen neuen Pullover ? Oh, … ist aber schön !",
+    "risposte": [
+      "den",
+      "dem",
+      "der"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Meine Frau … Lehrerin.",
+    "risposte": [
+      "sind",
+      "seid",
+      "ist"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Gestern bin ich ins Kino … .",
+    "risposte": [
+      "gegangt",
+      "gewesen",
+      "gegangen"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Ich habe heute bis 10.00 Uhr … .",
+    "risposte": [
+      "schlafen",
+      "geschlafen",
+      "geschlaft"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Ich heiße Heinz und arbeite … Berlin.",
+    "risposte": [
+      "in",
+      "zu",
+      "an"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Wir haben Obst, Brot und Fleisch … .",
+    "risposte": [
+      "gekauft",
+      "kaufen",
+      "wird gekauft"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Am Montag habe ich … Bruder ein Geburtstagsgeschenk gekauft.",
+    "risposte": [
+      "meinem",
+      "meinen",
+      "meiner"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Ich … Peter Müller.",
+    "risposte": [
+      "heißt",
+      "heißen",
+      "heiße"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Ein Hund ist … eine Maus.",
+    "risposte": [
+      "größer wie",
+      "größer als",
+      "mehr größ als"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Hans fährt … .",
+    "risposte": [
+      "grün",
+      "schnell",
+      "groß"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Petra wohnt in Berlin, … sie die Stradt nicht mag.",
+    "risposte": [
+      "obwohl",
+      "weil",
+      "warum"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Wir treffen uns … 10.00 Uhr.",
+    "risposte": [
+      "an Mittwoch zu",
+      "um Mittwoch am",
+      "am Mittwoch um"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Möchtest du heute Abend … Film sehen ?",
+    "risposte": [
+      "eine",
+      "das",
+      "einen"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Wer ist der Mann ? Kennst du … ?",
+    "risposte": [
+      "ihm",
+      "ihn",
+      "er"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Kannst du … bitte das Buch geben ?",
+    "risposte": [
+      "mein",
+      "mich",
+      "mir"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Herr Maier ist krank. Der Arzt hat gesagt dass er drei Tage im Bett liegen … .",
+    "risposte": [
+      "will",
+      "soll",
+      "kann"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Meine Freundin, … ich seit drei Jahren kenne, heiratet nächste Woche.",
+    "risposte": [
+      "sie",
+      "die",
+      "das"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Ich mache … Hausaufgaben im Cafè.",
+    "risposte": [
+      "meine",
+      "meinen",
+      "mein"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "… Sie mir bitte sagen, wann das Konzert beginnt ?",
+    "risposte": [
+      "Möchten",
+      "Könnten",
+      "Wollten"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Wo … Frau Maier ?",
+    "risposte": [
+      "arbeite",
+      "arbeitet",
+      "arbeitest"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "TEDESCO",
+    "domanda": "Der Unterricht beginnt … Montag um 10.00 Uhr.",
+    "risposte": [
+      "am",
+      "im",
+      "an"
+    ],
+    "corretta": 0
+  },
+  {
+    "argomento": "FRANCESE",
+    "domanda": "Elles … à la chorale du village",
+    "risposte": [
+      "chanter",
+      "chantent",
+      "chanté"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Je travaille en … de la musique.",
+    "risposte": [
+      "écoute",
+      "écouter",
+      "écoutant"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Demain, nous … faire du bateau.",
+    "risposte": [
+      "ayons",
+      "irons",
+      "sommes allés"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Elle … de la maison.",
+    "risposte": [
+      "a sorti",
+      "est sorti",
+      "est sortie"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "J’aime les italiens et en particulier … cuisine.",
+    "risposte": [
+      "son",
+      "leur",
+      "sa"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Donnez-moi un kilo … pommes de terre.",
+    "risposte": [
+      "des",
+      "du",
+      "de"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Je connais bien cet homme … est sur la photo.",
+    "risposte": [
+      "qui",
+      "que",
+      "où"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Si ! Je suis sûre que Bernadette … ce soir.",
+    "risposte": [
+      "vienne",
+      "viendra",
+      "viens"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Je suis canadienne; j’habite … Toronto.",
+    "risposte": [
+      "à",
+      "de",
+      "pour"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Est-ce que tu as fait … tennis hier ?",
+    "risposte": [
+      "de le",
+      "du",
+      "le"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Mon voisin … son chien trois fois ce matin",
+    "risposte": [
+      "a sorti",
+      "est sorti",
+      "ont sorti"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Alexandra est … au restaurant.",
+    "risposte": [
+      "serveur",
+      "serveuse",
+      "service"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Nous arrivons … Russie où il fait très froid.",
+    "risposte": [
+      "à",
+      "en",
+      "de"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Ma grand-mère est incapable … savoir utiliser un tèlèphone mobile.",
+    "risposte": [
+      "à",
+      "de",
+      "pour"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Qu’est-ce que c’est ? C’est … spécialité de mon pays.",
+    "risposte": [
+      "une",
+      "de",
+      "des"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Il va à Lyon ? …",
+    "risposte": [
+      "Oui Felix en va",
+      "Oui Felix y va",
+      "Non Felix y va"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Porquoi tu ne … écoutes pas ? Nous sommes tes parents !",
+    "risposte": [
+      "nous",
+      "me",
+      "lui"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Tu veux dormir … moi ?",
+    "risposte": [
+      "chez",
+      "à",
+      "de"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Est-ce que tu vas au cinéma samedi ? Non je n’ … vais pas.",
+    "risposte": [
+      "le",
+      "en",
+      "y"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Quand j’étais plus jeune, je … tous les week-ends.",
+    "risposte": [
+      "ai skié",
+      "skiais",
+      "j’aurais ski"
+    ],
+    "corretta": 1
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Excusez-moi madame, je … essayer une autre taille s’il vous plaît.",
+    "risposte": [
+      "voudrais",
+      "je veut",
+      "voulais"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Cet aprés-midi, nous … le musée des Beaux-Arts.",
+    "risposte": [
+      "aller visitons",
+      "aller visiter",
+      "allons visiter"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "C’est mon parapluie ! C’est … .",
+    "risposte": [
+      "la mien",
+      "le mienne",
+      "le mien"
+    ],
+    "corretta": 2
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "… demandé à ma mére de venir.",
+    "risposte": [
+      "J’ai",
+      "Je suis",
+      "Je"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Mes parents ont … yeux bleus.",
+    "risposte": [
+      "les",
+      "des",
+      "l’"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "… ton numéro de téléphone ?",
+    "risposte": [
+      "Quel est",
+      "Quels sont",
+      "Quelle est"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Pour mon anniversaire, j’invite tous … amis chez moi.",
+    "risposte": [
+      "mes",
+      "mon",
+      "ma"
+    ],
+    "corretta": 0
+  },
+{
+    "argomento": "FRANCESE",
+    "domanda": "Je viens … Italie.",
+    "risposte": [
+      "de",
+      "d’",
+      "du"
+    ],
+    "corretta": 1
+  },
+  {
     "argomento": "NORMATIVA",
     "domanda": "Ai sensi dell'art. 27 comma 3 della Legge Regionale 4 aprile 2012 n. 6 per favorire il miglioramento della qualità ambientale e della sicurezza, sono concessi contributi in conto capitale ai titolari di licenza taxi, nelle forme previste dall'art. 7 Legge 21/92, dal/dalla:",
     "risposte": [

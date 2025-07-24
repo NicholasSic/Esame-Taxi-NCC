@@ -238,6 +238,8 @@ button:hover {
   <h2>Seleziona la lingua per la simulazione</h2>
   <button onclick="selezionaLingua('INGLESE')">Inglese</button>
   <button onclick="selezionaLingua('SPAGNOLO')">Spagnolo</button>
+  <button onclick="selezionaLingua('TEDESCO')">Tedesco</button>
+  <button onclick="selezionaLingua('FRANCESE')">Francese</button>
   <button onclick="tornaAllaHome()">Annulla</button>
 </div>
 
@@ -259,7 +261,7 @@ button:hover {
 let linguaSimulazione = null;
     let indiceDomanda = 0;
     let erroriTotali = 0;
-    let erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+    let erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, FRANCESE: 0, TEDESCO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
     let risposteDate = [];
 
     home.style.display = "block";
@@ -280,7 +282,7 @@ function avviaSimulazioneConLingua() {
   tempoRimasto = 1800;
   indiceDomanda = 0;
   erroriTotali = 0;
-  erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+  erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, TEDESCO: 0, FRANCESE: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
   risposteDate = [];
   domandeSimulazione = estraiDomandeSimulazione(linguaSimulazione);
 
@@ -452,7 +454,7 @@ let risposteEsercitazioneDate = [];
 
    function mostraSelezioneArgomento() {
   home.style.display = "none";
-  const categorie = ["GEOGRAFIA", "INGLESE", "SPAGNOLO", "NORMATIVA", "REGOLAMENTO"];
+  const categorie = ["GEOGRAFIA", "INGLESE", "SPAGNOLO", "TEDESCO", "FRANCESE", "NORMATIVA", "REGOLAMENTO"];
   esercitazione.style.display = "block";
   contenitoreEsercitazione.innerHTML = `
     <h2>Scegli un argomento</h2>
@@ -569,7 +571,7 @@ function riprovaErrori() {
   domandeSimulazione = domandeErrore;
   indiceDomanda = 0;
   erroriTotali = 0;
-  erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+  erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, FRANCESE: 0, TEDESCO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
   risposteDate = [];
   mostraDomanda();
 }
