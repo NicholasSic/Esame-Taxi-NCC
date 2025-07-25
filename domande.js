@@ -5343,7 +5343,7 @@ const tutteLeDomande = [
     "argomento": "NORMATIVA",
     "domanda": "Ai sensi dell'art. 7 comma 4 lett. b) della Disciplina del servizio taxi nel bacino aeroportuale lombardo di cui alla DGR n. 2030 del 01/07/14, qual è la tariffa, per uso collettivo, del costo iniziale festivo?",
     "risposte": [
-      "Euro S",
+      "Euro 5",
       "Euro 8,03",
       "Euro 2,16"
     ],
@@ -6081,7 +6081,7 @@ const tutteLeDomande = [
   },
   {
     "argomento": "REGOLAMENTO",
-    "domanda": "Tra gli obblighi dei conducenti di autopubbliche al termine della corsa è previsto quello di lart.34)",
+    "domanda": "Tra gli obblighi dei conducenti di autopubbliche al termine della corsa è previsto quello di (art.34)",
     "risposte": [
       "far prendere visione all'utente del prezzo della corsa specificando gli eventuali supplementi tariffari applicati",
       "recapitare il bagaglio dimenticato dall' utente, con pagamento della corsa",
@@ -6171,7 +6171,7 @@ const tutteLeDomande = [
   },
   {
     "argomento": "REGOLAMENTO",
-    "domanda": "Tra gli obblighi dei conducenti di autoveicoli in servizio di noleggio è previsto quello di lart.20)",
+    "domanda": "Tra gli obblighi dei conducenti di autoveicoli in servizio di noleggio è previsto quello di (art.20)",
     "risposte": [
       "interrompere di propria iniziativa il servizio se nel frattempo è terminato il turno",
       "tenere nell' autoveicolo cose che non abbiano attinenza\ncol servizio",

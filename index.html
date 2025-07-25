@@ -207,7 +207,6 @@ button:hover {
   <h1>Esame per Licenza Taxi/NCC</h1>
   <button onclick="iniziaSimulazione()">Simulazione Esame</button>
   <button onclick="mostraSelezioneArgomento()">Esercitazione per Argomento</button>
-  <button onclick="mostraStatistiche()">Statistiche</button>
 <button onclick="riprovaErrori()">Riprova solo errori</button>
 </div>
 
@@ -227,12 +226,6 @@ button:hover {
 
   <div id="risultati"></div>
   <div id="riepilogoRisposte"></div>
-<div id="statistiche" style="display:none;">
-  <h2>Statistiche errori per domanda</h2>
-  <div id="contenutoStatistiche"></div>
-<button onclick="resetStatistiche()">Reset Statistiche</button>
-  <button onclick="tornaAllaHome()">Torna alla Home</button>
-</div>
 
 <div id="selezioneLinguaSimulazione" style="display:none; padding: 20px; text-align: center;">
   <h2>Seleziona la lingua per la simulazione</h2>
@@ -496,15 +489,27 @@ function iniziaEsercitazione(argomento) {
   riepilogoEsercitazione.innerHTML = `<p>Domande completate: ${indiceEsercitazione}</p>`;
 }
 
-    function validaRispostaEsercitazione(scelta) {
+function validaRispostaEsercitazione(scelta) {
   const d = domandeArgomento[indiceEsercitazione];
   const feedback = document.getElementById("feedbackEsercitazione");
   const corretta = scelta === d.corretta;
 
   if (corretta) {
     feedback.innerHTML = "<p class='corretto'>Corretto!</p>";
+
+    // Rimuovi la domanda dalla lista errori salvata
+    let errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
+    if (errorStats[d.domanda]) {
+      delete errorStats[d.domanda];
+      localStorage.setItem("errorStats", JSON.stringify(errorStats));
+    }
   } else {
     feedback.innerHTML = `<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>`;
+
+    // Salvataggio errore nella struttura globale errorStats
+    let errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
+    errorStats[d.domanda] = (errorStats[d.domanda] || 0) + 1;
+    localStorage.setItem("errorStats", JSON.stringify(errorStats));
   }
 
   risposteEsercitazioneDate.push({ ...d, sceltaUtente: scelta });
@@ -529,28 +534,6 @@ function iniziaEsercitazione(argomento) {
     }
   }
 
-function mostraStatistiche() {
-  home.style.display = "none";
-  document.getElementById("statistiche").style.display = "block";
-  const container = document.getElementById("contenutoStatistiche");
-  const stats = JSON.parse(localStorage.getItem("statisticheErrori")) || {};
-
-  if (Object.keys(stats).length === 0) {
-    container.innerHTML = "<p>Nessuna statistica disponibile.</p>";
-    return;
-  }
-
-const elenco = Object.entries(stats)
-  .sort((a, b) => (b[1] || 0) - (a[1] || 0))
-  .map(([domanda, count]) => {
-    const errori = typeof count === "number" ? count : (count.errori || 0);
-    return `<li><strong>${domanda}</strong>: ${errori} errori</li>`;
-  })
-  .join("");
-
-  container.innerHTML = `<ul>${elenco}</ul>`;
-}
-
 function riprovaErrori() {
   const erroriSalvati = JSON.parse(localStorage.getItem("errorStats"));
   if (!erroriSalvati || Object.keys(erroriSalvati).length === 0) {
@@ -558,22 +541,38 @@ function riprovaErrori() {
     return;
   }
 
-  const domandeErrore = tutteLeDomande.filter(d => erroriSalvati[d.domanda]);
+  // Costruisci lista argomenti con errori
+  const argomentiConErrori = {};
+  Object.keys(erroriSalvati).forEach(domanda => {
+    const d = tutteLeDomande.find(q => q.domanda === domanda);
+    if (d) {
+      if (!argomentiConErrori[d.argomento]) {
+        argomentiConErrori[d.argomento] = 0;
+      }
+      argomentiConErrori[d.argomento]++;
+    }
+  });
 
-  if (domandeErrore.length === 0) {
+  if (Object.keys(argomentiConErrori).length === 0) {
     alert("Non ci sono errori da riprovare.");
     return;
   }
 
-  // Avvia esercitazione con le sole domande sbagliate
   home.style.display = "none";
-  quiz.style.display = "block";
-  domandeSimulazione = domandeErrore;
-  indiceDomanda = 0;
-  erroriTotali = 0;
-  erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, FRANCESE: 0, TEDESCO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
-  risposteDate = [];
-  mostraDomanda();
+  esercitazione.style.display = "block";
+
+  contenitoreEsercitazione.innerHTML = `
+    <h2>Riprova solo errori - Seleziona argomento</h2>
+    <div class="button-container">
+      ${Object.entries(argomentiConErrori).map(([arg, count]) => 
+        `<div style="margin-bottom: 20px;">
+          <button style="display:block; width: 200px; margin-bottom: 5px;" onclick="riprovaErroriPerArgomento('${arg}')">${arg} (${count} errori)</button>
+          <button style="display:block; width: 200px;" onclick="resetErroriPerArgomento('${arg}')">Reset ${arg}</button>
+        </div>`
+      ).join("")}
+    </div>
+    <button onclick="tornaAllaHome()">Annulla</button>
+  `;
 }
 
 function avviaRiprova(listaDomande) {
@@ -588,15 +587,6 @@ function avviaRiprova(listaDomande) {
     erroriPerArgomento = {};
     risposteUtente = [];
     mostraDomanda();
-}
-
-function resetStatistiche() {
-  if (confirm("Sei sicuro di voler cancellare tutte le statistiche?")) {
-    localStorage.removeItem("statisticheErrori");
-    localStorage.removeItem("errorStats");
-    alert("Statistiche cancellate.");
-    location.reload();
-  }
 }
 
 function mostraRisultatiEsercitazione() {
@@ -651,6 +641,58 @@ function mostraRiepilogoErroriEsercitazione() {
     <button onclick="mostraRisultatiEsercitazione()">Torna ai Risultati</button>
     <button onclick="tornaAllaHome()">Torna alla Home</button>
   `;
+}
+
+function riprovaErroriPerArgomento(argomento) {
+  const erroriSalvati = JSON.parse(localStorage.getItem("errorStats")) || {};
+  const domandeErrore = tutteLeDomande.filter(d => 
+    d.argomento === argomento && erroriSalvati[d.domanda]
+  );
+
+  if (domandeErrore.length === 0) {
+    alert(`Non ci sono errori salvati per l'argomento ${argomento}.`);
+    return;
+  }
+
+  // Imposta le variabili per esercitazione sugli errori filtrati
+  home.style.display = "none";
+  esercitazione.style.display = "block";
+  contenitoreEsercitazione.innerHTML = ""; // Pulito, gestito da mostraDomandaEsercitazione
+  domandeArgomento = domandeErrore;
+  indiceEsercitazione = 0;
+  risposteEsercitazioneDate = [];
+  document.getElementById("titoloArgomento").textContent = `Solo errori: ${argomento}`;
+  mostraDomandaEsercitazione();
+}
+
+function resetErrori() {
+  if (confirm("Sei sicuro di voler azzerare tutti gli errori salvati?")) {
+    localStorage.removeItem("errorStats");  // Rimuove tutti gli errori
+    alert("Tutti gli errori sono stati azzerati.");
+
+    // Torna alla home oppure aggiorna la visualizzazione degli errori
+    tornaAllaHome();
+    // oppure puoi richiamare riprovaErrori() per aggiornare la lista errori senza uscire
+    // riprovaErrori();
+  }
+}
+
+function resetErroriPerArgomento(argomento) {
+  if (confirm(`Sei sicuro di voler azzerare gli errori per l'argomento ${argomento}?`)) {
+    let errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
+    // Filtra via tutte le domande di quell'argomento
+    for (const domanda in errorStats) {
+      const d = tutteLeDomande.find(q => q.domanda === domanda);
+      if (d && d.argomento === argomento) {
+        delete errorStats[domanda];
+      }
+    }
+    localStorage.setItem("errorStats", JSON.stringify(errorStats));
+    alert(`Errori per l'argomento ${argomento} azzerati.`);
+
+    // Ricarica la lista degli errori aggiornata
+    riprovaErrori();
+  }
 }
 </script>
 
