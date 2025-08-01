@@ -208,6 +208,21 @@ button:hover {
   <button onclick="iniziaSimulazione()">Simulazione Esame</button>
   <button onclick="mostraSelezioneArgomento()">Esercitazione per Argomento</button>
 <button onclick="riprovaErrori()">Riprova solo errori</button>
+<button onclick="mostraSezioneArticoli()">Leggi Articoli del Regolamento</button>
+</div>
+
+<div id="sezioneArticoli" style="display:none; max-width: 800px; margin: auto; padding: 30px; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); text-align: left;">
+  <h1>Articoli del Regolamento</h1>
+  <div id="indiceArticoli" style="margin-bottom: 20px; max-height: 250px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; border-radius: 8px;"></div>
+  <div id="contenutoArticolo" style="margin-bottom: 20px;">
+    <h2 id="titoloArticolo"></h2>
+    <p id="testoArticolo" style="white-space: pre-line;"></p>
+  </div>
+  <div id="navigazioneArticoli" style="text-align:center; margin-bottom: 20px;">
+    <button id="prevArticolo">← Articolo Precedente</button>
+    <button id="nextArticolo">Articolo Successivo →</button>
+  </div>
+  <button id="tornaHomeDaArticoli" style="display: block; margin: auto;">Torna alla Home</button>
 </div>
 
   <div id="quiz">
@@ -237,6 +252,8 @@ button:hover {
 </div>
 
   <script src="domande.js"></script>
+
+<script src="Articoli.js"></script>
   <script>
     const home = document.getElementById("home");
     const quiz = document.getElementById("quiz");
@@ -693,6 +710,61 @@ function resetErroriPerArgomento(argomento) {
     // Ricarica la lista degli errori aggiornata
     riprovaErrori();
   }
+}
+
+let indiceArticoloCorrente = 0;
+
+function generaIndiceArticoli() {
+  const indiceDiv = document.getElementById('indiceArticoli');
+  indiceDiv.innerHTML = '';
+  tuttiGliArticoli.forEach((articolo, index) => {
+    const btn = document.createElement('button');
+    btn.textContent = `${articolo.numeroArticolo} - ${articolo.titolo}`;
+    btn.style.display = 'block';
+    btn.style.marginBottom = '5px';
+    btn.style.width = '100%';
+    btn.style.textAlign = 'left';
+    btn.onclick = () => mostraArticolo(index);
+    indiceDiv.appendChild(btn);
+  });
+}
+
+function mostraArticolo(indice) {
+  indiceArticoloCorrente = indice;
+  const articolo = tuttiGliArticoli[indice];
+  document.getElementById('titoloArticolo').textContent = `${articolo.numeroArticolo} - ${articolo.titolo}`;
+  document.getElementById('testoArticolo').textContent = articolo.testo;
+}
+
+document.getElementById('prevArticolo').addEventListener('click', () => {
+  if (indiceArticoloCorrente > 0) {
+    mostraArticolo(indiceArticoloCorrente - 1);
+  }
+});
+
+document.getElementById('nextArticolo').addEventListener('click', () => {
+  if (indiceArticoloCorrente < tuttiGliArticoli.length - 1) {
+    mostraArticolo(indiceArticoloCorrente + 1);
+  }
+});
+
+document.getElementById('tornaHomeDaArticoli').addEventListener('click', () => {
+  document.getElementById('sezioneArticoli').style.display = 'none';
+  document.getElementById('home').style.display = 'block';
+});
+
+function mostraSezioneArticoli() {
+  // Nascondi altre sezioni (adatta questa funzione al tuo codice)
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('esercitazione').style.display = 'none';
+  document.getElementById('risultati').style.display = 'none';
+  document.getElementById('riepilogoRisposte').style.display = 'none';
+  document.getElementById('selezioneLinguaSimulazione').style.display = 'none';
+  
+  document.getElementById('sezioneArticoli').style.display = 'block';
+  generaIndiceArticoli();
+  mostraArticolo(0);
 }
 </script>
 
