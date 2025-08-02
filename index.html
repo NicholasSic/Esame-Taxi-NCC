@@ -209,6 +209,7 @@ button:hover {
   <button onclick="mostraSelezioneArgomento()">Esercitazione per Argomento</button>
 <button onclick="riprovaErrori()">Riprova solo errori</button>
 <button onclick="mostraSezioneArticoli()">Leggi Articoli del Regolamento</button>
+<button onclick="mostraSezionePercorsi()">Visualizza Percorsi Principali</button>
 </div>
 
 <div id="sezioneArticoli" style="display:none; max-width: 800px; margin: auto; padding: 30px; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); text-align: left;">
@@ -223,6 +224,32 @@ button:hover {
     <button id="nextArticolo">Articolo Successivo →</button>
   </div>
   <button id="tornaHomeDaArticoli" style="display: block; margin: auto;">Torna alla Home</button>
+</div>
+
+<div id="sezionePercorsi" style="display:none; max-width: 800px; margin: auto; padding: 30px; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: left;">
+  <h1>Percorsi Principali</h1>
+  
+  <!-- Macro categorie -->
+  <div id="indiceCategoriePercorsi" style="max-height: 150px; overflow-y: auto; margin-bottom: 10px;"></div>
+
+  <!-- Bottone torna indietro -->
+  <button id="btnTornaCategorie" style="display:none; margin-bottom: 10px;">← Torna a tutte le categorie</button>
+
+  <!-- Lista percorsi -->
+  <div id="indicePercorsi" style="max-height: 200px; overflow-y: auto; margin-bottom: 10px; display:none;"></div>
+  
+  <!-- Dettaglio percorso -->
+  <div id="contenutoPercorso" style="margin-top: 20px; display:none;">
+    <h2 id="titoloPercorso"></h2>
+    <ul id="listaTappe"></ol>
+  </div>
+  
+  <div id="navigazionePercorsi" style="text-align:center; margin-top: 10px; display:none;">
+    <button id="prevPercorso">← Percorso Precedente</button>
+    <button id="nextPercorso">Percorso Successivo →</button>
+  </div>
+  
+  <button id="tornaHomeDaPercorsi" style="display: block; margin: 20px auto 0;">Torna alla Home</button>
 </div>
 
   <div id="quiz">
@@ -254,6 +281,8 @@ button:hover {
   <script src="domande.js"></script>
 
 <script src="Articoli.js"></script>
+
+<script src="Percorsi.js"></script>
   <script>
     const home = document.getElementById("home");
     const quiz = document.getElementById("quiz");
@@ -766,6 +795,141 @@ function mostraSezioneArticoli() {
   generaIndiceArticoli();
   mostraArticolo(0);
 }
+
+  // Variabili per tenere traccia degli stati
+  let categoriePercorsi = Object.keys(percorsi);
+  let categoriaCorrente = null;
+  let percorsoCorrenteIndex = 0;
+
+  // Elementi DOM
+  const sezionePercorsi = document.getElementById('sezionePercorsi');
+  const indiceCategoriePercorsi = document.getElementById('indiceCategoriePercorsi');
+  const indicePercorsi = document.getElementById('indicePercorsi');
+  const titoloPercorso = document.getElementById('titoloPercorso');
+  const listaTappe = document.getElementById('listaTappe');
+  const prevPercorsoBtn = document.getElementById('prevPercorso');
+  const nextPercorsoBtn = document.getElementById('nextPercorso');
+  const btnTornaCategorie = document.getElementById('btnTornaCategorie');
+  const tornaHomeDaPercorsiBtn = document.getElementById('tornaHomeDaPercorsi');
+  const navigazionePercorsiDiv = document.getElementById('navigazionePercorsi');
+
+  // Mostra le macro categorie
+  function mostraMacroCategorie() {
+    indiceCategoriePercorsi.style.display = 'block';
+    indicePercorsi.style.display = 'none';
+    contenutoPercorso.style.display = 'none';
+    navigazionePercorsiDiv.style.display = 'none';
+    btnTornaCategorie.style.display = 'none';
+    titoloPercorso.textContent = '';
+    listaTappe.innerHTML = '';
+
+    indiceCategoriePercorsi.innerHTML = '';
+    categoriePercorsi.forEach(categoria => {
+      const btn = document.createElement('button');
+      btn.textContent = categoria.replace(/_/g, ' ');
+      btn.style.display = 'block';
+      btn.style.marginBottom = '5px';
+      btn.style.width = '100%';
+      btn.style.textAlign = 'left';
+      btn.onclick = () => {
+        categoriaCorrente = categoria;
+        mostraPercorsiCategoria(categoria);
+      };
+      indiceCategoriePercorsi.appendChild(btn);
+    });
+  }
+
+  // Mostra i percorsi della categoria selezionata
+  function mostraPercorsiCategoria(categoria) {
+    indiceCategoriePercorsi.style.display = 'none';
+    indicePercorsi.style.display = 'block';
+    contenutoPercorso.style.display = 'none';
+    navigazionePercorsiDiv.style.display = 'none';
+    btnTornaCategorie.style.display = 'block';
+    titoloPercorso.textContent = '';
+    listaTappe.innerHTML = '';
+    
+    indicePercorsi.innerHTML = '';
+    percorsi[categoria].forEach((percorso, index) => {
+      const btn = document.createElement('button');
+      btn.textContent = percorso.nomePercorso;
+      btn.style.display = 'block';
+      btn.style.marginBottom = '3px';
+      btn.style.width = '100%';
+      btn.style.textAlign = 'left';
+      btn.onclick = () => {
+        mostraDettaglioPercorso(percorso, index);
+      };
+      indicePercorsi.appendChild(btn);
+    });
+  }
+
+  // Mostra il dettaglio di un percorso (tappe)
+  function mostraDettaglioPercorso(percorso, index) {
+    titoloPercorso.textContent = `${categoriaCorrente.replace(/_/g, ' ')} — ${percorso.nomePercorso}`;
+    listaTappe.innerHTML = '';
+    percorso.tappe.forEach(tappa => {
+      const li = document.createElement('li');
+      li.textContent = tappa;
+      listaTappe.appendChild(li);
+    });
+
+    contenutoPercorso.style.display = 'block';
+    navigazionePercorsiDiv.style.display = 'block';
+    indicePercorsi.style.display = 'none';
+    
+    percorsoCorrenteIndex = index;
+    aggiornaBottoniNavigazione();
+  }
+
+  // Aggiorna stato dei bottoni avanti/indietro
+  function aggiornaBottoniNavigazione() {
+    const percorsiCategoria = percorsi[categoriaCorrente];
+    prevPercorsoBtn.disabled = percorsoCorrenteIndex <= 0;
+    nextPercorsoBtn.disabled = percorsoCorrenteIndex >= percorsiCategoria.length - 1;
+  }
+
+  // Eventi bottoni navigazione
+  prevPercorsoBtn.onclick = () => {
+    if (percorsoCorrenteIndex > 0) {
+      mostraDettaglioPercorso(percorsi[categoriaCorrente][percorsoCorrenteIndex - 1], percorsoCorrenteIndex - 1);
+    }
+  };
+
+  nextPercorsoBtn.onclick = () => {
+    if (percorsoCorrenteIndex < percorsi[categoriaCorrente].length - 1) {
+      mostraDettaglioPercorso(percorsi[categoriaCorrente][percorsoCorrenteIndex + 1], percorsoCorrenteIndex + 1);
+    }
+  };
+
+  // Torna all’elenco macro categorie
+  btnTornaCategorie.onclick = () => {
+    mostraMacroCategorie();
+  };
+
+  // Torna alla home
+  tornaHomeDaPercorsiBtn.onclick = () => {
+    sezionePercorsi.style.display = 'none';
+    document.getElementById('home').style.display = 'block';
+  };
+
+  // Funzione da chiamare per mostrare la sezione percorsi dalla home
+  function mostraSezionePercorsi() {
+    // Nascondi altre sezioni (aggiungi se necessario)
+    document.getElementById('home').style.display = 'none';
+    document.getElementById('quiz').style.display = 'none';
+    document.getElementById('esercitazione').style.display = 'none';
+    document.getElementById('risultati').style.display = 'none';
+    document.getElementById('riepilogoRisposte').style.display = 'none';
+    document.getElementById('selezioneLinguaSimulazione').style.display = 'none';
+    document.getElementById('sezioneArticoli').style.display = 'none';
+
+    // Mostra sezione percorsi
+    sezionePercorsi.style.display = 'block';
+
+    // Mostra macro categorie all’avvio
+    mostraMacroCategorie();
+  }
 </script>
 
 </body>
