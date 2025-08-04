@@ -294,6 +294,28 @@ const percorsi = {
     "Troviamo Terminal 2 e poi Terminal 1"
   ]
 },
+    {
+  "nomePercorso": "MALPENSA ALTERNATIVA DA A4 DIREZIONE TORINO",
+  "tappe": [
+    "Cavalcavia deil Ghisallo",
+    "Uscite a Destra:",
+    "A4 direzione Venezia",
+    "Via Cogne che ci porta verso Ospedale Sacco",
+    "Statale Varesina",
+    "Uscite a Sinistra:",
+    "A4 Milano Torino",
+    "Prendiamo la direzione A4 per Torino",
+    "Superiamo l'uscita Nuovo Polo Fieristico Roh Pero",
+    "Le uscite per le due tangenziali Est e Ovest",
+    "Superiamo la barriera",
+    "Troviamo le Uscite:",
+    "Arluno",
+    "Marcallo Mesero",
+    "Usciamo a Marcallo Mesero",
+    "Prendiamo la SS 336 direzione Malpensa Aereoporto",
+    "Troviamo Terminal 1 e poi Terminal 2"
+  ]
+},
 {
   "nomePercorso": "DUOMO > CENTRALE",
   "tappe": [
@@ -432,6 +454,28 @@ const percorsi = {
     "Troviamo Terminal 2 e poi Terminal 1"
       ]
     },
+        {
+  "nomePercorso": "MALPENSA ALTERNATIVA DA A4 DIREZIONE TORINO",
+  "tappe": [
+    "Cavalcavia deil Ghisallo",
+    "Uscite a Destra:",
+    "A4 direzione Venezia",
+    "Via Cogne che ci porta verso Ospedale Sacco",
+    "Statale Varesina",
+    "Uscite a Sinistra:",
+    "A4 Milano Torino",
+    "Prendiamo la direzione A4 per Torino",
+    "Superiamo l'uscita Nuovo Polo Fieristico Roh Pero",
+    "Le uscite per le due tangenziali Est e Ovest",
+    "Superiamo la barriera",
+    "Troviamo le Uscite:",
+    "Arluno",
+    "Marcallo Mesero",
+    "Usciamo a Marcallo Mesero",
+    "Prendiamo la SS 336 direzione Malpensa Aereoporto",
+    "Troviamo Terminal 1 e poi Terminal 2"
+  ]
+},
     {
   "nomePercorso": "CENTRALE > DUOMO",
   "tappe": [
@@ -579,6 +623,28 @@ const percorsi = {
     "Prendiamo la Strada Statale 336 per Malpensa",
     "Troviamo Terminal 2 e poi Terminal 1"      ]
     },
+        {
+  "nomePercorso": "MALPENSA ALTERNATIVA DA A4 DIREZIONE TORINO",
+  "tappe": [
+    "Cavalcavia deil Ghisallo",
+    "Uscite a Destra:",
+    "A4 direzione Venezia",
+    "Via Cogne che ci porta verso Ospedale Sacco",
+    "Statale Varesina",
+    "Uscite a Sinistra:",
+    "A4 Milano Torino",
+    "Prendiamo la direzione A4 per Torino",
+    "Superiamo l'uscita Nuovo Polo Fieristico Roh Pero",
+    "Le uscite per le due tangenziali Est e Ovest",
+    "Superiamo la barriera",
+    "Troviamo le Uscite:",
+    "Arluno",
+    "Marcallo Mesero",
+    "Usciamo a Marcallo Mesero",
+    "Prendiamo la SS 336 direzione Malpensa Aereoporto",
+    "Troviamo Terminal 1 e poi Terminal 2"
+  ]
+},
       {
   "nomePercorso": "LINATE > DUOMO",
   "tappe": [
@@ -727,6 +793,28 @@ const percorsi = {
     "Prendiamo la Strada Statale 336 per Malpensa",
     "Troviamo Terminal 2 e poi Terminal 1"      ]
     },
+        {
+  "nomePercorso": "MALPENSA ALTERNATIVA DA A4 DIREZIONE TORINO",
+  "tappe": [
+    "Cavalcavia deil Ghisallo",
+    "Uscite a Destra:",
+    "A4 direzione Venezia",
+    "Via Cogne che ci porta verso Ospedale Sacco",
+    "Statale Varesina",
+    "Uscite a Sinistra:",
+    "A4 Milano Torino",
+    "Prendiamo la direzione A4 per Torino",
+    "Superiamo l'uscita Nuovo Polo Fieristico Roh Pero",
+    "Le uscite per le due tangenziali Est e Ovest",
+    "Superiamo la barriera",
+    "Troviamo le Uscite:",
+    "Arluno",
+    "Marcallo Mesero",
+    "Usciamo a Marcallo Mesero",
+    "Prendiamo la SS 336 direzione Malpensa Aereoporto",
+    "Troviamo Terminal 1 e poi Terminal 2"
+  ]
+},
     {
   nomePercorso: "CITY LIFE > DUOMO",
   tappe: [
@@ -892,6 +980,28 @@ const percorsi = {
     "Prendiamo la Strada Statale 336 per Malpensa",
     "Troviamo Terminal 2 e poi Terminal 1"      ]
     },
+        {
+  "nomePercorso": "MALPENSA ALTERNATIVA DA A4 DIREZIONE TORINO",
+  "tappe": [
+    "Cavalcavia deil Ghisallo",
+    "Uscite a Destra:",
+    "A4 direzione Venezia",
+    "Via Cogne che ci porta verso Ospedale Sacco",
+    "Statale Varesina",
+    "Uscite a Sinistra:",
+    "A4 Milano Torino",
+    "Prendiamo la direzione A4 per Torino",
+    "Superiamo l'uscita Nuovo Polo Fieristico Roh Pero",
+    "Le uscite per le due tangenziali Est e Ovest",
+    "Superiamo la barriera",
+    "Troviamo le Uscite:",
+    "Arluno",
+    "Marcallo Mesero",
+    "Usciamo a Marcallo Mesero",
+    "Prendiamo la SS 336 direzione Malpensa Aereoporto",
+    "Troviamo Terminal 1 e poi Terminal 2"
+  ]
+},
 {
   nomePercorso: "SAN BABILA > DUOMO",
   tappe: [
@@ -1029,6 +1139,28 @@ const percorsi = {
     "Prendiamo la Strada Statale 336 per Malpensa",
     "Troviamo Terminal 2 e poi Terminal 1"      ]
     },
+        {
+  "nomePercorso": "MALPENSA ALTERNATIVA DA A4 DIREZIONE TORINO",
+  "tappe": [
+    "Cavalcavia deil Ghisallo",
+    "Uscite a Destra:",
+    "A4 direzione Venezia",
+    "Via Cogne che ci porta verso Ospedale Sacco",
+    "Statale Varesina",
+    "Uscite a Sinistra:",
+    "A4 Milano Torino",
+    "Prendiamo la direzione A4 per Torino",
+    "Superiamo l'uscita Nuovo Polo Fieristico Roh Pero",
+    "Le uscite per le due tangenziali Est e Ovest",
+    "Superiamo la barriera",
+    "Troviamo le Uscite:",
+    "Arluno",
+    "Marcallo Mesero",
+    "Usciamo a Marcallo Mesero",
+    "Prendiamo la SS 336 direzione Malpensa Aereoporto",
+    "Troviamo Terminal 1 e poi Terminal 2"
+  ]
+},
 {
   "nomePercorso": "PIAZZA DELLA SCALA > ORIO AL SERIO",
   "tappe": [
