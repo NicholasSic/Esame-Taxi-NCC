@@ -334,6 +334,10 @@ function avviaSimulazioneConLingua() {
 }
 
 function estraiDomandeSimulazione(lingua) {
+  // Recupera domande già usate recentemente (max 50 domande tenute in memoria)
+  let domandeUsateRecentemente = JSON.parse(localStorage.getItem("domandeUsateRecentemente")) || [];
+
+  // Costruisci elenco domande per argomento
   const perArgomento = { GEOGRAFIA: [], NORMATIVA: [], REGOLAMENTO: [] };
   perArgomento[lingua] = [];
   tutteLeDomande.forEach(d => {
@@ -343,13 +347,32 @@ function estraiDomandeSimulazione(lingua) {
       perArgomento[lingua].push(d);
     }
   });
+
   let scelte = [];
   Object.keys(perArgomento).forEach(arg => {
     if (perArgomento[arg].length > 0) {
-      scelte = scelte.concat(perArgomento[arg].sort(() => 0.5 - Math.random()).slice(0, 4));
+      // Filtra le domande per escludere quelle usate recentemente, se possibile
+      let disponibili = perArgomento[arg].filter(d => !domandeUsateRecentemente.includes(d.domanda));
+
+      // Se le disponibili sono meno di 4, includi anche quelle già usate (per non avere poche domande)
+      if (disponibili.length < 4) {
+        disponibili = perArgomento[arg];
+      }
+
+      // Mischia e prendi massimo 4 domande
+      scelte = scelte.concat(disponibili.sort(() => 0.5 - Math.random()).slice(0, 4));
     }
   });
-  return scelte.sort(() => 0.5 - Math.random());
+
+  // Mischia le domande selezionate
+  scelte = scelte.sort(() => 0.5 - Math.random());
+
+  // Mantieni al massimo 16 domande (come previsto)
+  if (scelte.length > 16) {
+    scelte = scelte.slice(0, 16);
+  }
+
+  return scelte;
 }
 
     function mostraDomanda() {
@@ -395,7 +418,24 @@ function aggiornaStatisticheDomanda(domanda) {
     }
 
 function mostraRisultati() {
-  // Nascondi quiz e mostra risultati
+  // Memorizza le domande usate nella simulazione attuale
+  let domandeUsateRecentemente = JSON.parse(localStorage.getItem("domandeUsateRecentemente")) || [];
+
+  // Aggiungi le domande usate in questa simulazione
+  domandeSimulazione.forEach(d => {
+    if (!domandeUsateRecentemente.includes(d.domanda)) {
+      domandeUsateRecentemente.push(d.domanda);
+    }
+  });
+
+  // Mantieni solo le ultime 50 domande (per evitare che la lista cresca troppo)
+  if (domandeUsateRecentemente.length > 50) {
+    domandeUsateRecentemente = domandeUsateRecentemente.slice(domandeUsateRecentemente.length - 50);
+  }
+
+  localStorage.setItem("domandeUsateRecentemente", JSON.stringify(domandeUsateRecentemente));
+
+  // Continua con la visualizzazione risultati già esistente...
   quiz.style.display = "none";
   risultati.style.display = "block";
 
@@ -504,6 +544,10 @@ let risposteEsercitazioneDate = [];
 function iniziaEsercitazione(argomento) {
   console.log("Inizio esercitazione con argomento:", argomento);
   domandeArgomento = tutteLeDomande.filter(d => d.argomento === argomento);
+
+  // Mischia casualmente l'array delle domande per avere ordine random
+  domandeArgomento = domandeArgomento.sort(() => Math.random() - 0.5);
+
   console.log("Domande trovate:", domandeArgomento.length);
   indiceEsercitazione = 0;
   risposteEsercitazioneDate = [];
@@ -587,6 +631,16 @@ function riprovaErrori() {
     return;
   }
 
+  // Nascondi tutte le altre sezioni tranne esercitazione
+  home.style.display = "none";
+  quiz.style.display = "none";
+  risultati.style.display = "none";
+  riepilogoRisposte.style.display = "none";  // <-- qui nascondi il riepilogo risposte
+  esercitazione.style.display = "block";
+  document.getElementById('selezioneLinguaSimulazione').style.display = "none";
+  document.getElementById('sezioneArticoli').style.display = "none";
+  document.getElementById('sezionePercorsi').style.display = "none";
+
   // Costruisci lista argomenti con errori
   const argomentiConErrori = {};
   Object.keys(erroriSalvati).forEach(domanda => {
@@ -603,9 +657,6 @@ function riprovaErrori() {
     alert("Non ci sono errori da riprovare.");
     return;
   }
-
-  home.style.display = "none";
-  esercitazione.style.display = "block";
 
   contenitoreEsercitazione.innerHTML = `
     <h2>Riprova solo errori - Seleziona argomento</h2>
@@ -650,7 +701,7 @@ function mostraRisultatiEsercitazione() {
       <p><strong>Risposte corrette:</strong> ${corrette}</p>
       <p><strong>Risposte sbagliate:</strong> ${errori}</p>
       <div class="pulsanti-risultato">
-        <button onclick="iniziaEsercitazione('${document.getElementById("titoloArgomento").textContent}')">Ricomincia</button>
+       <button onclick="riprovaErrori()">Torna alla lista errori</button>
         <button onclick="mostraRiepilogoErroriEsercitazione()">Rivedi Domande Sbagliate</button>
         <button onclick="tornaAllaHome()">Torna alla Home</button>
       </div>
