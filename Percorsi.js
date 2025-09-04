@@ -488,6 +488,7 @@ const percorsi = {
     "Piazza Cavour",
     "Via Manzoni",
     "Piazza della Scala",
+    "Largo Ghiringhelli",
     "Via Santa Margherita",
     "Via San Protaso",
     "Largo Belotti",
@@ -502,6 +503,7 @@ const percorsi = {
 {
   "nomePercorso": "CENTRALE > LINATE",
   "tappe": [
+    "Via Lepetit",
     "Via Vitruvio",
     "Piazza Lima",
     "Via Plinio",
@@ -513,7 +515,6 @@ const percorsi = {
     "Via Sidoli",
     "Via Gozzi",
     "Piazza Susa",
-    "Viale Argonne",
     "Via Dell'Ongaro",
     "Piazza Adigrat",
     "Via Battistotti Sassi",
