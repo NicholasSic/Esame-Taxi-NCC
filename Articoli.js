@@ -182,6 +182,6 @@ const tuttiGliArticoli = [
 {
   "numeroArticolo": "Tariffe Fisse",
   "titolo": "Elenco tariffe fisse per aeroporti e località",
-  "testo": "Aeroporto Malpensa - Aeroporto Linate (e viceversa) € 128,00\nAeroporto Orio al Serio - Milano (e viceversa) € 128,00\nAeroporto Malpensa - Milano (e viceversa) € 114,00\nAeroporto Malpensa - Fiera Milano (Rho) (e viceversa) € 94,00\nAeroporto Malpensa - Varese (e viceversa) € 80,00\nAeroporto Linate - Fiera Milano (Rho) (e viceversa) € 64,00"
+  "testo": "Aeroporto Malpensa - Aeroporto Linate (e viceversa) € 128,00\nAeroporto Orio al Serio - Milano (e viceversa) € 128,00\nAeroporto Malpensa - Milano (e viceversa) € 114,00\nAeroporto Malpensa - Fiera Milano (Rho) (e viceversa) € 94,00\nAeroporto Malpensa - Varese (e viceversa) € 80,00\nAeroporto Linate - Fiera Milano (Rho) (e viceversa) € 68,00"
 }
 ];
