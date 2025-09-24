@@ -359,25 +359,27 @@
       quiz.style.display = "none";
       risultati.style.display = "block";
 
-      risultati.innerHTML = `
-        <div class="result-container">
-          <h2>Test completato!</h2>
-          <p><strong>Domande completate:</strong> ${indiceDomanda}/16</p>
-          <p><strong>Errori totali:</strong> ${erroriTotali}</p>
-          <ul class="argomento-errori">
-            ${Object.entries(erroriPerArgomento).map(([arg, count]) =>
-              `<li class="${count > 2 ? 'errore-alto' : count > 0 ? 'errore-basso' : 'corretto'}">${arg}: ${count} errori</li>`
-            ).join("")}
-          </ul>
-          <h3 class="${'${'}erroriTotali > 4 || Object.values(erroriPerArgomento).some(e => e > 2) ? 'bocciato' : 'promosso'${'}'}">
-            ${'${'}erroriTotali > 4 || Object.values(erroriPerArgomento).some(e => e > 2) ? "BOCCIATO" : "PROMOSSO"${'}'}
-          </h3>
-          <div class="pulsanti-risultato">
-            <button onclick="iniziaSimulazione()">Ricomincia</button>
-            <button onclick="mostraRiepilogoRisposte()">Rivedi Risposte</button>
-            <button onclick="tornaAllaHome()">Torna alla Home</button>
-          </div>
-        </div>`;
+const bocciato = erroriTotali > 4 || Object.values(erroriPerArgomento).some(e => e > 2);
+
+risultati.innerHTML = `
+  <div class="result-container">
+    <h2>Test completato!</h2>
+    <p><strong>Domande completate:</strong> ${indiceDomanda}/16</p>
+    <p><strong>Errori totali:</strong> ${erroriTotali}</p>
+    <ul class="argomento-errori">
+      ${Object.entries(erroriPerArgomento).map(([arg, count]) =>
+        `<li class="${count > 2 ? 'errore-alto' : count > 0 ? 'errore-basso' : 'corretto'}">${arg}: ${count} errori</li>`
+      ).join("")}
+    </ul>
+    <h3 class="${bocciato ? 'bocciato' : 'promosso'}">
+      ${bocciato ? "BOCCIATO" : "PROMOSSO"}
+    </h3>
+    <div class="pulsanti-risultato">
+      <button onclick="iniziaSimulazione()">Ricomincia</button>
+      <button onclick="mostraRiepilogoRisposte()">Rivedi Risposte</button>
+      <button onclick="tornaAllaHome()">Torna alla Home</button>
+    </div>
+  </div>`;
       clearInterval(timerInterval);
     }
 
@@ -392,19 +394,21 @@
       riepilogoRisposte.style.display = "block";
 
       const html = risposteDate.map((d, i) => {
-        const corretta = d.corretta === d.sceltaUtente;
-        return `
-          <div style="border:1px solid #ccc; margin:10px; padding:10px; background:${'${'}corretta ? '#e8f8e8' : '#ffe5e5'${'}'};">
-            <strong>${'${'}i + 1${'}'}) ${'${'}d.domanda${'}'}</strong><br>
-            Tua risposta:
-            <span style="color:${'${'}corretta ? 'green' : 'red'${'}'};">
-              ${'${'}d.risposte[d.sceltaUtente] || "Nessuna"${'}'}
-            </span><br>
-            Risposta corretta: <strong>${'${'}d.risposte[d.corretta]${'}'}</strong>
-          </div>`;
-      }).join("");
+  const corretta = d.corretta === d.sceltaUtente;
+  const bg = corretta ? '#e8f8e8' : '#ffe5e5';
+  const color = corretta ? 'green' : 'red';
+  return `
+    <div style="border:1px solid #ccc; margin:10px; padding:10px; background:${bg};">
+      <strong>${i + 1}) ${d.domanda}</strong><br>
+      Tua risposta:
+      <span style="color:${color};">
+        ${d.risposte[d.sceltaUtente] || "Nessuna"}
+      </span><br>
+      Risposta corretta: <strong>${d.risposte[d.corretta]}</strong>
+    </div>`;
+}).join("");
 
-      riepilogoRisposte.innerHTML = `<h3>Riepilogo Risposte</h3>${html}<button onclick="location.reload()">Torna alla Home</button>`;
+riepilogoRisposte.innerHTML = `<h3>Riepilogo Risposte</h3>${html}<button onclick="location.reload()">Torna alla Home</button>`;
     }
 
     function aggiornaRiepilogo() {
@@ -413,7 +417,7 @@
         <p>Errori totali: ${'${'}erroriTotali${'}'}</p>
         <ul>
           ${'${'}Object.entries(erroriPerArgomento).map(([arg, err]) =>
-            \`<li style="color:${err > 0 ? "red" : "green"}">${arg}: ${err} errori</li>\`).join("")${'}'}
+            `<li style="color:${err > 0 ? "red" : "green"}">${arg}: ${err} errori</li>`).join("")${'}'}
         </ul>`;
     }
 
@@ -440,10 +444,10 @@
       home.style.display = "none";
       const categorie = ["GEOGRAFIA", "INGLESE", "SPAGNOLO", "TEDESCO", "FRANCESE", "NORMATIVA", "REGOLAMENTO"];
       esercitazione.style.display = "block";
-      contenitoreEsercitazione.innerHTML = \`
+      contenitoreEsercitazione.innerHTML = `
         <h2>Scegli un argomento</h2>
-        ${categorie.map(arg => \`<button onclick="iniziaEsercitazione('${arg}')">${arg}</button>\`).join("")}
-      \`;
+        ${categorie.map(arg => `<button onclick="iniziaEsercitazione('${arg}')">${arg}</button>`).join("")}
+      `;
     }
 
     function iniziaEsercitazione(argomento) {
@@ -457,22 +461,22 @@
 
     function mostraDomandaEsercitazione() {
       if (indiceEsercitazione >= domandeArgomento.length) {
-        contenitoreEsercitazione.innerHTML = \`
+        contenitoreEsercitazione.innerHTML = `
           <h3>Hai completato l’argomento.</h3>
           <button onclick="mostraSelezioneArgomento()">Torna alla selezione argomenti</button>
-        \`;
+        `;
         return;
       }
       const d = domandeArgomento[indiceEsercitazione];
-      contenitoreEsercitazione.innerHTML = \`
+      contenitoreEsercitazione.innerHTML = `
         <div class="domanda-card">
           <h3>${indiceEsercitazione + 1}/${domandeArgomento.length} - ${d.argomento}</h3>
           <p>${d.domanda}</p>
-          ${d.risposte.map((r, i) => \`<button class="risposta-button" onclick="validaRispostaEsercitazione(${i})">${r}</button>\`).join("")}
+          ${d.risposte.map((r, i) => `<button class="risposta-button" onclick="validaRispostaEsercitazione(${i})">${r}</button>`).join("")}
           <div id="feedbackEsercitazione" style="margin-top:10px;"></div>
         </div>
-      \`;
-      riepilogoEsercitazione.innerHTML = \`<p>Domande completate: ${indiceEsercitazione}</p>\`;
+      `;
+      riepilogoEsercitazione.innerHTML = `<p>Domande completate: ${indiceEsercitazione}</p>`;
     }
 
     function validaRispostaEsercitazione(scelta) {
@@ -488,7 +492,7 @@
           localStorage.setItem("errorStats", JSON.stringify(errorStats));
         }
       } else {
-        feedback.innerHTML = \`<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>\`;
+        feedback.innerHTML = `<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>`;
         let errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
         errorStats[d.domanda] = (errorStats[d.domanda] || 0) + 1;
         localStorage.setItem("errorStats", JSON.stringify(errorStats));
@@ -510,7 +514,7 @@
       const errori = risposteEsercitazioneDate.filter(d => d.sceltaUtente !== d.corretta).length;
       const corrette = totDomande - errori;
 
-      risultati.innerHTML = \`
+      risultati.innerHTML = `
         <div class="result-container">
           <h2>Fine Esercitazione: ${document.getElementById("titoloArgomento").textContent}</h2>
           <p><strong>Domande totali:</strong> ${totDomande}</p>
@@ -521,7 +525,7 @@
             <button onclick="mostraRiepilogoErroriEsercitazione()">Rivedi Domande Sbagliate</button>
             <button onclick="tornaAllaHome()">Torna alla Home</button>
           </div>
-        </div>\`;
+        </div>`;
     }
 
     function mostraRiepilogoErroriEsercitazione() {
@@ -529,21 +533,21 @@
       riepilogoRisposte.style.display = "block";
       const errori = risposteEsercitazioneDate.filter(d => d.sceltaUtente !== d.corretta);
       if (errori.length === 0) {
-        riepilogoRisposte.innerHTML = \`
+        riepilogoRisposte.innerHTML = `
           <h3>Non ci sono risposte sbagliate da rivedere!</h3>
-          <button onclick="tornaAllaHome()">Torna alla Home</button>\`;
+          <button onclick="tornaAllaHome()">Torna alla Home</button>`;
         return;
       }
-      const html = errori.map((d, i) => \`
+      const html = errori.map((d, i) => `
         <div style="border:1px solid #ccc; margin:10px; padding:10px; background:#ffe5e5;">
           <strong>${i + 1}) ${d.domanda}</strong><br>
           Tua risposta: <span style="color:red;">${d.risposte[d.sceltaUtente] || "Nessuna"}</span><br>
           Risposta corretta: <strong>${d.risposte[d.corretta]}</strong>
-        </div>\`).join("");
-      riepilogoRisposte.innerHTML = \`
+        </div>`).join("");
+      riepilogoRisposte.innerHTML = `
         <h3>Riepilogo Domande Sbagliate</h3>${html}
         <button onclick="mostraRisultatiEsercitazione()">Torna ai Risultati</button>
-        <button onclick="tornaAllaHome()">Torna alla Home</button>\`;
+        <button onclick="tornaAllaHome()">Torna alla Home</button>`;
     }
 
     // --------------------- Articoli (navigazione) ---------------------
@@ -553,7 +557,7 @@
       indiceDiv.innerHTML = '';
       tuttiGliArticoli.forEach((articolo, index) => {
         const btn = document.createElement('button');
-        btn.textContent = \`${articolo.numeroArticolo} - ${articolo.titolo}\`;
+        btn.textContent = `${articolo.numeroArticolo} - ${articolo.titolo}`;
         btn.style.display = 'block';
         btn.style.marginBottom = '5px';
         btn.style.width = '100%';
@@ -565,7 +569,7 @@
     function mostraArticolo(indice) {
       indiceArticoloCorrente = indice;
       const articolo = tuttiGliArticoli[indice];
-      document.getElementById('titoloArticolo').textContent = \`${articolo.numeroArticolo} - ${articolo.titolo}\`;
+      document.getElementById('titoloArticolo').textContent = `${articolo.numeroArticolo} - ${articolo.titolo}`;
       document.getElementById('testoArticolo').textContent = articolo.testo;
     }
     document.getElementById('prevArticolo').addEventListener('click', () => {
@@ -652,7 +656,7 @@
     }
 
     function mostraDettaglioPercorso(percorso, index) {
-      titoloPercorso.textContent = \`${categoriaCorrente.replace(/_/g, ' ')} — ${percorso.nomePercorso}\`;
+      titoloPercorso.textContent = `${categoriaCorrente.replace(/_/g, ' ')} — ${percorso.nomePercorso}`;
       listaTappe.innerHTML = '';
       percorso.tappe.forEach(tappa => {
         const li = document.createElement('li');
@@ -744,7 +748,7 @@
       if (isLocked()) {
         const until = Number(sessionStorage.getItem('login_lock_until'));
         const sec = Math.ceil((until - Date.now())/1000);
-        msgEl.textContent = `Troppi tentativi. Riprova tra ${'${'}Math.ceil(sec/60)${'}'} minuti.`;
+        msgEl.textContent = `Troppi tentativi. Riprova tra ${Math.ceil(sec/60)} minuti.`;
         loginBtn.disabled = true;
       }
 
