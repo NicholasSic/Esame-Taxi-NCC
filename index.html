@@ -422,18 +422,18 @@ riepilogoRisposte.innerHTML = `<h3>Riepilogo Risposte</h3>${html}<button onclick
     }
 
     function avviaTimer() {
-      const timer = document.getElementById("timer");
-      timerInterval = setInterval(() => {
-        tempoRimasto--;
-        const min = String(Math.floor(tempoRimasto / 60)).padStart(2, "0");
-        const sec = String(tempoRimasto % 60).padStart(2, "0");
-        timer.textContent = `Tempo: ${min}:${sec}`;
-        if (tempoRimasto <= 0) {
-          clearInterval(timerInterval);
-          mostraRisultati();
-        }
-      }, 1000);
+  const timer = document.getElementById("timer");
+  timerInterval = setInterval(() => {
+    tempoRimasto--;
+    const min = String(Math.floor(tempoRimasto / 60)).padStart(2, "0");
+    const sec = String(tempoRimasto % 60).padStart(2, "0");
+    timer.textContent = `Tempo: ${min}:${sec}`;
+    if (tempoRimasto <= 0) {
+      clearInterval(timerInterval);
+      mostraRisultati();
     }
+  }, 1000);
+}
 
     // ----------------------------- ESERCITAZIONE -----------------------------
     let domandeArgomento = [];
