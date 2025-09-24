@@ -366,7 +366,7 @@
           <p><strong>Errori totali:</strong> ${erroriTotali}</p>
           <ul class="argomento-errori">
             ${Object.entries(erroriPerArgomento).map(([arg, count]) =>
-              `<li class="\${count > 2 ? 'errore-alto' : count > 0 ? 'errore-basso' : 'corretto'}">${arg}: ${count} errori</li>`
+              `<li class="${count > 2 ? 'errore-alto' : count > 0 ? 'errore-basso' : 'corretto'}">${arg}: ${count} errori</li>`
             ).join("")}
           </ul>
           <h3 class="${'${'}erroriTotali > 4 || Object.values(erroriPerArgomento).some(e => e > 2) ? 'bocciato' : 'promosso'${'}'}">
@@ -404,7 +404,7 @@
           </div>`;
       }).join("");
 
-      riepilogoRisposte.innerHTML = `<h3>Riepilogo Risposte</h3>\${html}<button onclick="location.reload()">Torna alla Home</button>`;
+      riepilogoRisposte.innerHTML = `<h3>Riepilogo Risposte</h3>${html}<button onclick="location.reload()">Torna alla Home</button>`;
     }
 
     function aggiornaRiepilogo() {
@@ -413,7 +413,7 @@
         <p>Errori totali: ${'${'}erroriTotali${'}'}</p>
         <ul>
           ${'${'}Object.entries(erroriPerArgomento).map(([arg, err]) =>
-            \`<li style="color:\${err > 0 ? "red" : "green"}">\${arg}: \${err} errori</li>\`).join("")${'}'}
+            \`<li style="color:${err > 0 ? "red" : "green"}">${arg}: ${err} errori</li>\`).join("")${'}'}
         </ul>`;
     }
 
@@ -423,7 +423,7 @@
         tempoRimasto--;
         const min = String(Math.floor(tempoRimasto / 60)).padStart(2, "0");
         const sec = String(tempoRimasto % 60).padStart(2, "0");
-        timer.textContent = \`Tempo: \${min}:\${sec}\`;
+        timer.textContent = \`Tempo: ${min}:${sec}\`;
         if (tempoRimasto <= 0) {
           clearInterval(timerInterval);
           mostraRisultati();
@@ -442,7 +442,7 @@
       esercitazione.style.display = "block";
       contenitoreEsercitazione.innerHTML = \`
         <h2>Scegli un argomento</h2>
-        \${categorie.map(arg => \`<button onclick="iniziaEsercitazione('\${arg}')">\${arg}</button>\`).join("")}
+        ${categorie.map(arg => \`<button onclick="iniziaEsercitazione('${arg}')">${arg}</button>\`).join("")}
       \`;
     }
 
@@ -466,13 +466,13 @@
       const d = domandeArgomento[indiceEsercitazione];
       contenitoreEsercitazione.innerHTML = \`
         <div class="domanda-card">
-          <h3>\${indiceEsercitazione + 1}/\${domandeArgomento.length} - \${d.argomento}</h3>
-          <p>\${d.domanda}</p>
-          \${d.risposte.map((r, i) => \`<button class="risposta-button" onclick="validaRispostaEsercitazione(\${i})">\${r}</button>\`).join("")}
+          <h3>${indiceEsercitazione + 1}/${domandeArgomento.length} - ${d.argomento}</h3>
+          <p>${d.domanda}</p>
+          ${d.risposte.map((r, i) => \`<button class="risposta-button" onclick="validaRispostaEsercitazione(${i})">${r}</button>\`).join("")}
           <div id="feedbackEsercitazione" style="margin-top:10px;"></div>
         </div>
       \`;
-      riepilogoEsercitazione.innerHTML = \`<p>Domande completate: \${indiceEsercitazione}</p>\`;
+      riepilogoEsercitazione.innerHTML = \`<p>Domande completate: ${indiceEsercitazione}</p>\`;
     }
 
     function validaRispostaEsercitazione(scelta) {
@@ -488,7 +488,7 @@
           localStorage.setItem("errorStats", JSON.stringify(errorStats));
         }
       } else {
-        feedback.innerHTML = \`<p class='sbagliato'>Sbagliato! Corretta: \${d.risposte[d.corretta]}</p>\`;
+        feedback.innerHTML = \`<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>\`;
         let errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
         errorStats[d.domanda] = (errorStats[d.domanda] || 0) + 1;
         localStorage.setItem("errorStats", JSON.stringify(errorStats));
@@ -512,10 +512,10 @@
 
       risultati.innerHTML = \`
         <div class="result-container">
-          <h2>Fine Esercitazione: \${document.getElementById("titoloArgomento").textContent}</h2>
-          <p><strong>Domande totali:</strong> \${totDomande}</p>
-          <p><strong>Risposte corrette:</strong> \${corrette}</p>
-          <p><strong>Risposte sbagliate:</strong> \${errori}</p>
+          <h2>Fine Esercitazione: ${document.getElementById("titoloArgomento").textContent}</h2>
+          <p><strong>Domande totali:</strong> ${totDomande}</p>
+          <p><strong>Risposte corrette:</strong> ${corrette}</p>
+          <p><strong>Risposte sbagliate:</strong> ${errori}</p>
           <div class="pulsanti-risultato">
             <button onclick="riprovaErrori()">Torna alla lista errori</button>
             <button onclick="mostraRiepilogoErroriEsercitazione()">Rivedi Domande Sbagliate</button>
@@ -536,12 +536,12 @@
       }
       const html = errori.map((d, i) => \`
         <div style="border:1px solid #ccc; margin:10px; padding:10px; background:#ffe5e5;">
-          <strong>\${i + 1}) \${d.domanda}</strong><br>
-          Tua risposta: <span style="color:red;">\${d.risposte[d.sceltaUtente] || "Nessuna"}</span><br>
-          Risposta corretta: <strong>\${d.risposte[d.corretta]}</strong>
+          <strong>${i + 1}) ${d.domanda}</strong><br>
+          Tua risposta: <span style="color:red;">${d.risposte[d.sceltaUtente] || "Nessuna"}</span><br>
+          Risposta corretta: <strong>${d.risposte[d.corretta]}</strong>
         </div>\`).join("");
       riepilogoRisposte.innerHTML = \`
-        <h3>Riepilogo Domande Sbagliate</h3>\${html}
+        <h3>Riepilogo Domande Sbagliate</h3>${html}
         <button onclick="mostraRisultatiEsercitazione()">Torna ai Risultati</button>
         <button onclick="tornaAllaHome()">Torna alla Home</button>\`;
     }
@@ -553,7 +553,7 @@
       indiceDiv.innerHTML = '';
       tuttiGliArticoli.forEach((articolo, index) => {
         const btn = document.createElement('button');
-        btn.textContent = \`\${articolo.numeroArticolo} - \${articolo.titolo}\`;
+        btn.textContent = \`${articolo.numeroArticolo} - ${articolo.titolo}\`;
         btn.style.display = 'block';
         btn.style.marginBottom = '5px';
         btn.style.width = '100%';
@@ -565,7 +565,7 @@
     function mostraArticolo(indice) {
       indiceArticoloCorrente = indice;
       const articolo = tuttiGliArticoli[indice];
-      document.getElementById('titoloArticolo').textContent = \`\${articolo.numeroArticolo} - \${articolo.titolo}\`;
+      document.getElementById('titoloArticolo').textContent = \`${articolo.numeroArticolo} - ${articolo.titolo}\`;
       document.getElementById('testoArticolo').textContent = articolo.testo;
     }
     document.getElementById('prevArticolo').addEventListener('click', () => {
@@ -652,7 +652,7 @@
     }
 
     function mostraDettaglioPercorso(percorso, index) {
-      titoloPercorso.textContent = \`\${categoriaCorrente.replace(/_/g, ' ')} — \${percorso.nomePercorso}\`;
+      titoloPercorso.textContent = \`${categoriaCorrente.replace(/_/g, ' ')} — ${percorso.nomePercorso}\`;
       listaTappe.innerHTML = '';
       percorso.tappe.forEach(tappa => {
         const li = document.createElement('li');
