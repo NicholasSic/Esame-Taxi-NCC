@@ -412,14 +412,15 @@ riepilogoRisposte.innerHTML = `<h3>Riepilogo Risposte</h3>${html}<button onclick
     }
 
     function aggiornaRiepilogo() {
-      riepilogo.innerHTML = `
-        <p>Domande completate: ${'${'}indiceDomanda${'}'}/16</p>
-        <p>Errori totali: ${'${'}erroriTotali${'}'}</p>
-        <ul>
-          ${'${'}Object.entries(erroriPerArgomento).map(([arg, err]) =>
-            `<li style="color:${err > 0 ? "red" : "green"}">${arg}: ${err} errori</li>`).join("")${'}'}
-        </ul>`;
-    }
+  const items = Object.entries(erroriPerArgomento)
+    .map(([arg, err]) => `<li style="color:${err > 0 ? 'red' : 'green'}">${arg}: ${err} errori</li>`)
+    .join("");
+
+  riepilogo.innerHTML = `
+    <p>Domande completate: ${indiceDomanda}/16</p>
+    <p>Errori totali: ${erroriTotali}</p>
+    <ul>${items}</ul>`;
+}
 
     function avviaTimer() {
   const timer = document.getElementById("timer");
