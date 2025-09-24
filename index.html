@@ -441,6 +441,32 @@ riepilogoRisposte.innerHTML = `<h3>Riepilogo Risposte</h3>${html}<button onclick
     let indiceEsercitazione = 0;
     let risposteEsercitazioneDate = [];
 
+function riprovaErrori() {
+  // Leggo gli errori salvati
+  const errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
+
+  // Prendo solo le domande che hanno almeno 1 errore registrato
+  const domandeErrate = tutteLeDomande.filter(d => errorStats[d.domanda] > 0);
+
+  if (domandeErrate.length === 0) {
+    alert("Non hai errori salvati da riprovare. Fai prima una simulazione o un'esercitazione.");
+    return;
+  }
+
+  // Preparo l'esercitazione con solo le domande errate
+  domandeArgomento = domandeErrate.sort(() => Math.random() - 0.5);
+  indiceEsercitazione = 0;
+  risposteEsercitazioneDate = [];
+
+  document.getElementById("titoloArgomento").textContent = "Errori";
+  home.style.display = "none";
+  risultati.style.display = "none";
+  riepilogoRisposte.style.display = "none";
+  esercitazione.style.display = "block";
+
+  mostraDomandaEsercitazione();
+}
+
     function mostraSelezioneArgomento() {
       home.style.display = "none";
       const categorie = ["GEOGRAFIA", "INGLESE", "SPAGNOLO", "TEDESCO", "FRANCESE", "NORMATIVA", "REGOLAMENTO"];
