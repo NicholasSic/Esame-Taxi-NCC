@@ -708,7 +708,11 @@
     async function deriveHex(password, saltHex, iterations=200000, keyLen=32) {
       const enc = new TextEncoder();
       const passKey = await crypto.subtle.importKey('raw', enc.encode(password), {name:'PBKDF2'}, false, ['deriveBits']);
-      const derived = await crypto.subtle.deriveBits({name:'PBKDF2', salt: hexToBuf(saltHex), iterations, hash:'SHA-256'}, passKey, keyLen * 8);
+      const derived = await crypto.subtle.deriveBits(
+        {name:'PBKDF2', salt: hexToBuf(saltHex), iterations, hash:'SHA-256'},
+        passKey,
+        keyLen * 8
+      );
       return bufToHex(derived);
     }
     function findUser(email) { if (!window.USERS) return null; return window.USERS.find(u => u.email.toLowerCase() === email.toLowerCase()); }
