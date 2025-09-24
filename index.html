@@ -423,7 +423,7 @@
         tempoRimasto--;
         const min = String(Math.floor(tempoRimasto / 60)).padStart(2, "0");
         const sec = String(tempoRimasto % 60).padStart(2, "0");
-        timer.textContent = \`Tempo: ${min}:${sec}\`;
+        timer.textContent = `Tempo: ${min}:${sec}`;
         if (tempoRimasto <= 0) {
           clearInterval(timerInterval);
           mostraRisultati();
