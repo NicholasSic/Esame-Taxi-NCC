@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz NCC/Taxi</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #f0f8ff, #dfefff);
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+      color: #333;
+    }
+    h1, h2, h3 { color: #003366; }
+    button {
+      margin: 12px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s;
+      font-weight: bold;
+    }
+    button:hover { background-color: #0056b3; }
+    button:active { transform: scale(0.97); background-color: #004080; }
+    .button-container {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    /* Cards & layout */
+    #home, #quiz, #esercitazione, #risultati, #riepilogoRisposte, #statistiche,
+    #sezioneArticoli, #sezionePercorsi {
+      display: none;
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    .domanda-card {
+      background: #ffffff;
+      border-left: 8px solid #007bff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+    .domanda-card:hover { transform: translateY(-4px); }
+    .domanda-card h3 {
+      margin-top: 0;
+      color: #007bff;
+      font-size: 20px;
+      border-bottom: 1px dashed #ccc;
+      padding-bottom: 8px;
+    }
+    .domanda-card p { font-size: 18px; margin-bottom: 20px; }
+    .risposta-button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #007bff;
+      background-color: white;
+      color: #007bff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .risposta-button:hover { background-color: #007bff; color: white; }
+    .corretto { color: green; font-weight: bold; }
+    .sbagliato { color: red; font-weight: bold; }
+    .result-container {
+      background-color: #f5f5f5;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+      text-align: center;
+    }
+    .argomento-errori { list-style: none; padding: 0; margin-top: 10px; }
+    .argomento-errori li { margin-bottom: 5px; font-weight: bold; }
+    .errore-alto { color: red; }
+    .errore-basso { color: orange; }
+    .promosso { color: green; font-size: 24px; font-weight: bold; }
+    .bocciato { color: red; font-size: 24px; font-weight: bold; }
+    .pulsanti-risultato button { margin: 10px 5px; padding: 10px 20px; font-weight: bold; cursor: pointer; }
+
+    /* Login overlay */
+    #loginOverlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.45);
+      z-index: 9999;
+    }
+    #loginOverlay .panel {
+      width: 360px;
+      background: #fff;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+    #loginOverlay input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN overlay (correttamente nel <body>, PRIMA della Home) -->
+  <div id="loginOverlay">
+    <div class="panel">
+      <h2 style="margin:0 0 12px 0; color:#003366;">Accesso - Quiz Taxi/NCC</h2>
+      <label style="display:block; font-size:14px; margin-bottom:6px;">Email
+        <input id="loginEmail" type="email" />
+      </label>
+      <label style="display:block; font-size:14px; margin-top:10px;">Password
+        <input id="loginPassword" type="password" />
+      </label>
+      <div id="loginMsg" style="height:20px; margin-top:10px; color:#b00;"></div>
+      <div style="margin-top:14px; display:flex; gap:10px; justify-content:flex-end;">
+        <button id="loginBtn">Accedi</button>
+      </div>
+      <p style="font-size:12px; color:#666; margin-top:10px;">Se non hai un account contatta l'amministratore.</p>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div id="home">
+    <h1>Esame per Licenza Taxi/NCC</h1>
+    <button onclick="iniziaSimulazione()">Simulazione Esame</button>
+    <button onclick="mostraSelezioneArgomento()">Esercitazione per Argomento</button>
+    <button onclick="riprovaErrori()">Riprova solo errori</button>
+    <button onclick="mostraSezioneArticoli()">Leggi Articoli del Regolamento</button>
+    <button onclick="mostraSezionePercorsi()">Visualizza Percorsi Principali</button>
+    <button onclick="logout()">Esci</button>
+  </div>
+
+  <!-- Sezione Articoli -->
+  <div id="sezioneArticoli">
+    <h1>Articoli del Regolamento</h1>
+    <div id="indiceArticoli" style="margin-bottom: 20px; max-height: 250px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; border-radius: 8px;"></div>
+    <div id="contenutoArticolo" style="margin-bottom: 20px;">
+      <h2 id="titoloArticolo"></h2>
+      <p id="testoArticolo" style="white-space: pre-line;"></p>
+    </div>
+    <div id="navigazioneArticoli" style="text-align:center; margin-bottom: 20px;">
+      <button id="prevArticolo">← Articolo Precedente</button>
+      <button id="nextArticolo">Articolo Successivo →</button>
+    </div>
+    <button id="tornaHomeDaArticoli" style="display: block; margin: auto;">Torna alla Home</button>
+  </div>
+
+  <!-- Sezione Percorsi -->
+  <div id="sezionePercorsi">
+    <h1>Percorsi Principali</h1>
+    <div id="indiceCategoriePercorsi" style="max-height: 150px; overflow-y: auto; margin-bottom: 10px;"></div>
+    <button id="btnTornaCategorie" style="display:none; margin-bottom: 10px;">← Torna a tutte le categorie</button>
+    <div id="indicePercorsi" style="max-height: 200px; overflow-y: auto; margin-bottom: 10px; display:none;"></div>
+    <div id="contenutoPercorso" style="margin-top: 20px; display:none;">
+      <h2 id="titoloPercorso"></h2>
+      <ul id="listaTappe"></ul>
+    </div>
+    <div id="navigazionePercorsi" style="text-align:center; margin-top: 10px; display:none;">
+      <button id="prevPercorso">← Percorso Precedente</button>
+      <button id="nextPercorso">Percorso Successivo →</button>
+    </div>
+    <button id="tornaHomeDaPercorsi" style="display: block; margin: 20px auto 0;">Torna alla Home</button>
+  </div>
+
+  <!-- Quiz & Esercitazione -->
+  <div id="quiz">
+    <button onclick="tornaAllaHome()">Torna alla Home</button>
+    <p id="timer"></p>
+    <div id="contenitoreDomanda"></div>
+    <div id="riepilogo"></div>
+  </div>
+
+  <div id="esercitazione">
+    <button onclick="tornaAllaHome()">Torna alla Home</button>
+    <h2>Esercitazione: <span id="titoloArgomento"></span></h2>
+    <div id="contenitoreEsercitazione"></div>
+    <div id="riepilogoEsercitazione"></div>
+  </div>
+
+  <div id="risultati"></div>
+  <div id="riepilogoRisposte"></div>
+
+  <div id="selezioneLinguaSimulazione" style="display:none; padding: 20px; text-align: center;">
+    <h2>Seleziona la lingua per la simulazione</h2>
+    <button onclick="selezionaLingua('INGLESE')">Inglese</button>
+    <button onclick="selezionaLingua('SPAGNOLO')">Spagnolo</button>
+    <button onclick="selezionaLingua('TEDESCO')">Tedesco</button>
+    <button onclick="selezionaLingua('FRANCESE')">Francese</button>
+    <button onclick="tornaAllaHome()">Annulla</button>
+  </div>
+
+  <!-- Scripts -->
+  <!-- ATTENZIONE: su GitHub Pages usa percorso relativo corretto per users.js -->
+  <script src="./users.js"></script>
+  <script src="domande.js"></script>
+  <script src="Articoli.js"></script>
+  <script src="Percorsi.js"></script>
+
+  <script>
+    // --- Riferimenti DOM e stato ---
+    const home = document.getElementById("home");
+    const quiz = document.getElementById("quiz");
+    const esercitazione = document.getElementById("esercitazione");
+    const contenitoreDomanda = document.getElementById("contenitoreDomanda");
+    const contenitoreEsercitazione = document.getElementById("contenitoreEsercitazione");
+    const risultati = document.getElementById("risultati");
+    const riepilogo = document.getElementById("riepilogo");
+    const riepilogoEsercitazione = document.getElementById("riepilogoEsercitazione");
+    const riepilogoRisposte = document.getElementById("riepilogoRisposte");
+
+    let timerInterval;
+    let tempoRimasto = 1800;
+    let domandeSimulazione = [];
+    let linguaSimulazione = null;
+    let indiceDomanda = 0;
+    let erroriTotali = 0;
+    let erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, FRANCESE: 0, TEDESCO: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+    let risposteDate = [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      home.style.display = "block";
+    });
+
+    function tornaAllaHome() {
+      if (confirm("Sei sicuro di voler tornare alla Home? I progressi andranno persi.")) {
+        location.reload();
+      }
+    }
+
+    function iniziaSimulazione() {
+      home.style.display = "none";
+      document.getElementById("selezioneLinguaSimulazione").style.display = "block";
+    }
+
+    function selezionaLingua(lingua) {
+      linguaSimulazione = lingua;
+      document.getElementById("selezioneLinguaSimulazione").style.display = "none";
+      avviaSimulazioneConLingua();
+    }
+
+    function avviaSimulazioneConLingua() {
+      clearInterval(timerInterval);
+      tempoRimasto = 1800;
+      indiceDomanda = 0;
+      erroriTotali = 0;
+      erroriPerArgomento = { GEOGRAFIA: 0, INGLESE: 0, SPAGNOLO: 0, TEDESCO: 0, FRANCESE: 0, NORMATIVA: 0, REGOLAMENTO: 0 };
+      risposteDate = [];
+      domandeSimulazione = estraiDomandeSimulazione(linguaSimulazione);
+
+      risultati.style.display = "none";
+      riepilogoRisposte.style.display = "none";
+      quiz.style.display = "block";
+
+      mostraDomanda();
+      avviaTimer();
+    }
+
+    function estraiDomandeSimulazione(lingua) {
+      let domandeUsateRecentemente = JSON.parse(localStorage.getItem("domandeUsateRecentemente")) || [];
+      const perArgomento = { GEOGRAFIA: [], NORMATIVA: [], REGOLAMENTO: [] };
+      perArgomento[lingua] = [];
+      tutteLeDomande.forEach(d => {
+        if (d.argomento === "GEOGRAFIA" || d.argomento === "NORMATIVA" || d.argomento === "REGOLAMENTO") {
+          perArgomento[d.argomento].push(d);
+        } else if (d.argomento === lingua) {
+          perArgomento[lingua].push(d);
+        }
+      });
+
+      let scelte = [];
+      Object.keys(perArgomento).forEach(arg => {
+        if (perArgomento[arg].length > 0) {
+          let disponibili = perArgomento[arg].filter(d => !domandeUsateRecentemente.includes(d.domanda));
+          if (disponibili.length < 4) disponibili = perArgomento[arg];
+          scelte = scelte.concat(disponibili.sort(() => 0.5 - Math.random()).slice(0, 4));
+        }
+      });
+
+      scelte = scelte.sort(() => 0.5 - Math.random());
+      if (scelte.length > 16) scelte = scelte.slice(0, 16);
+      return scelte;
+    }
+
+    function mostraDomanda() {
+      if (indiceDomanda >= domandeSimulazione.length) return mostraRisultati();
+      const d = domandeSimulazione[indiceDomanda];
+      contenitoreDomanda.innerHTML = `
+        <div class="domanda-card">
+          <h3>${indiceDomanda + 1}/16 - ${d.argomento}</h3>
+          <p>${d.domanda}</p>
+          ${d.risposte.map((r, i) => `<button class="risposta-button" onclick="validaRisposta(${i})">${r}</button>`).join("")}
+          <div id="feedback" style="margin-top:10px;"></div>
+        </div>`;
+      aggiornaRiepilogo();
+    }
+
+    function aggiornaStatisticheDomanda(domanda) {
+      const stats = JSON.parse(localStorage.getItem("statisticheErrori")) || {};
+      stats[domanda] = (stats[domanda] || 0) + 1;
+      localStorage.setItem("statisticheErrori", JSON.stringify(stats));
+
+      const errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
+      errorStats[domanda] = (errorStats[domanda] || 0) + 1;
+      localStorage.setItem("errorStats", JSON.stringify(errorStats));
+    }
+
+    function validaRisposta(scelta) {
+      const d = domandeSimulazione[indiceDomanda];
+      const feedback = document.getElementById("feedback");
+      const corretta = scelta === d.corretta;
+      feedback.innerHTML = corretta
+        ? "<p class='corretto'>Corretto!</p>"
+        : `<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>`;
+      if (!corretta) {
+        erroriTotali++;
+        erroriPerArgomento[d.argomento]++;
+        aggiornaStatisticheDomanda(d.domanda);
+      }
+      risposteDate.push({ ...d, sceltaUtente: scelta });
+      indiceDomanda++;
+      setTimeout(mostraDomanda, 1000);
+    }
+
+    function mostraRisultati() {
+      let domandeUsateRecentemente = JSON.parse(localStorage.getItem("domandeUsateRecentemente")) || [];
+      domandeSimulazione.forEach(d => {
+        if (!domandeUsateRecentemente.includes(d.domanda)) domandeUsateRecentemente.push(d.domanda);
+      });
+      if (domandeUsateRecentemente.length > 50) {
+        domandeUsateRecentemente = domandeUsateRecentemente.slice(domandeUsateRecentemente.length - 50);
+      }
+      localStorage.setItem("domandeUsateRecentemente", JSON.stringify(domandeUsateRecentemente));
+
+      quiz.style.display = "none";
+      risultati.style.display = "block";
+
+const bocciato = erroriTotali > 4 || Object.values(erroriPerArgomento).some(e => e > 2);
+
+risultati.innerHTML = `
+  <div class="result-container">
+    <h2>Test completato!</h2>
+    <p><strong>Domande completate:</strong> ${indiceDomanda}/16</p>
+    <p><strong>Errori totali:</strong> ${erroriTotali}</p>
+    <ul class="argomento-errori">
+      ${Object.entries(erroriPerArgomento).map(([arg, count]) =>
+        `<li class="${count > 2 ? 'errore-alto' : count > 0 ? 'errore-basso' : 'corretto'}">${arg}: ${count} errori</li>`
+      ).join("")}
+    </ul>
+    <h3 class="${bocciato ? 'bocciato' : 'promosso'}">
+      ${bocciato ? "BOCCIATO" : "PROMOSSO"}
+    </h3>
+    <div class="pulsanti-risultato">
+      <button onclick="iniziaSimulazione()">Ricomincia</button>
+      <button onclick="mostraRiepilogoRisposte()">Rivedi Risposte</button>
+      <button onclick="tornaAllaHome()">Torna alla Home</button>
+    </div>
+  </div>`;
+      clearInterval(timerInterval);
+    }
+
+    function verdetto() {
+      const erroreGrave = Object.values(erroriPerArgomento).some(e => e > 2);
+      return erroriTotali > 4 || erroreGrave ? "BOCCIATO" : "PROMOSSO";
+    }
+
+    function mostraRiepilogoRisposte() {
+      quiz.style.display = "none";
+      risultati.style.display = "none";
+      riepilogoRisposte.style.display = "block";
+
+      const html = risposteDate.map((d, i) => {
+  const corretta = d.corretta === d.sceltaUtente;
+  const bg = corretta ? '#e8f8e8' : '#ffe5e5';
+  const color = corretta ? 'green' : 'red';
+  return `
+    <div style="border:1px solid #ccc; margin:10px; padding:10px; background:${bg};">
+      <strong>${i + 1}) ${d.domanda}</strong><br>
+      Tua risposta:
+      <span style="color:${color};">
+        ${d.risposte[d.sceltaUtente] || "Nessuna"}
+      </span><br>
+      Risposta corretta: <strong>${d.risposte[d.corretta]}</strong>
+    </div>`;
+}).join("");
+
+riepilogoRisposte.innerHTML = `<h3>Riepilogo Risposte</h3>${html}<button onclick="location.reload()">Torna alla Home</button>`;
+    }
+
+    function aggiornaRiepilogo() {
+  const items = Object.entries(erroriPerArgomento)
+    .map(([arg, err]) => `<li style="color:${err > 0 ? 'red' : 'green'}">${arg}: ${err} errori</li>`)
+    .join("");
+
+  riepilogo.innerHTML = `
+    <p>Domande completate: ${indiceDomanda}/16</p>
+    <p>Errori totali: ${erroriTotali}</p>
+    <ul>${items}</ul>`;
+}
+
+    function avviaTimer() {
+  const timer = document.getElementById("timer");
+  timerInterval = setInterval(() => {
+    tempoRimasto--;
+    const min = String(Math.floor(tempoRimasto / 60)).padStart(2, "0");
+    const sec = String(tempoRimasto % 60).padStart(2, "0");
+    timer.textContent = `Tempo: ${min}:${sec}`;
+    if (tempoRimasto <= 0) {
+      clearInterval(timerInterval);
+      mostraRisultati();
+    }
+  }, 1000);
+}
+
+    // ----------------------------- ESERCITAZIONE -----------------------------
+    let domandeArgomento = [];
+    let indiceEsercitazione = 0;
+    let risposteEsercitazioneDate = [];
+
+function riprovaErrori() {
+  const erroriSalvati = JSON.parse(localStorage.getItem("errorStats"));
+  if (!erroriSalvati || Object.keys(erroriSalvati).length === 0) {
+    alert("Non ci sono errori salvati.");
+    return;
+  }
+
+  // Nascondi tutto, mostra solo l'area esercitazione
+  home.style.display = "none";
+  quiz.style.display = "none";
+  risultati.style.display = "none";
+  riepilogoRisposte.style.display = "none";
+  esercitazione.style.display = "block";
+  document.getElementById('selezioneLinguaSimulazione').style.display = "none";
+  document.getElementById('sezioneArticoli').style.display = "none";
+  document.getElementById('sezionePercorsi').style.display = "none";
+
+  // Conta errori per argomento
+  const argomentiConErrori = {};
+  Object.keys(erroriSalvati).forEach(domanda => {
+    const d = tutteLeDomande.find(q => q.domanda === domanda);
+    if (d) {
+      argomentiConErrori[d.argomento] = (argomentiConErrori[d.argomento] || 0) + 1;
+    }
+  });
+
+  if (Object.keys(argomentiConErrori).length === 0) {
+    alert("Non ci sono errori da riprovare.");
+    return;
+  }
+
+  contenitoreEsercitazione.innerHTML = `
+    <h2>Riprova solo errori - Seleziona argomento</h2>
+    <div class="button-container">
+      ${Object.entries(argomentiConErrori).map(([arg, count]) => 
+        `<div style="margin-bottom: 20px;">
+          <button style="display:block; width: 220px; margin-bottom: 6px;" onclick="riprovaErroriPerArgomento('${arg}')">${arg} (${count} errori)</button>
+          <button style="display:block; width: 220px;" onclick="resetErroriPerArgomento('${arg}')">Reset ${arg}</button>
+        </div>`
+      ).join("")}
+    </div>
+    <div style="text-align:center; margin-top:12px;">
+      <button onclick="resetErrori()">Svuota TUTTI gli errori</button>
+      <button onclick="tornaAllaHome()">Annulla</button>
+    </div>
+  `;
+}
+
+function riprovaErroriPerArgomento(argomento) {
+  const erroriSalvati = JSON.parse(localStorage.getItem("errorStats")) || {};
+  const domandeErrore = tutteLeDomande.filter(d => 
+    d.argomento === argomento && erroriSalvati[d.domanda]
+  );
+
+  if (domandeErrore.length === 0) {
+    alert(`Non ci sono errori salvati per l'argomento ${argomento}.`);
+    return;
+  }
+
+  // Prepara un'esercitazione SOLO con le domande in errore di quell'argomento (mischiate)
+  home.style.display = "none";
+  esercitazione.style.display = "block";
+  contenitoreEsercitazione.innerHTML = "";
+  domandeArgomento = domandeErrore.sort(() => Math.random() - 0.5);
+  indiceEsercitazione = 0;
+  risposteEsercitazioneDate = [];
+  document.getElementById("titoloArgomento").textContent = `Solo errori: ${argomento}`;
+  mostraDomandaEsercitazione();
+}
+
+function resetErrori() {
+  if (confirm("Sei sicuro di voler azzerare tutti gli errori salvati?")) {
+    localStorage.removeItem("errorStats");
+    alert("Tutti gli errori sono stati azzerati.");
+    tornaAllaHome();
+    // in alternativa, puoi richiamare riprovaErrori(); per restare nella schermata errori aggiornata
+  }
+}
+
+function resetErroriPerArgomento(argomento) {
+  if (confirm(`Sei sicuro di voler azzerare gli errori per l'argomento ${argomento}?`)) {
+    let errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
+    for (const domanda in errorStats) {
+      const d = tutteLeDomande.find(q => q.domanda === domanda);
+      if (d && d.argomento === argomento) {
+        delete errorStats[domanda];
+      }
+    }
+    localStorage.setItem("errorStats", JSON.stringify(errorStats));
+    alert(`Errori per l'argomento ${argomento} azzerati.`);
+    riprovaErrori();
+  }
+}
+
+    function mostraSelezioneArgomento() {
+      home.style.display = "none";
+      const categorie = ["GEOGRAFIA", "INGLESE", "SPAGNOLO", "TEDESCO", "FRANCESE", "NORMATIVA", "REGOLAMENTO"];
+      esercitazione.style.display = "block";
+      contenitoreEsercitazione.innerHTML = `
+        <h2>Scegli un argomento</h2>
+        ${categorie.map(arg => `<button onclick="iniziaEsercitazione('${arg}')">${arg}</button>`).join("")}
+      `;
+    }
+
+    function iniziaEsercitazione(argomento) {
+      domandeArgomento = tutteLeDomande.filter(d => d.argomento === argomento)
+                                       .sort(() => Math.random() - 0.5);
+      indiceEsercitazione = 0;
+      risposteEsercitazioneDate = [];
+      document.getElementById("titoloArgomento").textContent = argomento;
+      mostraDomandaEsercitazione();
+    }
+
+    function mostraDomandaEsercitazione() {
+      if (indiceEsercitazione >= domandeArgomento.length) {
+        contenitoreEsercitazione.innerHTML = `
+          <h3>Hai completato l’argomento.</h3>
+          <button onclick="mostraSelezioneArgomento()">Torna alla selezione argomenti</button>
+        `;
+        return;
+      }
+      const d = domandeArgomento[indiceEsercitazione];
+      contenitoreEsercitazione.innerHTML = `
+        <div class="domanda-card">
+          <h3>${indiceEsercitazione + 1}/${domandeArgomento.length} - ${d.argomento}</h3>
+          <p>${d.domanda}</p>
+          ${d.risposte.map((r, i) => `<button class="risposta-button" onclick="validaRispostaEsercitazione(${i})">${r}</button>`).join("")}
+          <div id="feedbackEsercitazione" style="margin-top:10px;"></div>
+        </div>
+      `;
+      riepilogoEsercitazione.innerHTML = `<p>Domande completate: ${indiceEsercitazione}</p>`;
+    }
+
+    function validaRispostaEsercitazione(scelta) {
+      const d = domandeArgomento[indiceEsercitazione];
+      const feedback = document.getElementById("feedbackEsercitazione");
+      const corretta = scelta === d.corretta;
+
+      if (corretta) {
+        feedback.innerHTML = "<p class='corretto'>Corretto!</p>";
+        let errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
+        if (errorStats[d.domanda]) {
+          delete errorStats[d.domanda];
+          localStorage.setItem("errorStats", JSON.stringify(errorStats));
+        }
+      } else {
+        feedback.innerHTML = `<p class='sbagliato'>Sbagliato! Corretta: ${d.risposte[d.corretta]}</p>`;
+        let errorStats = JSON.parse(localStorage.getItem("errorStats")) || {};
+        errorStats[d.domanda] = (errorStats[d.domanda] || 0) + 1;
+        localStorage.setItem("errorStats", JSON.stringify(errorStats));
+      }
+
+      risposteEsercitazioneDate.push({ ...d, sceltaUtente: scelta });
+      indiceEsercitazione++;
+      setTimeout(() => {
+        if (indiceEsercitazione >= domandeArgomento.length) mostraRisultatiEsercitazione();
+        else mostraDomandaEsercitazione();
+      }, 1500);
+    }
+
+    function mostraRisultatiEsercitazione() {
+      esercitazione.style.display = "none";
+      risultati.style.display = "block";
+
+      const totDomande = risposteEsercitazioneDate.length;
+      const errori = risposteEsercitazioneDate.filter(d => d.sceltaUtente !== d.corretta).length;
+      const corrette = totDomande - errori;
+
+      risultati.innerHTML = `
+        <div class="result-container">
+          <h2>Fine Esercitazione: ${document.getElementById("titoloArgomento").textContent}</h2>
+          <p><strong>Domande totali:</strong> ${totDomande}</p>
+          <p><strong>Risposte corrette:</strong> ${corrette}</p>
+          <p><strong>Risposte sbagliate:</strong> ${errori}</p>
+          <div class="pulsanti-risultato">
+            <button onclick="riprovaErrori()">Torna alla lista errori</button>
+            <button onclick="mostraRiepilogoErroriEsercitazione()">Rivedi Domande Sbagliate</button>
+            <button onclick="tornaAllaHome()">Torna alla Home</button>
+          </div>
+        </div>`;
+    }
+
+    function mostraRiepilogoErroriEsercitazione() {
+      risultati.style.display = "none";
+      riepilogoRisposte.style.display = "block";
+      const errori = risposteEsercitazioneDate.filter(d => d.sceltaUtente !== d.corretta);
+      if (errori.length === 0) {
+        riepilogoRisposte.innerHTML = `
+          <h3>Non ci sono risposte sbagliate da rivedere!</h3>
+          <button onclick="tornaAllaHome()">Torna alla Home</button>`;
+        return;
+      }
+      const html = errori.map((d, i) => `
+        <div style="border:1px solid #ccc; margin:10px; padding:10px; background:#ffe5e5;">
+          <strong>${i + 1}) ${d.domanda}</strong><br>
+          Tua risposta: <span style="color:red;">${d.risposte[d.sceltaUtente] || "Nessuna"}</span><br>
+          Risposta corretta: <strong>${d.risposte[d.corretta]}</strong>
+        </div>`).join("");
+      riepilogoRisposte.innerHTML = `
+        <h3>Riepilogo Domande Sbagliate</h3>${html}
+        <button onclick="mostraRisultatiEsercitazione()">Torna ai Risultati</button>
+        <button onclick="tornaAllaHome()">Torna alla Home</button>`;
+    }
+
+    // --------------------- Articoli (navigazione) ---------------------
+    let indiceArticoloCorrente = 0;
+    function generaIndiceArticoli() {
+      const indiceDiv = document.getElementById('indiceArticoli');
+      indiceDiv.innerHTML = '';
+      tuttiGliArticoli.forEach((articolo, index) => {
+        const btn = document.createElement('button');
+        btn.textContent = `${articolo.numeroArticolo} - ${articolo.titolo}`;
+        btn.style.display = 'block';
+        btn.style.marginBottom = '5px';
+        btn.style.width = '100%';
+        btn.style.textAlign = 'left';
+        btn.onclick = () => mostraArticolo(index);
+        indiceDiv.appendChild(btn);
+      });
+    }
+    function mostraArticolo(indice) {
+      indiceArticoloCorrente = indice;
+      const articolo = tuttiGliArticoli[indice];
+      document.getElementById('titoloArticolo').textContent = `${articolo.numeroArticolo} - ${articolo.titolo}`;
+      document.getElementById('testoArticolo').textContent = articolo.testo;
+    }
+    document.getElementById('prevArticolo').addEventListener('click', () => {
+      if (indiceArticoloCorrente > 0) mostraArticolo(indiceArticoloCorrente - 1);
+    });
+    document.getElementById('nextArticolo').addEventListener('click', () => {
+      if (indiceArticoloCorrente < tuttiGliArticoli.length - 1) mostraArticolo(indiceArticoloCorrente + 1);
+    });
+    document.getElementById('tornaHomeDaArticoli').addEventListener('click', () => {
+      document.getElementById('sezioneArticoli').style.display = 'none';
+      document.getElementById('home').style.display = 'block';
+    });
+    function mostraSezioneArticoli() {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('quiz').style.display = 'none';
+      document.getElementById('esercitazione').style.display = 'none';
+      document.getElementById('risultati').style.display = 'none';
+      document.getElementById('riepilogoRisposte').style.display = 'none';
+      document.getElementById('selezioneLinguaSimulazione').style.display = 'none';
+      document.getElementById('sezioneArticoli').style.display = 'block';
+      generaIndiceArticoli();
+      mostraArticolo(0);
+    }
+
+    // --------------------- Percorsi (navigazione) ---------------------
+    let categoriePercorsi = Object.keys(percorsi);
+    let categoriaCorrente = null;
+    let percorsoCorrenteIndex = 0;
+
+    const sezionePercorsi = document.getElementById('sezionePercorsi');
+    const indiceCategoriePercorsi = document.getElementById('indiceCategoriePercorsi');
+    const indicePercorsi = document.getElementById('indicePercorsi');
+    const titoloPercorso = document.getElementById('titoloPercorso');
+    const listaTappe = document.getElementById('listaTappe');
+    const prevPercorsoBtn = document.getElementById('prevPercorso');
+    const nextPercorsoBtn = document.getElementById('nextPercorso');
+    const btnTornaCategorie = document.getElementById('btnTornaCategorie');
+    const tornaHomeDaPercorsiBtn = document.getElementById('tornaHomeDaPercorsi');
+    const navigazionePercorsiDiv = document.getElementById('navigazionePercorsi');
+    const contenutoPercorso = document.getElementById('contenutoPercorso');
+
+    function mostraMacroCategorie() {
+      indiceCategoriePercorsi.style.display = 'block';
+      indicePercorsi.style.display = 'none';
+      contenutoPercorso.style.display = 'none';
+      navigazionePercorsiDiv.style.display = 'none';
+      btnTornaCategorie.style.display = 'none';
+      titoloPercorso.textContent = '';
+      listaTappe.innerHTML = '';
+
+      indiceCategoriePercorsi.innerHTML = '';
+      categoriePercorsi.forEach(categoria => {
+        const btn = document.createElement('button');
+        btn.textContent = categoria.replace(/_/g, ' ');
+        btn.style.display = 'block';
+        btn.style.marginBottom = '5px';
+        btn.style.width = '100%';
+        btn.style.textAlign = 'left';
+        btn.onclick = () => { categoriaCorrente = categoria; mostraPercorsiCategoria(categoria); };
+        indiceCategoriePercorsi.appendChild(btn);
+      });
+    }
+
+    function mostraPercorsiCategoria(categoria) {
+      indiceCategoriePercorsi.style.display = 'none';
+      indicePercorsi.style.display = 'block';
+      contenutoPercorso.style.display = 'none';
+      navigazionePercorsiDiv.style.display = 'none';
+      btnTornaCategorie.style.display = 'block';
+      titoloPercorso.textContent = '';
+      listaTappe.innerHTML = '';
+
+      indicePercorsi.innerHTML = '';
+      percorsi[categoria].forEach((percorso, index) => {
+        const btn = document.createElement('button');
+        btn.textContent = percorso.nomePercorso;
+        btn.style.display = 'block';
+        btn.style.marginBottom = '3px';
+        btn.style.width = '100%';
+        btn.style.textAlign = 'left';
+        btn.onclick = () => { mostraDettaglioPercorso(percorso, index); };
+        indicePercorsi.appendChild(btn);
+      });
+    }
+
+    function mostraDettaglioPercorso(percorso, index) {
+      titoloPercorso.textContent = `${categoriaCorrente.replace(/_/g, ' ')} — ${percorso.nomePercorso}`;
+      listaTappe.innerHTML = '';
+      percorso.tappe.forEach(tappa => {
+        const li = document.createElement('li');
+        li.textContent = tappa;
+        listaTappe.appendChild(li);
+      });
+
+      contenutoPercorso.style.display = 'block';
+      navigazionePercorsiDiv.style.display = 'block';
+      indicePercorsi.style.display = 'none';
+
+      percorsoCorrenteIndex = index;
+      aggiornaBottoniNavigazione();
+    }
+
+    function aggiornaBottoniNavigazione() {
+      const percorsiCategoria = percorsi[categoriaCorrente];
+      prevPercorsoBtn.disabled = percorsoCorrenteIndex <= 0;
+      nextPercorsoBtn.disabled = percorsoCorrenteIndex >= percorsiCategoria.length - 1;
+    }
+
+    prevPercorsoBtn.onclick = () => {
+      if (percorsoCorrenteIndex > 0) {
+        mostraDettaglioPercorso(percorsi[categoriaCorrente][percorsoCorrenteIndex - 1], percorsoCorrenteIndex - 1);
+      }
+    };
+    nextPercorsoBtn.onclick = () => {
+      if (percorsoCorrenteIndex < percorsi[categoriaCorrente].length - 1) {
+        mostraDettaglioPercorso(percorsi[categoriaCorrente][percorsoCorrenteIndex + 1], percorsoCorrenteIndex + 1);
+      }
+    };
+    btnTornaCategorie.onclick = () => { mostraMacroCategorie(); };
+    tornaHomeDaPercorsiBtn.onclick = () => {
+      sezionePercorsi.style.display = 'none';
+      document.getElementById('home').style.display = 'block';
+    };
+
+    function mostraSezionePercorsi() {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('quiz').style.display = 'none';
+      document.getElementById('esercitazione').style.display = 'none';
+      document.getElementById('risultati').style.display = 'none';
+      document.getElementById('riepilogoRisposte').style.display = 'none';
+      document.getElementById('selezioneLinguaSimulazione').style.display = 'none';
+      document.getElementById('sezioneArticoli').style.display = 'none';
+      sezionePercorsi.style.display = 'block';
+      mostraMacroCategorie();
+    }
+
+    // ------------------------- Login (PBKDF2) -------------------------
+    function bufToHex(buffer) { return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2,'0')).join(''); }
+    function hexToBuf(hex) { const bytes = new Uint8Array(hex.length / 2); for (let i = 0; i < bytes.length; i++) bytes[i] = parseInt(hex.substr(i*2,2),16); return bytes.buffer; }
+    async function deriveHex(password, saltHex, iterations=200000, keyLen=32) {
+      const enc = new TextEncoder();
+      const passKey = await crypto.subtle.importKey('raw', enc.encode(password), {name:'PBKDF2'}, false, ['deriveBits']);
+      const derived = await crypto.subtle.deriveBits(
+        {name:'PBKDF2', salt: hexToBuf(saltHex), iterations, hash:'SHA-256'},
+        passKey,
+        keyLen * 8
+      );
+      return bufToHex(derived);
+    }
+    function findUser(email) { if (!window.USERS) return null; return window.USERS.find(u => u.email.toLowerCase() === email.toLowerCase()); }
+    function setSession(userEmail) { const sess = { email: userEmail, token: btoa(Math.random().toString(36)+Date.now()), ts: Date.now() }; localStorage.setItem('myapp_session', JSON.stringify(sess)); }
+    function clearSession() { localStorage.removeItem('myapp_session'); }
+    function getSession() { try { return JSON.parse(localStorage.getItem('myapp_session') || 'null'); } catch(e){ return null; } }
+    const MAX_FAILS = 6; const LOCK_MIN = 2;
+    function incFail() { const k='login_fails'; const v = Number(sessionStorage.getItem(k) || 0) + 1; sessionStorage.setItem(k, String(v)); if (v >= MAX_FAILS) { const until = Date.now() + LOCK_MIN*60*1000; sessionStorage.setItem('login_lock_until', String(until)); } }
+    function isLocked() { const until = Number(sessionStorage.getItem('login_lock_until') || 0); return Date.now() < until; }
+    function resetFails() { sessionStorage.removeItem('login_fails'); sessionStorage.removeItem('login_lock_until'); }
+
+    (function setupLogin(){
+      const overlay = document.getElementById('loginOverlay');
+      const loginBtn = document.getElementById('loginBtn');
+      const emailEl = document.getElementById('loginEmail');
+      const passEl = document.getElementById('loginPassword');
+      const msgEl = document.getElementById('loginMsg');
+
+      const sess = getSession();
+      if (sess && sess.email) {
+        const maxAge = 8 * 60 * 60 * 1000;
+        if (Date.now() - sess.ts < maxAge) {
+          overlay.style.display = 'none';
+        } else {
+          clearSession();
+        }
+      }
+
+      if (isLocked()) {
+        const until = Number(sessionStorage.getItem('login_lock_until'));
+        const sec = Math.ceil((until - Date.now())/1000);
+        msgEl.textContent = `Troppi tentativi. Riprova tra ${Math.ceil(sec/60)} minuti.`;
+        loginBtn.disabled = true;
+      }
+
+      loginBtn.addEventListener('click', async () => {
+        if (isLocked()) { msgEl.textContent = 'Account bloccato temporaneamente.'; return; }
+        const email = emailEl.value.trim();
+        const pass = passEl.value;
+        msgEl.style.color = '#b00';
+        msgEl.textContent = '';
+
+        if (!email || !pass) { msgEl.textContent = 'Inserisci email e password.'; return; }
+        const user = findUser(email);
+        if (!user) { incFail(); msgEl.textContent = 'Credenziali non valide.'; return; }
+
+        msgEl.style.color = '#666';
+        msgEl.textContent = 'Verifico... attendere.';
+        try {
+          const hashHex = await deriveHex(pass, user.salt, 200000, 32);
+          if (hashHex === user.hash) {
+            setSession(user.email); resetFails(); overlay.style.display = 'none'; msgEl.textContent = '';
+          } else { incFail(); msgEl.textContent = 'Credenziali non valide.'; }
+        } catch (e) { console.error(e); msgEl.textContent = 'Errore interno (derivazione).'; }
+      });
+
+      passEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginBtn.click(); });
+    })();
+
+function logout() {
+  localStorage.removeItem('myapp_session');
+  sessionStorage.removeItem('login_fails');
+  sessionStorage.removeItem('login_lock_until');
+  location.reload();
+}
+  </script>
+</body>
+</html>
