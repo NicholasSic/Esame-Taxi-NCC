@@ -26,7 +26,9 @@ const percorsi = {
         "Via San Damiano",
         "Via Senato",
         "Piazza Cavour"
-      ]
+      ],
+      image: "images/cerchia-dei-navigli.png",
+      caption: "Cerchia dei Navigli"
     },
     {
       "nomePercorso": "BASTIONI",
@@ -77,7 +79,9 @@ const percorsi = {
         "Bastioni di Porta Venezia",
         "Via Città di Fiume",
         "Piazza della Repubblica"
-      ]
+      ],
+      image: "images/bastioni.png",
+      caption: "Bastioni"
     },
     {
       "nomePercorso": "CIRCONVALLAZIONE TRANVIARIA",
@@ -122,7 +126,9 @@ const percorsi = {
         "Piazzale Oberdan",
         "Viale Vittorio Veneto",
         "Piazza della Repubblica"
-      ]
+      ],
+      image: "images/tranviaria.png",
+      caption: "Tranviaria"
     },
     {
       "nomePercorso": "CIRCONVALLAZIONE ESTERNA FILOTRANVIARIA",
@@ -182,7 +188,9 @@ const percorsi = {
         "Viale Lunigiana",
         "Viale Brianza",
         "Piazzale Loreto"
-      ]
+      ],
+      image: "images/esterna.png",
+      caption: "Circonvallazione Esterna Filotranviaria"
     },
     {
       "nomePercorso": "CIRCONVALLAZIONE ESTERNA",
@@ -214,8 +222,8 @@ const percorsi = {
         "Piazza Chiaradia",
         "Via Antonini",
         "Viale Giovanni Da Cermenate",
-        "Sotto troviamo Piazza Carrara",
         "Via/Cavalcavia Schiavoni",
+        "Sotto troviamo Piazza Carrara",
         "Passiamo sotto Piazza Maggi",
         "Viale Famagosta",
         "Piazza Miani",
@@ -240,7 +248,9 @@ const percorsi = {
         "Via Gignese",
         "Via Caprilli",
         "Piazzale Lotto"
-      ]
+      ],
+      image: "images/durante.png",
+      caption: "Circonvallazione Esterna"
     }
 ],
   "PERCORSI PARTENZA DUOMO": [
