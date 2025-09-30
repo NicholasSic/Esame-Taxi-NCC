@@ -163,6 +163,23 @@
     <div id="contenutoArticolo" style="margin-bottom: 20px;">
       <h2 id="titoloArticolo"></h2>
       <p id="testoArticolo" style="white-space: pre-line;"></p>
+<!-- Controlli lettura vocale -->
+<div id="ttsControls" style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:12px 0;">
+  <button id="ttsPlay">🔊 Leggi</button>
+  <button id="ttsPause" disabled>Pausa</button>
+  <button id="ttsStop" disabled>Stop</button>
+
+  <label style="display:flex; align-items:center; gap:6px; margin-left:10px;">
+    Voce:
+    <select id="ttsVoice" style="min-width:220px;"></select>
+  </label>
+
+  <label style="display:flex; align-items:center; gap:6px;">
+    Velocità:
+    <input id="ttsRate" type="range" min="0.6" max="1.4" step="0.1" value="1">
+    <span id="ttsRateVal">1.0x</span>
+  </label>
+</div>
     </div>
     <div id="navigazioneArticoli" style="text-align:center; margin-bottom: 20px;">
       <button id="prevArticolo">← Articolo Precedente</button>
@@ -689,6 +706,136 @@ function resetErroriPerArgomento(argomento) {
       generaIndiceArticoli();
       mostraArticolo(0);
     }
+
+// ================== TTS (lettura vocale articoli) ==================
+(function setupTTS() {
+  if (!('speechSynthesis' in window)) {
+    // Browser senza TTS
+    const ctrl = document.getElementById('ttsControls');
+    if (ctrl) ctrl.style.display = 'none';
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+  const btnPlay  = document.getElementById('ttsPlay');
+  const btnPause = document.getElementById('ttsPause');
+  const btnStop  = document.getElementById('ttsStop');
+  const selVoice = document.getElementById('ttsVoice');
+  const slRate   = document.getElementById('ttsRate');
+  const rateVal  = document.getElementById('ttsRateVal');
+
+  let currentUtter = null;
+  let voices = [];
+
+  function loadVoices() {
+    voices = synth.getVoices().filter(v => v.lang.startsWith('it'));
+    if (voices.length === 0) voices = synth.getVoices();
+
+    selVoice.innerHTML = voices.map((v, i) =>
+      `<option value="${i}">${v.name} (${v.lang})${v.default ? ' — predefinita' : ''}</option>`
+    ).join('');
+
+    const idxIt = voices.findIndex(v => v.lang.startsWith('it'));
+    if (idxIt >= 0) selVoice.value = String(idxIt);
+  }
+
+  // Alcuni browser caricano le voci in ritardo
+  loadVoices();
+  if (typeof synth.onvoiceschanged !== 'undefined') {
+    synth.onvoiceschanged = loadVoices;
+  }
+
+  function setButtons(state) {
+    // state: 'idle' | 'playing' | 'paused'
+    if (state === 'playing') {
+      btnPlay.textContent = '🔊 Legge...';
+      btnPlay.disabled = true;
+      btnPause.disabled = false;
+      btnStop.disabled = false;
+    } else if (state === 'paused') {
+      btnPlay.textContent = 'Riprendi';
+      btnPlay.disabled = false;
+      btnPause.disabled = false;
+      btnStop.disabled = false;
+    } else {
+      btnPlay.textContent = '🔊 Leggi';
+      btnPlay.disabled = false;
+      btnPause.disabled = true;
+      btnStop.disabled = true;
+    }
+  }
+
+  function speakArticle() {
+    const textEl = document.getElementById('testoArticolo');
+    if (!textEl) return;
+    const text = textEl.textContent.trim();
+    if (!text) return;
+
+    // Ferma eventuale lettura precedente
+    synth.cancel(); currentUtter = null;
+
+    const u = new SpeechSynthesisUtterance(text);
+    // Voce
+    const v = voices[Number(selVoice.value)] || voices[0];
+    if (v) u.voice = v;
+    // Parametri
+    u.lang = (v && v.lang) ? v.lang : 'it-IT';
+    u.rate = Number(slRate.value) || 1.0;
+    u.pitch = 1.0;
+
+    u.onstart = () => setButtons('playing');
+    u.onend   = () => setButtons('idle');
+    u.onerror = () => setButtons('idle');
+
+    currentUtter = u;
+    synth.speak(u);
+  }
+
+  btnPlay.addEventListener('click', () => {
+    if (synth.paused && currentUtter) {
+      synth.resume();
+      setButtons('playing');
+    } else {
+      speakArticle();
+    }
+  });
+
+  btnPause.addEventListener('click', () => {
+    if (synth.speaking && !synth.paused) {
+      synth.pause();
+      setButtons('paused');
+    }
+  });
+
+  btnStop.addEventListener('click', () => {
+    synth.cancel();
+    currentUtter = null;
+    setButtons('idle');
+  });
+
+  slRate.addEventListener('input', () => {
+    rateVal.textContent = `${Number(slRate.value).toFixed(1)}x`;
+    if (synth.speaking) {
+      synth.cancel();
+      speakArticle();
+    }
+  });
+
+  selVoice.addEventListener('change', () => {
+    if (synth.speaking) {
+      synth.cancel();
+      speakArticle();
+    }
+  });
+
+  // Se cambi articolo o esci dalla sezione, ferma la lettura
+  document.getElementById('prevArticolo')?.addEventListener('click', () => { synth.cancel(); setButtons('idle'); });
+  document.getElementById('nextArticolo')?.addEventListener('click', () => { synth.cancel(); setButtons('idle'); });
+  document.getElementById('tornaHomeDaArticoli')?.addEventListener('click', () => { synth.cancel(); setButtons('idle'); });
+
+  // Stato iniziale
+  setButtons('idle');
+})();
 
     // --------------------- Percorsi (navigazione) ---------------------
     let categoriePercorsi = Object.keys(percorsi);
