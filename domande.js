@@ -1471,7 +1471,7 @@ const tutteLeDomande = [
   },
   {
     "argomento": "GEOGRAFIA",
-    "domanda": "Quale tale seguenti stazioni ferroviarie si trova sulla linea delle Ferrovie Nord Milano \"Milano - Meda\" ?",
+    "domanda": "Quale tra le seguenti stazioni ferroviarie si trova sulla linea delle Ferrovie Nord Milano \"Milano - Meda\" ?",
     "risposte": [
       "Palazzolo Milanese",
       "Garbagnate Milanese",
