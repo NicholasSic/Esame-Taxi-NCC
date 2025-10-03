@@ -179,7 +179,6 @@ body.lb-open { overflow: hidden; }
       <div id="loginMsg" style="height:20px; margin-top:10px; color:#b00;"></div>
       <div style="margin-top:14px; display:flex; gap:10px; justify-content:flex-end;">
         <button id="loginBtn">Accedi</button>
-<button id="btnSblocca" class="secondary">Sblocca account</button>
       </div>
       <p style="font-size:12px; color:#666; margin-top:10px;">Se non hai un account contatta l'amministratore.</p>
     </div>
@@ -292,8 +291,7 @@ body.lb-open { overflow: hidden; }
   <script src="Articoli.js"></script>
   <script src="Percorsi.js"></script>
 
-<script>
-
+  <script>
     // --- Riferimenti DOM e stato ---
     const home = document.getElementById("home");
     const quiz = document.getElementById("quiz");
@@ -318,38 +316,13 @@ body.lb-open { overflow: hidden; }
       home.style.display = "block";
     });
 
-   async function tornaAllaHome() {
-  if (!confirm("Sei sicuro di voler tornare alla Home? I progressi andranno persi.")) return;
+    function tornaAllaHome() {
+      if (confirm("Sei sicuro di voler tornare alla Home? I progressi andranno persi.")) {
+        location.reload();
+      }
+    }
 
-  // se la sessione NON è valida, fai comparire l'overlay e basta
-  const overlay = document.getElementById('loginOverlay');
-  const s = getSession();
-  if (!s || !s.exp || Date.now() >= s.exp) {
-    if (overlay) showLoginOverlay();
-    return;
-  }
-
-  // opzionale: controllo veloce lato server (kick immediato se è stata forzata altrove)
-  try {
-    const ok = await sessionServer('heartbeat', {
-      email: s.email, token: s.token, ttlMs: Math.max(60*1000, s.exp - Date.now())
-    });
-    if (!ok?.ok) { hardKick('La tua sessione è stata usata altrove.'); return; }
-  } catch {}
-
-  // nascondi tutto e mostra Home (senza ricaricare)
-  clearInterval(timerInterval);
-  ['quiz','esercitazione','risultati','riepilogoRisposte',
-   'selezioneLinguaSimulazione','sezioneArticoli','sezionePercorsi']
-    .forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
-
-  const home = document.getElementById('home');
-  if (home) home.style.display = 'block';
-  if (overlay) overlay.style.display = 'none';
-}
-
-    async function iniziaSimulazione() {
-  if (!(await ensureSessionValid())) return;
+    function iniziaSimulazione() {
       home.style.display = "none";
       document.getElementById("selezioneLinguaSimulazione").style.display = "block";
     }
@@ -538,8 +511,7 @@ riepilogoRisposte.innerHTML = `<h3>Riepilogo Risposte</h3>${html}<button onclick
     let indiceEsercitazione = 0;
     let risposteEsercitazioneDate = [];
 
-async function riprovaErrori() {
-  if (!(await ensureSessionValid())) return;
+function riprovaErrori() {
   const erroriSalvati = JSON.parse(localStorage.getItem("errorStats"));
   if (!erroriSalvati || Object.keys(erroriSalvati).length === 0) {
     alert("Non ci sono errori salvati.");
@@ -633,8 +605,7 @@ function resetErroriPerArgomento(argomento) {
   }
 }
 
-    async function mostraSelezioneArgomento() {
-  if (!(await ensureSessionValid())) return;
+    function mostraSelezioneArgomento() {
       home.style.display = "none";
       const categorie = ["GEOGRAFIA", "INGLESE", "SPAGNOLO", "TEDESCO", "FRANCESE", "NORMATIVA", "REGOLAMENTO"];
       esercitazione.style.display = "block";
@@ -773,16 +744,10 @@ function resetErroriPerArgomento(argomento) {
       if (indiceArticoloCorrente < tuttiGliArticoli.length - 1) mostraArticolo(indiceArticoloCorrente + 1);
     });
     document.getElementById('tornaHomeDaArticoli').addEventListener('click', () => {
-  document.getElementById('sezioneArticoli').style.display = 'none';
-  document.getElementById('home').style.display = 'block';
-  const s = getSession();
-  if (s && s.exp && Date.now() < s.exp) {
-    const overlay = document.getElementById('loginOverlay');
-    if (overlay) overlay.style.display = 'none';
-  }
-});
-    async function mostraSezioneArticoli() {
-  if (!(await ensureSessionValid())) return;
+      document.getElementById('sezioneArticoli').style.display = 'none';
+      document.getElementById('home').style.display = 'block';
+    });
+    function mostraSezioneArticoli() {
       document.getElementById('home').style.display = 'none';
       document.getElementById('quiz').style.display = 'none';
       document.getElementById('esercitazione').style.display = 'none';
@@ -1049,17 +1014,11 @@ if (percorso.image) {
     };
     btnTornaCategorie.onclick = () => { mostraMacroCategorie(); };
     tornaHomeDaPercorsiBtn.onclick = () => {
-  sezionePercorsi.style.display = 'none';
-  document.getElementById('home').style.display = 'block';
-  const s = getSession();
-  if (s && s.exp && Date.now() < s.exp) {
-    const overlay = document.getElementById('loginOverlay');
-    if (overlay) overlay.style.display = 'none';
-  }
-};
+      sezionePercorsi.style.display = 'none';
+      document.getElementById('home').style.display = 'block';
+    };
 
-    async function mostraSezionePercorsi() {
-  if (!(await ensureSessionValid())) return;
+    function mostraSezionePercorsi() {
       document.getElementById('home').style.display = 'none';
       document.getElementById('quiz').style.display = 'none';
       document.getElementById('esercitazione').style.display = 'none';
@@ -1070,120 +1029,6 @@ if (percorso.image) {
       sezionePercorsi.style.display = 'block';
       mostraMacroCategorie();
     }
-
-/* ===== Backend sessioni (via Cloudflare Worker) ===== */
-const BACKEND_URL = 'https://taxi.nikyfat.workers.dev/'; //
-
-var heartbeatTimer = null;   // dichiarazione globale, evita la TDZ
-
-// Canale locale per notifiche immediate tra schede/finestre
-const bc = new BroadcastChannel('quiz-session');
-
-// Se ricevo una nuova sessione con la MIA stessa email ma token diverso -> mi disconnetto
-bc.addEventListener('message', (ev) => {
-  const data = ev.data || {};
-  if (!data || !data.type) return;
-
-  const s = getSession();
-
-  // un altro tab ha effettuato login con la mia stessa email -> kick
-  if (data.type === 'session_update' && s && s.email === data.email && s.token !== data.token) {
-    hardKick('La tua sessione è stata usata altrove.');
-  }
-
-  // un altro tab ha eseguito logoutAll su questa email -> kick
-  if (data.type === 'logout_all' && s && s.email === data.email) {
-    hardKick('Account sbloccato da un altro dispositivo.');
-  }
-});
-
-async function sessionServer(action, payload) {
-  const res = await fetch(BACKEND_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain' }, // evita preflight
-    body: JSON.stringify({ action, ...payload })
-  });
-  return res.json();
-}
-
-/* util per la sessione locale (token + scadenza) */
-function setSession(email, token, exp) {
-  localStorage.setItem('myapp_session', JSON.stringify({ email, token, exp, ts: Date.now() }));
-}
-function getSession() {
-  try { return JSON.parse(localStorage.getItem('myapp_session') || 'null'); }
-  catch(e){ return null; }
-}
-function clearSession() { localStorage.removeItem('myapp_session'); }
-
-// Verifica rapida che la sessione sia ancora valida prima di operazioni importanti
-async function ensureSessionValid() {
-  const s = getSession();
-  if (!s) return false;
-  try {
-    const r = await sessionServer('heartbeat', {
-      email: s.email,
-      token: s.token,
-      ttlMs: Math.max(60*1000, (s.exp || 0) - Date.now())
-    });
-    if (!r?.ok) {
-      hardKick('La tua sessione è stata usata altrove.');
-      return false;
-    }
-    return true;
-  } catch {
-    // In caso di errore rete, non blocchiamo: lascia passare
-    return true;
-  }
-}
-
-// Controllo rapido quando la scheda torna attiva / la finestra prende il focus
-function focusCheck() {
-  const s = getSession();
-  if (!s) return;
-  sessionServer('heartbeat', { email: s.email, token: s.token, ttlMs: Math.max(60*1000, (s.exp||0) - Date.now()) })
-    .then(r => { if (!r?.ok) hardKick('La tua sessione è stata usata altrove.'); })
-    .catch(()=>{});
-}
-window.addEventListener('focus', focusCheck);
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') focusCheck();
-});
-
-function showLoginOverlay(msg) {
-  const overlay =
-    document.getElementById('loginOverlay') ||
-    document.getElementById('overlayLogin');
-
-  if (!overlay) {
-    if (msg) alert(msg);
-    // estrema difesa: se l'overlay non esiste, ricarico
-    location.reload();
-    return;
-  }
-
-  const passEl = document.getElementById('loginPassword');
-  if (passEl) passEl.value = '';
-
-  showLoginOverlay();
-  overlay.style.zIndex = '9999';
-  overlay.removeAttribute('aria-hidden');
-
-  if (msg) alert(msg);
-}
-
-function hardKick(msg) {
-  stopHeartbeat();
-  clearSession();
-
-  // Nascondi tutte le sezioni dell'app
-  ['quiz','esercitazione','risultati','riepilogoRisposte',
-   'selezioneLinguaSimulazione','sezioneArticoli','sezionePercorsi','home']
-   .forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
-
-  // Mostra l'overlay robustamente
-  showLoginOverlay(msg);
-}
 
     // ------------------------- Login (PBKDF2) -------------------------
     function bufToHex(buffer) { return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2,'0')).join(''); }
@@ -1199,6 +1044,9 @@ function hardKick(msg) {
       return bufToHex(derived);
     }
     function findUser(email) { if (!window.USERS) return null; return window.USERS.find(u => u.email.toLowerCase() === email.toLowerCase()); }
+    function setSession(userEmail) { const sess = { email: userEmail, token: btoa(Math.random().toString(36)+Date.now()), ts: Date.now() }; localStorage.setItem('myapp_session', JSON.stringify(sess)); }
+    function clearSession() { localStorage.removeItem('myapp_session'); }
+    function getSession() { try { return JSON.parse(localStorage.getItem('myapp_session') || 'null'); } catch(e){ return null; } }
     const MAX_FAILS = 6; const LOCK_MIN = 2;
     function incFail() { const k='login_fails'; const v = Number(sessionStorage.getItem(k) || 0) + 1; sessionStorage.setItem(k, String(v)); if (v >= MAX_FAILS) { const until = Date.now() + LOCK_MIN*60*1000; sessionStorage.setItem('login_lock_until', String(until)); } }
     function isLocked() { const until = Number(sessionStorage.getItem('login_lock_until') || 0); return Date.now() < until; }
@@ -1212,13 +1060,14 @@ function hardKick(msg) {
       const msgEl = document.getElementById('loginMsg');
 
       const sess = getSession();
-if (sess && sess.email && sess.exp && Date.now() < sess.exp) {
-  // avvia heartbeat con tempo residuo (almeno 60s)
-  startHeartbeat(sess.email, sess.token, Math.max(60*1000, sess.exp - Date.now()));
-  overlay.style.display = 'none';
-} else {
-  clearSession();
-}
+      if (sess && sess.email) {
+        const maxAge = 8 * 60 * 60 * 1000;
+        if (Date.now() - sess.ts < maxAge) {
+          overlay.style.display = 'none';
+        } else {
+          clearSession();
+        }
+      }
 
       if (isLocked()) {
         const until = Number(sessionStorage.getItem('login_lock_until'));
@@ -1242,103 +1091,20 @@ if (sess && sess.email && sess.exp && Date.now() < sess.exp) {
         msgEl.textContent = 'Verifico... attendere.';
         try {
           const hashHex = await deriveHex(pass, user.salt, 200000, 32);
-if (hashHex === user.hash) {
-  // === login via backend sessioni ===
-  const ttlMs = 2 * 60 * 60 * 1000; // 2 ore (lasciamo invariato come richiesto)
-  const token = btoa(Math.random().toString(36) + Date.now());
-
-  let resp;
-  try {
-    resp = await sessionServer('login', { email: user.email, token, ttlMs });
-  } catch (e) {
-    msgEl.textContent = 'Errore di rete con il server sessioni.';
-    return;
-  }
-
-  if (resp.ok) {
-    setSession(user.email, token, Date.now() + ttlMs);
-    startHeartbeat(user.email, token, ttlMs);
-bc.postMessage({ type:'session_update', email: user.email, token });
-    resetFails();
-    overlay.style.display = 'none';
-    msgEl.textContent = '';
-  } else if (resp.status === 'active_elsewhere') {
-    if (confirm('Sei già connesso su un altro dispositivo. Disconnettere l’altra sessione e continuare qui?')) {
-      const forced = await sessionServer('forceLogoutOthers', { email: user.email, token, ttlMs, force: true });
-      if (forced.ok) {
-        setSession(user.email, token, Date.now() + ttlMs);
-        startHeartbeat(user.email, token, ttlMs);
-bc.postMessage({ type:'session_update', email: user.email, token });
-        resetFails();
-        overlay.style.display = 'none';
-        msgEl.textContent = '';
-      } else {
-        msgEl.textContent = 'Impossibile forzare l’accesso al momento.';
-      }
-    } else {
-      msgEl.textContent = 'Accesso annullato.';
-    }
-  } else {
-    msgEl.textContent = 'Errore server di sessione.';
-  }
-} else {
-  incFail();
-  msgEl.textContent = 'Credenziali non valide.';
-}
+          if (hashHex === user.hash) {
+            setSession(user.email); resetFails(); overlay.style.display = 'none'; msgEl.textContent = '';
+          } else { incFail(); msgEl.textContent = 'Credenziali non valide.'; }
         } catch (e) { console.error(e); msgEl.textContent = 'Errore interno (derivazione).'; }
       });
 
       passEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginBtn.click(); });
     })();
 
-function stopHeartbeat(){
-  if (heartbeatTimer) {
-    clearInterval(heartbeatTimer);
-  }
-  heartbeatTimer = null;
-}
-
-function startHeartbeat(email, token, ttlMs){
-  stopHeartbeat();
-
-  // ping periodico → kick immediato se il server dice "non ok"
-  heartbeatTimer = setInterval(() => {
-    sessionServer('heartbeat', { email, token, ttlMs })
-      .then(r => { if (r && r.ok === false) hardKick('La tua sessione è stata usata altrove.'); })
-      .catch(()=>{ /* errore rete: non sloggare l’utente */ });
-  }, 15 * 1000);
-
-  // logout server quando chiudi/ricarichi
-  window.addEventListener('beforeunload', () => {
-    try { navigator.sendBeacon?.(BACKEND_URL, JSON.stringify({ action:'logout', email, token })); } catch(_) {}
-  }, { once:true });
-
-  // Safari/iOS usa spesso pagehide
-  window.addEventListener('pagehide', () => {
-    try { navigator.sendBeacon?.(BACKEND_URL, JSON.stringify({ action:'logout', email, token })); } catch(_) {}
-  }, { once:true });
-}
-
-async function logout() {
-  const s = getSession();
-  try {
-    if (s?.email && s?.token) {
-      await sessionServer('logout', { email: s.email, token: s.token });
-    }
-  } catch(_) {}
-
-  clearSession();
-  stopHeartbeat();
-
-  // avvisa anche eventuali altre schede su questo dispositivo
-  bc.postMessage({ type:'logout_all', email: s?.email });
-
-  // nascondi tutto e mostra overlay
-  ['quiz','esercitazione','risultati','riepilogoRisposte',
-   'selezioneLinguaSimulazione','sezioneArticoli','sezionePercorsi','home']
-   .forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
-
-  showLoginOverlay();
+function logout() {
+  localStorage.removeItem('myapp_session');
+  sessionStorage.removeItem('login_fails');
+  sessionStorage.removeItem('login_lock_until');
+  location.reload();
 }
 
 // ---- Lightbox helpers ----
@@ -1375,26 +1141,6 @@ function bindLightbox() {
   });
 }
 window.addEventListener('DOMContentLoaded', bindLightbox);
-
-document.getElementById('btnSblocca').addEventListener('click', async () => {
-  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-  if (!email) { alert('Inserisci la tua email nel campo sopra.'); return; }
-  try {
-    const r = await sessionServer('logoutAll', { email });
-    if (r?.ok) {
-      // pulisco lato client e notifico gli altri tab
-      clearSession();
-      stopHeartbeat();
-      bc.postMessage({ type:'logout_all', email });
-      alert('Account sbloccato. Ora puoi accedere.');
-    } else {
-      alert('Impossibile sbloccare ora.');
-    }
-  } catch {
-    alert('Errore di rete durante lo sblocco.');
-  }
-});
-
   </script>
 <!-- Lightbox immagine percorso -->
 <div id="imgLightbox" style="display:none;">
