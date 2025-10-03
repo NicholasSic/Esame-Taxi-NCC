@@ -1,8 +1,8 @@
 window.USERS = [
   {
-    email: "test@example.com",
-    salt: "5f09cc4d34ced414cd94c657d6a76926",
-    hash: "41b0273f8c8f412d200f9a1c1a98f5c0bb8b7b7c3af6b320e267de17a664fa84"
+    email: "test",
+    salt: "c5d3b2464676a511fffd5d0d6ab82abc",
+    hash: "c97f427dcea8e631858bd04ec54013404cad54d6f4862286e0eb5de70069238a"
   },
     {
     email: "Davide Brioschi",
@@ -10,9 +10,9 @@ window.USERS = [
     hash: "aeeae99a80773bb37cd92d4411337d24ca13557e1280a6b4fd078b8e4528cb02"
   },  
   {
-    email: "Davide Di Ronza",
-    salt: "8fecd54dc174c4e65980805e304788e5",
-    hash: "0e809ce5d541ca0c5062a9a4a9348994018c5d4932e26e5c71834f03e8b506b2"
+    email: "davide5772@live.it",
+    salt: "1a1d9eaf7d2c68325a31f9122e0a326b",
+    hash: "6455463fc35f6df3686f2a231137e7e92dd0f83929a76c536080b0c1bd920f32"
   },  
   {
     email: "Christian Pappagallo",
