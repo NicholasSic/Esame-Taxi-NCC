@@ -38,7 +38,7 @@
 
     /* Cards & layout */
     #home, #quiz, #esercitazione, #risultati, #riepilogoRisposte, #statistiche,
-    #sezioneArticoli, #sezionePercorsi {
+#sezioneArticoli, #sezionePercorsi, #sezioneDocumenti {
       display: none;
       max-width: 1200px;
       margin: auto;
@@ -192,6 +192,7 @@ body.lb-open { overflow: hidden; }
     <button onclick="riprovaErrori()">Riprova solo errori</button>
     <button onclick="mostraSezioneArticoli()">Leggi Articoli del Regolamento</button>
     <button onclick="mostraSezionePercorsi()">Visualizza Percorsi Principali</button>
+<button class="btn" onclick="openDocumenti()">Apri Documenti PDF</button>
     <button onclick="logout()">Esci</button>
   </div>
 
@@ -256,6 +257,27 @@ body.lb-open { overflow: hidden; }
     </div>
     <button id="tornaHomeDaPercorsi" style="display: block; margin: 20px auto 0;">Torna alla Home</button>
   </div>
+
+<!-- Sezione Documenti PDF -->
+<div id="sezioneDocumenti" style="display:none; padding:24px 16px;">
+  <button class="btn" onclick="chiudiDocumenti()">← Torna alla Home</button>
+  <h2 style="margin-top:16px;">Documenti PDF</h2>
+
+  <div style="margin:12px 0;">
+    <input id="docSearch" type="search" placeholder="Cerca documento…"
+           oninput="filterDocs(this.value)"
+           style="width:100%;max-width:420px;padding:10px;border-radius:8px;border:1px solid #ccd;">
+  </div>
+
+  <div id="docList"
+       style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;"></div>
+
+  <div id="docPreview" style="margin-top:16px;display:none;">
+    <h3 id="docTitle" style="margin:8px 0;"></h3>
+    <iframe id="docFrame" title="Anteprima PDF"
+            style="width:100%;height:70vh;border:1px solid #e2e2e2;border-radius:10px;"></iframe>
+  </div>
+</div>
 
   <!-- Quiz & Esercitazione -->
   <div id="quiz">
@@ -1029,6 +1051,107 @@ if (percorso.image) {
       sezionePercorsi.style.display = 'block';
       mostraMacroCategorie();
     }
+
+// ====== Documenti PDF ======
+const DOCUMENTI = [
+  {
+    id: 'geo-milano',
+    titolo: 'Tutta Geografia e Milano',
+    file: 'Tutta-Geografia-e-Milano.pdf',
+    categoria: 'Geografia'
+  },
+  {
+    id: 'piazze-milano',
+    titolo: 'Piazze di Milano',
+    file: 'Piazze-Di-Milano.pdf',
+    categoria: 'Percorsi'
+  },
+  {
+    id: 'piazze-convergenze',
+    titolo: 'Piazze — Convergenze Percorsi',
+    file: 'Piazze-Convergenze-Percorsi.pdf',
+    categoria: 'Percorsi'
+  }
+];
+
+function openDocumenti() {
+  hideAllSections();
+  renderDocumenti(DOCUMENTI);
+  document.getElementById('sezioneDocumenti').style.display = 'block';
+}
+
+function chiudiDocumenti() {
+  document.getElementById('sezioneDocumenti').style.display = 'none';
+  document.getElementById('home').style.display = 'block';
+}
+
+function renderDocumenti(list) {
+  const wrap = document.getElementById('docList');
+  const prev = document.getElementById('docPreview');
+  wrap.innerHTML = '';
+  prev.style.display = 'none';
+
+  if (!list.length) {
+    wrap.innerHTML = '<p>Nessun documento trovato.</p>';
+    return;
+  }
+
+ list.forEach(d => {
+  const fileUrl = 'pdfs/' + encodeURIComponent(d.file);   // <-- URL sicuro
+  const card = document.createElement('div');
+  card.style.cssText =
+    'border:1px solid #e2e2e2;border-radius:12px;padding:12px;background:#fff;' +
+    'box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;flex-direction:column;gap:8px;';
+  card.innerHTML = `
+    <div style="font-weight:600">${escapeHtml(d.titolo)}</div>
+    <div style="font-size:12px;color:#666">${d.categoria ? escapeHtml(d.categoria) : ''}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn" style="padding:8px 12px" onclick="previewDoc('${d.id}')">Anteprima</button>
+      <a class="btn" style="padding:8px 12px;background:#6c757d" href="${fileUrl}" target="_blank" rel="noopener">Apri</a>
+      <a class="btn" style="padding:8px 12px;background:#6c757d" href="${fileUrl}" download>Scarica</a>
+    </div>
+  `;
+  wrap.appendChild(card);
+});
+}
+
+function filterDocs(q) {
+  const term = (q || '').toLowerCase().trim();
+  if (!term) { renderDocumenti(DOCUMENTI); return; }
+  const filtered = DOCUMENTI.filter(d =>
+    d.titolo.toLowerCase().includes(term) ||
+    (d.categoria||'').toLowerCase().includes(term) ||
+    d.file.toLowerCase().includes(term)
+  );
+  renderDocumenti(filtered);
+}
+
+function previewDoc(id) {
+  const d = DOCUMENTI.find(x => x.id === id);
+  if (!d) return;
+  document.getElementById('docTitle').textContent = d.titolo;
+
+  const fileUrl = 'pdfs/' + encodeURIComponent(d.file);
+  const f = document.getElementById('docFrame');
+
+  // bust cache in sviluppo
+  f.src = fileUrl + (fileUrl.includes('?') ? '&' : '?') + 'v=' + Date.now();
+  document.getElementById('docPreview').style.display = 'block';
+}
+
+function hideAllSections() {
+  ['home','quiz','esercitazione','risultati','riepilogoRisposte',
+   'selezioneLinguaSimulazione','sezioneArticoli','sezionePercorsi','sezioneDocumenti']
+  .forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, m =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
 
     // ------------------------- Login (PBKDF2) -------------------------
     function bufToHex(buffer) { return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2,'0')).join(''); }
