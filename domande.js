@@ -191,16 +191,6 @@ const tutteLeDomande = [
   },
   {
     "argomento": "GEOGRAFIA",
-    "domanda": "Quanti abitanti ha Sondrio (sulla base del censimento del 21/10/2001) ?",
-    "risposte": [
-      "tra 40.000 e 50.000",
-      "più di 60.000",
-      "meno di 30.000"
-    ],
-    "corretta": 2
-  },
-  {
-    "argomento": "GEOGRAFIA",
     "domanda": "Quanti abitanti ha Brescia (sulla base del censimento del 21/10/2001) ?",
     "risposte": [
       "tra 100.000 e 150.000",
@@ -218,16 +208,6 @@ const tutteLeDomande = [
       "Pavia"
     ],
     "corretta": 1
-  },
-  {
-    "argomento": "GEOGRAFIA",
-    "domanda": "La città di Vigevano ha un numero di abitanti (sulla base del censimento del 21/10/2001) pari a:",
-    "risposte": [
-      "tra 40.000 e 70.000",
-      "tra 20.000 e 30.000",
-      "tra 80.000 e 100.000"
-    ],
-    "corretta": 0
   },
   {
     "argomento": "GEOGRAFIA",
@@ -281,16 +261,6 @@ const tutteLeDomande = [
   },
   {
     "argomento": "GEOGRAFIA",
-    "domanda": "La città di Sesto San Giovanni ha un numero di abitanti (sulla base del censimento del 21/10/2001) pari a:",
-    "risposte": [
-      "più di 110.000",
-      "tra 40.000 e 50.000",
-      "tra 70.000 e 100.000"
-    ],
-    "corretta": 2
-  },
-  {
-    "argomento": "GEOGRAFIA",
     "domanda": "La SS 470 attraversa:",
     "risposte": [
       "la Val di Scalve",
@@ -311,16 +281,6 @@ const tutteLeDomande = [
   },
   {
     "argomento": "GEOGRAFIA",
-    "domanda": "Quanti abitanti ha Mantova (sulla base del censimento del 21/10/2001) ?",
-    "risposte": [
-      "meno di 60.000",
-      "tra 70.000 e 80.000",
-      "più di 100.000"
-    ],
-    "corretta": 0
-  },
-  {
-    "argomento": "GEOGRAFIA",
     "domanda": "Quanti abitanti ha Cremona (sulla base del censimento del 21/10/2001) ?",
     "risposte": [
       "meno di 80.000",
@@ -328,16 +288,6 @@ const tutteLeDomande = [
       "oltre i 130.000"
     ],
     "corretta": 0
-  },
-  {
-    "argomento": "GEOGRAFIA",
-    "domanda": "L'autostrada A4 Torino - Trieste attraversa quattro province lombarde nell'ordine:",
-    "risposte": [
-      "Milano, Lodi, Brescia",
-      "Milano, Monza, Bergamo, Brescia",
-      "Milano, Bergamo, Mantova"
-    ],
-    "corretta": 1
   },
   {
     "argomento": "GEOGRAFIA",
@@ -601,16 +551,6 @@ const tutteLeDomande = [
   },
   {
     "argomento": "GEOGRAFIA",
-    "domanda": "Quanti abitanti ha Bergamo (sulla base del censimento del 21/10/2001) ?",
-    "risposte": [
-      "da 100.000 a 180.000",
-      "meno di 90.000",
-      "più di 200.000"
-    ],
-    "corretta": 0
-  },
-  {
-    "argomento": "GEOGRAFIA",
     "domanda": "E' sede di un'antica Università e di un celebre castello visconteo:",
     "risposte": [
       "Vigevano",
@@ -738,16 +678,6 @@ const tutteLeDomande = [
       "Lecco"
     ],
     "corretta": 2
-  },
-  {
-    "argomento": "GEOGRAFIA",
-    "domanda": "La città di Cinisello Balsamo ha un numero di abitanti (sulla base del censimento del 21/10/2001) pari a:",
-    "risposte": [
-      "tra 50.000 e 80.000",
-      "meno di 40.000",
-      "più di 90.000"
-    ],
-    "corretta": 0
   },
   {
     "argomento": "GEOGRAFIA",
@@ -951,26 +881,6 @@ const tutteLeDomande = [
   },
   {
     "argomento": "GEOGRAFIA",
-    "domanda": "La città di Cologno Monzese ha un numero di abitanti (sulla base del censimento del 21/10/2001) pari a:",
-    "risposte": [
-      "tra 20.000 e 30.000",
-      "tra 40.000 e 60.000",
-      "più di 70.000"
-    ],
-    "corretta": 1
-  },
-  {
-    "argomento": "GEOGRAFIA",
-    "domanda": "Quanti abitanti ha Como (sulla base del censimento del 21/10/2001) ?",
-    "risposte": [
-      "tra 120.000 e 130.000",
-      "tra 70.000 e 100.000",
-      "tra 140.000 e 150.000"
-    ],
-    "corretta": 1
-  },
-  {
-    "argomento": "GEOGRAFIA",
     "domanda": "Piazza della Loggia in quale città della Lombardia si trova ?",
     "risposte": [
       "Brescia",
@@ -1016,16 +926,6 @@ const tutteLeDomande = [
       "In provincia di Lecco",
       "In provincia di Lodi",
       "in provincia di Varese"
-    ],
-    "corretta": 0
-  },
-  {
-    "argomento": "GEOGRAFIA",
-    "domanda": "Quanti abitanti ha Varese (sulla base del censimento del 21/10/2001) ?",
-    "risposte": [
-      "tra 70.000 e 90.000",
-      "oltre 100.000",
-      "tra 50.000 e 60.000"
     ],
     "corretta": 0
   },
@@ -1081,16 +981,6 @@ const tutteLeDomande = [
   },
   {
     "argomento": "GEOGRAFIA",
-    "domanda": "La città di Legnano ha un numero di abitanti (sulla base del censimento del 21/10/2001) pari a:",
-    "risposte": [
-      "meno di 30.000",
-      "tra 40.000 e 60.000",
-      "più di 70.000"
-    ],
-    "corretta": 1
-  },
-  {
-    "argomento": "GEOGRAFIA",
     "domanda": "La stazione ferroviaria di Seveso si trova sulla linea delle Ferrovie Nord Milano:",
     "risposte": [
       "Milano - Erba - Asso",
@@ -1138,16 +1028,6 @@ const tutteLeDomande = [
       "L'Adda"
     ],
     "corretta": 2
-  },
-  {
-    "argomento": "GEOGRAFIA",
-    "domanda": "Quanti abitanti ha Lodi (sulla base del censimento del 21/10/2001) ?",
-    "risposte": [
-      "meno di 50.000",
-      "tra 60.000 e 70.000",
-      "più di 80.000"
-    ],
-    "corretta": 0
   },
   {
     "argomento": "GEOGRAFIA",
@@ -1306,16 +1186,6 @@ const tutteLeDomande = [
       "Il Sacro Monte",
       "Il Pian dei Resinelli",
       "Il Campo dei Fiori"
-    ],
-    "corretta": 1
-  },
-  {
-    "argomento": "GEOGRAFIA",
-    "domanda": "Quanti abitanti ha Pavia (sulla base del censimento del 21/10/2001) ?",
-    "risposte": [
-      "meno di 50.000",
-      "tra 60.000 e 80.000",
-      "più di 100.000"
     ],
     "corretta": 1
   },
@@ -1761,26 +1631,6 @@ const tutteLeDomande = [
   },
   {
     "argomento": "GEOGRAFIA",
-    "domanda": "La città di Busto Arsizio ha un numero di abitanti (sulla base del censimento del 21/10/2001) pari a:",
-    "risposte": [
-      "tra 60.000 e 90.000",
-      "tra 20.000 e 50.000",
-      "più di 100.000"
-    ],
-    "corretta": 0
-  },
-  {
-    "argomento": "GEOGRAFIA",
-    "domanda": "E stazione della metropolitana milanese, di corrispondenza con le autolinee extraurbane della zona dell'Adda.",
-    "risposte": [
-      "Molino Dorino",
-      "San Donato Milanese",
-      "Gessate"
-    ],
-    "corretta": 2
-  },
-  {
-    "argomento": "GEOGRAFIA",
     "domanda": "Sirmione è una località turistica del:",
     "risposte": [
       "Lago di Garda",
@@ -1998,16 +1848,6 @@ const tutteLeDomande = [
       "Bergamo"
     ],
     "corretta": 0
-  },
-  {
-    "argomento": "GEOGRAFIA",
-    "domanda": "Quanti sono gli abitanti della Lombardia?",
-    "risposte": [
-      "9 milioni",
-      "tra 9 e 11 milioni",
-      "più di 11 milioni"
-    ],
-    "corretta": 1
   },
   {
     "argomento": "GEOGRAFIA",
@@ -6678,5 +6518,245 @@ const tutteLeDomande = [
       "dialogare con l'utente"
     ],
     "corretta": 0
-  }
+  },
+  { "argomento":"GEOGRAFIA", "domanda":"Dove si trova la Basilica di Sant’Abbondio?", "risposte":["Lecco","Bergamo","Como"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"La SS 39 che collega Sondrio e Bergamo comprende il", "risposte":["Passo San Marco","La Presolana","L’Aprica"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Il lago di Pusiano si trova:", "risposte":["nel Varesotto","nella Brianza","nel Bresciano"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"La valle più alta della Lombardia è:", "risposte":["la Valtellina","la Val Brembana","La Val D’Intelvi"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Il Lario è:", "risposte":["un fiume","un lago","una montagna"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quanto è lunga la tangenziale ovest di Milano?", "risposte":["Da 30 a 40  Km","Meno di 15 KM","Più di 50 Km"], "corretta":0 },
+
+  { "argomento":"NORMATIVA", "domanda":"I conducenti di taxi hanno l’obbligo di:", "risposte":["misurare la pressione dei pneumatici prima di ogni servizio","pulire accuratamente il veicolo in ogni sua parte","trasportare cani per i non vedenti"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Qual’è la produzione caratteristica della Valtrompia?", "risposte":["Strumenti musicali","Armi","Manufatti di sughero"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di queste città fa provincia?", "risposte":["Busto Arsizio","Lecco","Vigevano"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quali laghi sono collegati fra loro?", "risposte":["Lugano-Varese","Lugano-Como","Lugano-Maggiore"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"I tassisti legittimati a svolgere il servizio di taxi presso gli aeroporti sono tenuti a:", "risposte":["rispettare i turni di servizio assegnati dai Comuni","organizzare la gestione della priorità al carico","scegliere la corsa tra gli utenti in attesa di accedere al servizio"], "corretta":0 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"L’aeroporto della Malpensa si trova vicino alla:", "risposte":["SS 233 Varesina","SS 36 Dello Spluga","SS 33 Del Sempione"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Pavia ha l’Università?", "risposte":["NO","SI","Solo qualche distaccamento del Politecnico di Milano"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"La SS 11 passa per:", "risposte":["Bergamo","Treviglio","Crema"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Villa Mirabello si trova a:", "risposte":["Varese","Monza","Como"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Vigevano?", "risposte":["55.000-60.000","65.000-70.000","50.000-55.000"], "corretta":0 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"A quale distanza progressiva chilometrica la tangenziale Ovest di Milano incrocia la A7 Milano-Genova?", "risposte":["Al KM. 2,5","Al KM 20","Al KM 31,5"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di queste città è stata riconosciuta capoluogo di provincia 1993?", "risposte":["Crema","Lodi","Monza"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di queste località non e dotata di F.S.?", "risposte":["Varese","Laveno Mombello","Saronno"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"Che cos’è la D.C.A. indicata nella normativa regionale sperimentale per i servizi aeroportuali:", "risposte":["Direzione Circoscrizionale Aeroportuale","Direzione Compartimentale Autonoleggiatori","Direzione Centrale Aeroporti"], "corretta":0 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Di questi comuni quale non è in provincia di Varese?", "risposte":["Gallarate","Cassano Magnago","Locate Varesino"], "corretta":2 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Quant’è la quota fissa di partenza per i soggetti legittimati a svolgere il servizio taxi negli aeroporti:", "risposte":["€ 3,30","€ 12,5","€ 11"], "corretta":0 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Dove si trova la Val D’Intelvi", "risposte":["Nella provincia di Lecco","Fra il Lago di Lugano e quello di Como","Nella Val Brembana"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"La SS 36 dello Spluga passa per:", "risposte":["Arcore","Vimercate","Limbiate"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Il fiume Olona passa per:", "risposte":["Saronno","Melegnano","Milano"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Il Lago di Alserio si trova:", "risposte":["Nel Bresciano","Nel Varesotto","Nella Brianza"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"La SS 11 Padana Superiore è interessata a quali di queste vie?", "risposte":["Via Chiesa Rossa","Viale Fulvio Testi","Via Novara"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"La statale che passa per Como, Menaggio e Porlezza è la:", "risposte":["SS 234 Codognese","SS 235 Orzinuovi","SS 340 La Regina"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"La seconda città nella provincia di Bergamo in base al numero di abitanti è:", "risposte":["Treviglio","Abbiategrasso","Seriate"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"In quale di questi comuni si trova l’aeroporto di Linate?", "risposte":["Cologno Monzese","Peschiera Borromeo","Gaggiano"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quali di queste due città non sono divise da altre provincie?", "risposte":["Varese-Lecco","Varese-Milano","Varese-Mantova"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"La Val Madrera in quale comune si trova?", "risposte":["Lecco","Varese","Pavia"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Il naviglio grande ha origini:", "risposte":["Dal Ticino","Dall’Olona","Dal Canale Villoresi"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di questi passi si trova in Lombardia?", "risposte":["Passo del Sempione","Passo del Bernina","Passo del San Marco"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di queste città e conosciuta come la leonessa d’Italia?", "risposte":["Milano","Bergamo","Brescia"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Il porto fluviale più importante della Lombardia è:", "risposte":["Porto Ceresio","Pavia","Cremona"], "corretta":2 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"E’ obbligatorio per il servizio taxi rimanere a disposizione per un massimo di 60 minuti di sosta:", "risposte":["Si, sempre","solo se si ha voglia","si purché la sosta non intralci il traffico"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"All’interno del comune di appartenenza della licenza o del comune integrato il servizio taxi è:", "risposte":["facoltativo","obbligatorio se il servizio supera € 25,82","sempre obbligatorio purché i richiedenti non superino il numero della carta di circolazione"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Il Parco Naturale dello Stelvio si trova?", "risposte":["Nella provincia di SO","Nella provincia di BS","Nelle province di SO e BS"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"La Commissione Regionale dura in carica:", "risposte":["tre anni","cinque anni","quattro anni"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Monza?", "risposte":["Da 125.000 a 140.000","Da 115.000 a 125.000","Da 100.000 a 115.000"], "corretta":1 },
+
+  { "argomento":"NORMATIVA", "domanda":"L’autovettura usata per il servizio taxi ed NCC deve:", "risposte":["fare la revisione ogni 5 anni","fare solo la visita di controllo","fare ogni anno la revisione alla Motorizzazione Civile e la visita di controllo presso l’Ufficio Autopubbliche"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di queste città si chiamava Mediolanum?", "risposte":["Milano","Pavia","Sondrio"], "corretta":0 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Con quale Legge viene regolamentato il rapporto di lavoro con il sostituto alla guida:", "risposte":["la Legge che regolamenta la collaborazione con ritenuta d’acconto","la Legge 20/95","la Legge 230 del 18 aprile 1962"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Da quale fiume è attraversata la Valtellina?", "risposte":["Serio","Chiese","Adda"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Sondrio?", "risposte":["45.000-50.000","20.000-25.000","10.000-20.000"], "corretta":1 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Entro quanto tempo si deve iniziare ad esercitare dopo il trasferimento della licenza:", "risposte":["60 giorni","90 giorni","120 giorni"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Qual’è il lago più grande della Lombardia?", "risposte":["Il Maggiore","Il Como","Il Garda"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"La Valsassina si trova nella provincia di:", "risposte":["Como","Bergamo","Lecco"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di questi passi si trova sulla SS 42?", "risposte":["Lo Spluga","Il Gavia","Il Tonale"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Busto Arsizio?", "risposte":["Da 65.000 a 70.000","Da 70.000 a 75.000","Da 75.000 a 80.000"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"Le associazioni di cooperative di produzione lavoro, intendendo come tali quelle a proprietà collettiva, ovvero le cooperative di servizi, operanti in conformità alle norme vigenti sulla cooperazione sono:", "risposte":["l’unico modo per poter lavorare","l’unico modo per potersi raggruppare","una figura giuridica"], "corretta":2 },
+  { "argomento":"NORMATIVA", "domanda":"Da che anno sono diventati obbligatori i dispositivi ecologici per i servizi pubblici non di linea:", "risposte":["1 gennaio 1992","1 gennaio 1993","1 gennaio 1990"], "corretta":0 },
+  { "argomento":"NORMATIVA", "domanda":"Il conducente di taxi che rifiuta di svolgere il servizio all’interno dell’area comunale o nei comuni integrati incorre:", "risposte":["in una sanzione amministrativa da 1 a 60 giorni","nella decadenza della licenza d’esercizio","in una sanzione amministrativa da 1 a 90 giorni"], "corretta":2 },
+  { "argomento":"NORMATIVA", "domanda":"Nella medesima provincia, ci si può iscrivere a più sezioni del ruolo:", "risposte":["no","si","si, solo se si è in possesso della patente nautica"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quale strada statale attraversa l’abitato di Montichiari?", "risposte":["La SS n. 236 Goitese","La SS n. 415 Paullese","La SS n. 45 Bis Gardesana Occidentale"], "corretta":0 },
+
+  { "argomento":"NORMATIVA", "domanda":"Qual’è l’importo minimo per la partenza dagli aeroporti di Linate, Malpensa e Orio al Serio.", "risposte":["€ 11,00","€ 16,02","€ 10,33"], "corretta":0 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Bergamo?", "risposte":["Meno di 10.000","Da 100.000 a 200.000","Più di 300.000"], "corretta":1 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Agli utenti è vietato aprire la portiera verso il lato di scorrimento:", "risposte":["sempre","a loro facoltà","mai"], "corretta":0 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quante sono le linee metropolitane in esercizio a Milano?", "risposte":["3","5","4"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di questi laghi non ha un servizio pubblico di navigazione di linea?", "risposte":["Il Lago di Lugano","Il lago di Varese","Il Lago D’Iseo"], "corretta":1 },
+
+  { "argomento":"NORMATIVA", "domanda":"Se un NCC inizia un servizio al di fuori della rimessa incorre:", "risposte":["in una sanzione amministrativa da 1 a 60 giorni","nella decadenza della licenza d’esercizio","in una sanzione amministrativa da 1 a 90 giorni"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Il Lago di Garda da quale fiume è formato?", "risposte":["Dal fiume Chiese","Dal fiume Sarca","Dal Fiume Mincio"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"San Donato fa parte del sedime aeroportuale di Linate:", "risposte":["si","no","solo in caso di dirottamento"], "corretta":1 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"L’NCC ha un colore obbligatorio come il taxi:", "risposte":["si","solo quando fa servizi di rappresentanza","no"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Mantova?", "risposte":["80.000-85.000","50.000-55.000","30.000-35.000"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Qual’è l’autostrada “La Serenissima”?", "risposte":["A8","MI-VE","A4"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"Non portare per più volte l’autovettura alla visita di controllo all’Ufficio Autopubbliche comporta:", "risposte":["il ritiro della carta di circolazione","una sanzione amministrativa a 1 a 60 giorni","la revoca della licenza"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"La Lombardia è a statuto autonomo?", "risposte":["SI","NO","Solo per quello che riguarda la legge del servizio pubblico non di linea"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Il fiume Ticino che confini determina?", "risposte":["Lombardia-Liguria","Lombardia-Emilia","Lombardia-Piemonte"], "corretta":2 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Il taxi può trasportare solo buste:", "risposte":["si","no","solo quando lo richiede un soggetto appartenente alle Poste"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Il Passo dello Stelvio si trova sulla strada SS:", "risposte":["38","39","42"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Rho supera i 50.000 abitanti?", "risposte":["SI","NO","solo quando vi è alta densità turistica"], "corretta":0 },
+
+  { "argomento":"NORMATIVA", "domanda":"I soggetti legittimati ad effettuare il servizio preso il sistema aeroportuale lombardo sono:", "risposte":["i titolari di licenza taxi rilasciati dai comuni dei sedimi aeroportuali più tutti quelli della provincia nella quale ricade l’aeroporto","i soggetti individuati dall’art. 14, comma 8 del D. L. 422/97 più tutti quelli del sedime aeroportuale","i soggetti individuati dall’art. 14, comma 8 del D.L. 422/97 più tutti quelli del bacino di utenza aeroportuale"], "corretta":2 },
+  { "argomento":"NORMATIVA", "domanda":"I turni di servizio per Milano sono:", "risposte":["21","19","25"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"La Bustese 527 con quali di queste strade non è interessata?", "risposte":["SS 36 dello Spluga","SS 233 Varesina","Autostrada A8"], "corretta":0 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Per un periodo totale di ferie di 31 giorni in un anno, il titolare di licenza può farsi sostituire:", "risposte":["si","no","solo se il sostituto ha i requisiti"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Varese?", "risposte":["100.000","80.000-90.000","50.000"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Qual’è il capoluogo lombardo più a sud rispetto a Milano?", "risposte":["Como","Pavia","Cremona"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"Per il nuovo codice della strada le violazioni delle disposizioni di cui all’art. 21 della Legge Regionale 15 aprile 1995 n. 20, comportano l’applicazione delle sanzioni pecuniarie:", "risposte":["a discrezione del vigile, valutata la gravità della violazione","mai","solo nella misura prevista"], "corretta":2 },
+  { "argomento":"NORMATIVA", "domanda":"L’ordine di carico negli aeroporti esplicitato dall’art. 4 della disciplina sperimentale del sistema aeroportuale Lombardo, prevede che:", "risposte":["i taxi del sedime aeroportuale hanno la precedenza rispetto agli altri del bacino d’utenza","i taxi del capoluogo di provincia e quelli del sedime aeroportuale hanno la precedenza rispetto agli altri del bacino d’utenza","tutti i taxi del bacino d’utenza più tutti quelli individuati dall’art. 4, comma 8 del D. L. 422/97 rispettano l’ordine di arrivo"], "corretta":2 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"La più popolosa città della provincia di Milano escluso il capoluogo è:", "risposte":["Sesto San Giovanni","Cinisello Balsamo","Monza"], "corretta":0 },
+
+  { "argomento":"NORMATIVA", "domanda":"L’acquisizione del CAP si deve ottenere:", "risposte":["dopo l’iscrizione al ruolo","dopo avere avuto la licenza","prima di sostenere l’esame per l’iscrizione al ruolo"], "corretta":2 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Il tassista può emettere fattura:", "risposte":["no","solo se supera i 50 Km","ogni volta che gli viene richiesto"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"E’ consentito l’uso collettivo del tassametro se si trasportano più di 2 passeggeri:", "risposte":["no","si, solo se l’ultimo cliente paga per tutti gli altri","si, sempre"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"I numeri civici recanti il numero della licenza taxi devono essere posti:", "risposte":["il grande a sinistra della targa posteriore ed il piccolo sul piantone destro del veicolo","in modo casuale","il grande a destra della targa, il medio all’interno del parabrezza lato passeggero ed il piccolo sul piantone di sinistra"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Il lago di Garda appartiene territorialmente, oltre che alla Lombardia e al Veneto, ad una regione italiana; quale?", "risposte":["Friuli Venezia Giulia","Emilia Romagna","Trentino Alto Adige"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale capoluogo di provincia lombardo è il più vicino al confine di stato?", "risposte":["Como","Varese","Sondrio"], "corretta":0 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"In caso di sospensione o ritiro temporaneo della patente si può:", "risposte":["ricevere un sussidio","incorrere nella revoca","farsi sostituire"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"Se si smarrisce il tariffario:", "risposte":["si richiede un nuovo tariffario alla Ripartizione Traffico e Viabilità","si denuncia lo smarrimento ai carabinieri o alla polizia e quindi di richiede un duplicato al Comune"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"Il tassista può svolgere il servizio con una persona accanto:", "risposte":["si","si, solo per il periodo di affiancamento","no"], "corretta":1 },
+  { "argomento":"REGOLAMENTO", "domanda":"Il turno 1 inizia e finisce alle ore:", "risposte":["06:00 – 14:00","07:00 – 16:00","01:00 – 11:00"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"Chi emette l’attestazione a cui risulta che il tassametro è conforme alle norme vigenti:", "risposte":["la Regione","il Comune","la Provincia"], "corretta":1 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Quando una vettura circola sprovvista dei contrassegni oppure questi sono scaduti o rovinati, si incorre:", "risposte":["nella revoca della licenza","in una sanzione amministrativa da 1 a 60 giorni","nel ritiro della licenza e dei contrassegni"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"In caso di morte del titolare quanto tempo hanno gli eredi per trasferire ad altro soggetto la licenza:", "risposte":["1 anno","90 giorni","2 anni"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"Nella disciplina sperimentale aeroportuale è applicabile il turno di servizio spezzato:", "risposte":["no","si, solo una volta durante lo stesso","si, anche più di una volta"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"La città principale dell’Oltrepò pavese è:", "risposte":["Suzzara","Chiavenna","Voghera"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"A quanto ammonta la cifra cauzionale per una sosta eventuale di un’ora", "risposte":["€ 28,32","€ 25,82","€ 27,86"], "corretta":0 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Il turno 8 inizia e finisce:", "risposte":["08:30 – 12:00     15:30 – 20:30","08:00 – 13:00     15:30 – 20:30","08:00 – 12:30     16:00 – 20:00"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Non è un fiume di Milano:", "risposte":["Olona","Lambro","Naviglio di Pavia"], "corretta":2 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Quando si superano il 90 giorni di sospensione della licenza nell’arco di un quinquennio, si incorre:", "risposte":["in una sospensione maggiorata","nella revoca della licenza","in una sanzione pecuniaria"], "corretta":1 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Il turno 6 inizia e finisce:", "risposte":["21:00 – 06:00","22:00 – 06:00","06:00 – 16:00"], "corretta":2 },
+
+  { "argomento":"NORMATIVA", "domanda":"La Commissione Regionale per la formazione e la conservazione dei Ruoli dei conducenti di cui all’art. 12 della Legge Regionale 15 aprile 1995 n. 20, resta in carica:", "risposte":["due anni","cinque anni","quattro anni"], "corretta":2 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Per particolari finalità di interesse sociale può consentire servizi speciali:", "risposte":["la Giunta Comunale","l’Autorità Comunale","l’Ufficio Trasporti e Mobilità"], "corretta":1 },
+
+  { "argomento":"NORMATIVA", "domanda":"Presso quale ufficio è costituita la Commissione Tecnico-Consultiva:", "risposte":["ufficio Comunale","ufficio Trasporti e Mobilità","ufficio Regionale"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"La citta di Vigevano ha un numero di abitanti, secondo i dati ISTAT del 1995, di:", "risposte":["Più di 100.000","Tra 20.000 e 30.000","Più di 50.000"], "corretta":2 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Qual è la condizione per svolgere il servizio di taxi:", "risposte":["avere l’autorizzazione","essere proprietario dell’autovettura","avere a disposizione una autovettura"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Vi sono nella nostra regione due province che non hanno confini esterni, sono attorniate, infatti, da altre province lombarde: ", "risposte":["Bergamo e Lecco","Varese e Milano","Como e Mantova"], "corretta":0 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Quando possono essere disposte visite di controllo straordinarie:", "risposte":["non prima di avere dato un preavviso di 10 giorni","in qualunque momento","solo all’avvenuta contestazione di una infrazione al Regolamento"], "corretta":1 },
+  { "argomento":"REGOLAMENTO", "domanda":"L’inizio del servizio taxi è subordinato alla visita di controllo dell’autovettura:", "risposte":["sempre","no","solo in alcuni casi"], "corretta":0 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha la città di Legnano?", "risposte":["Meno di 50.000","Tra 50.000 e 60.000","oltre 90.000"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Sesto San Giovanni?", "risposte":["60.000","Tra 70.000 e 100.000","oltre 110.000"], "corretta":1 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"L’art. 3 del Regolamento Comunale a quale altro articolo di Legge fa riferimento:", "risposte":["all’art. 7 della Legge n. 20/95","all’art. 7 della Legge 21/95","all’art. 5 della Legge 8/8/85"], "corretta":0 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Cinisello Balsamo?", "risposte":["Meno di 50.000","Tra 50.000 e 80.000","oltre 90.000"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti hanno Monza, Brescia e Bergamo?", "risposte":["Oltre 100.000","Tra 80.000 e 95.000","meno di 80.000"], "corretta":0 },
+
+  { "argomento":"NORMATIVA", "domanda":"Chi può articolarsi in Sottocommissioni:", "risposte":["i Consiglieri comunali della Commissione Tecnico-Consultiva","i nove rappresentanti di categoria della Commissione Tecnico-Consultiva","la Commissione Tecnico-Consultiva"], "corretta":2 },
+  { "argomento":"NORMATIVA", "domanda":"Quali sono i poteri della Sottocommissione:", "risposte":["controllare il regolare svolgimento del servizio taxi","gli stessi poteri della Commissione Tecnico-Consultiva","il potere di decidere riguardo: numero tipo e caratteristiche delle autovetture da piazza"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti hanno Lecco, Lodi e Sondrio?", "risposte":["Meno di 50.000","Tra 50.000 e 70.000","oltre 70.000"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Cologno Monzese?", "risposte":["Meno di 40.000","tra 40.000 e 60.000","oltre 60.000"], "corretta":1 },
+
+  { "argomento":"NORMATIVA", "domanda":"Le competenze delle Sottocommissioni sono determinate:", "risposte":["dal Capo Ufficio Autopubbliche","dai Consiglieri Comunali","dal Dirigente del Settore Trasporti e Mobilità"], "corretta":2 },
+  { "argomento":"NORMATIVA", "domanda":"Quando la Commissione Tecnico-Consultiva è validamente costituita:", "risposte":["quando sono presenti almeno 12 componenti","quando sono presenti la metà più 1 dei suoi componenti","quando sono presenti almeno 11 componenti"], "corretta":1 },
+  { "argomento":"NORMATIVA", "domanda":"Chi può essere chiamato a partecipare alle sedute della Commissione Tecnico-Consultiva:", "risposte":["i Funzionari Direttivi che sovrintendono il servizio","i Funzionari del Comune in relazione alle questioni poste all’ordine del giorno","i Funzionari dell’Ufficio Autopubbliche"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Qual’è la località con il maggior numero di abitanti?", "risposte":["Lecco","Mantova","Monza"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Como?", "risposte":["Tra 60.000 e 80.000","Tra 80.000 e 100.000","Oltre 100.000"], "corretta":1 },
+
+  { "argomento":"NORMATIVA", "domanda":"Che durata ha la Commissione Tecnico-Consultiva:", "risposte":["cinque anni","coincide con quella del Consiglio Regionale","coincide con quella del Consiglio Comunale"], "corretta":2 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Quale articolo di Legge viene menzionato nell’art.5 del Regolamento Comunale:", "risposte":["art. 8, comma 2, Legge 21/92","art. 8, comma 2, lettera i., Legge 20/95","art. 6, comma 8, Legge 21/92"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha lodi?", "risposte":["Tra 50.000 e 100.000","Oltre 100.000","Meno di 50.000"], "corretta":2 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Quale articolo del Regolamento Comunale si occupa del controllo sul servizio taxi:", "risposte":["art. 6","art. 5","art. 7"], "corretta":1 },
+  { "argomento":"REGOLAMENTO", "domanda":"Cosa tratta l’art. 15 del Regolamento Comunale:", "risposte":["sostituzione alla guida","collaborazione familiare","cambio di indirizzo"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"A quale progressiva chilometrica la tangenziale ovest di Milano incrocia il raccordo con la A1 Milano-Bologna e la tangenziale est?", "risposte":["Al Km. 31,5 circa","al Km. 20 circa","Al Km. 28 circa"], "corretta":0 },
+
+  { "argomento":"REGOLAMENTO", "domanda":"Di quanti collaboratori familiari può avvalersi il titolare di licenza nell’esercizio del servizio:", "risposte":["massimo 2","uno","nessuno"], "corretta":0 },
+  { "argomento":"REGOLAMENTO", "domanda":"Che grado di parentela devono avere gli eventuali collaboratori familiari di cui può avvalersi il titolare di licenza di esercizio:", "risposte":["coniuge, parenti entro il terzo grado e affini entro il secondo","coniuge, parenti entro il secondo grado e affini entro il terzo","coniuge e parenti entro il secondo grado"], "corretta":0 },
+  { "argomento":"REGOLAMENTO", "domanda":"Secondo quanto previsto dall’art. 15 del Regolamento Comunale, che tipo di lavoro possono svolgere i familiari per potere collaborare nel servizio taxi:", "risposte":["un lavoro in cui sono occupati con contratto a tempo parziale","un lavoro in cui sono occupati senza contratto","un lavoro in cui sono pagati a cottimo"], "corretta":0 },
+  { "argomento":"REGOLAMENTO", "domanda":"L’esistenza di collaboratori familiari relativi ad una licenza taxi devono risultare:", "risposte":["sulla licenza di esercizio","su un apposito elenco da allegare alla licenza di esercizio","su un foglio vidimato da allegare alla licenza di esercizio"], "corretta":1 },
+  { "argomento":"REGOLAMENTO", "domanda":"Cosa accadrebbe venendo a mancare solo uno dei presupposti per la collaborazione familiare:", "risposte":["si avrebbe comunque la possibilità di continuare purché si rientri in possesso dei requisiti entro 30 giorni","si avrebbe l’immediata decadenza dell’autorizzazione","si avrebbe l’immediata decadenza dell'autorizzazione a seconda del requisito perso"], "corretta":1 },
+  { "argomento":"REGOLAMENTO", "domanda":"Cosa tratta l’art. 16 del Regolamento Comunale:", "risposte":["la sospensione facoltativa del servizio taxi","la sostituzione alla guida","il cambio di indirizzo"], "corretta":1 },
+  { "argomento":"REGOLAMENTO", "domanda":"Per quanto tempo il titolare di licenza taxi può chiede la sospensione del servizio e in che arco di tempo:", "risposte":["12 mesi in cinque anni","12 mesi in quattro anni","6 mesi in cinque anni"], "corretta":0 },
+  { "argomento":"REGOLAMENTO", "domanda":"Chi autorizza la richiesta di sospensione del servizio:", "risposte":["la Giunta Comunale sentita la Sottocommissione","la Giunta Comunale sentita la Commissione Tecnico-Consultiva","l’Autorità Comunale sentita la Commissione Tecnico-Consultiva"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"Dove vengono effettuate le visite di controllo:", "risposte":["presso la Motorizzazione Civile","presso l’Ufficio Autopubbliche del Settore Trasporti e Mobilità","presso la Commissione Tecnico-Consultiva"], "corretta":1 },
+  { "argomento":"REGOLAMENTO", "domanda":"A chi è effettuata la visita di controllo sulle autovetture da piazza:", "risposte":["dalla Commissione Tecnico-Consultiva","da una delegazione della Commissione Tecnico-Consultiva","da una apposita Sottocommissione"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale strada statale attraversa l’abitato di Montichiari?", "risposte":["La SS n. 415 Paullese","La SS n. 45 Bis Gardesana Occidentale","La SS n. 236 Goitese"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"Dove è segnata la data della visita di controllo:", "risposte":["sulla lettera di convocazione","sulla licenza di esercizio","da nessuna parte, ci si presenta in qualsiasi momento una volta l’anno"], "corretta":0 },
+  { "argomento":"REGOLAMENTO", "domanda":"In base all’art. 31 del Regolamento Comunale, quanti possono essere i giorni di affiancamento consentiti al titolare di licenza che inizia il servizio", "risposte":["30 giorni","60 giorni","finché il nuovo titolare non abbia preso dimestichezza con il servizio taxi e comunque non più di 90 giorni"], "corretta":0 },
+  { "argomento":"REGOLAMENTO", "domanda":"I collaboratori familiari possono avvalersi dell’affiancamento del titolare della licenza:", "risposte":["no","si","solo gli affini entro il secondo grado"], "corretta":0 },
+  { "argomento":"REGOLAMENTO", "domanda":"Quando l’Autorità Comunale può disporre il ritiro cautelativo della licenza:", "risposte":["nel caso in cui il conducente si allontani dall’autovettura durante il turno di servizio","qualora il taxi stazioni nei luoghi e nelle ore dove si svolgono manifestazioni sportive e spettacoli","quando il titolare sia sottoposto a provvedimenti penali restrittivi della libertà personale"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"L’Autorità Comunale può revocare la licenza di esercizio nei confronti del titolare che:", "risposte":["ha interrotto il servizio senza giustificato motivo per un periodo di 120 giorni al di fuori dei casi disciplinati dall’art. 16 del Regolamento comunale","ha interrotto il servizio senza giustificato motivo per un periodo di 180 giorni al di fuori dei casi disciplinati dall’art. 16 del Regolamento comunale","ha interrotto il servizio senza giustificato motivo per un periodo di 180 giorni al di fuori dei casi disciplinati dall’art. 15 del Regolamento comunale"], "corretta":1 },
+  { "argomento":"REGOLAMENTO", "domanda":"L’Autorità Comunale dichiara la decadenza della licenza nel caso:", "risposte":["di perdita dei requisiti di cui all’art. 9 del Regolamento comunale lettere b, c, d, e,g","non abbia trasferito la licenza ad altri al compimento del sessantesimo anno di età","di perdita dei requisiti di cui all’art. 9 del Regolamento comunale lettere a, b, c, d,e"], "corretta":0 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"E’ nota, oltre che per la sua stupenda piazza su cui si affacciano il Duomo e un Castello antico, anche quale importante centro calzaturiero della lombardia; parliamo di?", "risposte":["Varese","Brescia","Como"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"La Lombardia è:", "risposte":["Regione a statuto ordinario","Regione a statuto straordinario","Regione autonoma"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale città è collegata da una linea delle F.N.M., in partenza da Milano?", "risposte":["Mantova","Novara","Sondrio"], "corretta":1 },
+
+  { "argomento":"GEOGRAFIA", "domanda":"Quale tra queste province è famosa per la ceramica?", "risposte":["Lodi","Cremona","Pavia"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"E’ la stazione della metropolitana con le autolinee extraurbane della zona dell’Adda:", "risposte":["Gessate","Sesto Marelli","Bisceglie"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Interessa il territorio di due province della Lombardia:", "risposte":["Il lago di Lugano","Il lago D’Idro","Il Lago di Garda"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Vaprio D’Adda è attraversata da una statale; quale?", "risposte":["La SS n. 470 della Val Brembana","La SS n. 9 Emilia","La SS n. 525 del Brembo"], "corretta":2 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di queste infrastrutture di trasporto interessa Sesto San Giovanni?", "risposte":["La linea MM1 delle metropolitane milanese","Le ferrovie nord di Milano","Il passante ferroviario"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Dalla città di Bergamo all’aeroporto Orio al Serio la distanza è:", "risposte":["8 Km. circa","10 Km. circa","25 Km. circa"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"La Valtellina si trova in provincia di:", "risposte":["Bergamo","Sondrio","Pavia"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Il Lario è:", "risposte":["Un lago","Un Fiume","Un Ponte"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di queste infrastrutture di trasporto interessa Meda?", "risposte":["La linea FS Milano-Treviglio-Bergamo","La linea ferrovie nord Milano-Asso","La linea MM3 della metropolitana milanese"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di queste località non è servita dalle FS?", "risposte":["Saronno","Varese","Sondrio"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Qual’è la produzione tipica dell’artigianato di Cremona?", "risposte":["Strumenti musicali","Armi","Manufatti in legno"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quant’è la popolazione della Lombardia?", "risposte":["Meno di 8 milioni di abitanti","Tra 8,5 milioni e 9,5 milioni di abitanti","Più di 10 milioni di abitanti"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quanti abitanti ha Pavia?", "risposte":["Tra 70.000 e 80.000","Meno di 50.000","Più di 100.000"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"L’Autostrada A4 Torino-Trieste attraversa tre province lombarde nell’ordine:", "risposte":["Milano, Lodi, Brescia","Milano, Bergamo, Brescia","Milano, Bergamo, Mantova"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Quale di queste province non è attraversata dalla A21 “Brescia-Piacenza-Alessandria”?", "risposte":["Cremona","Lodi","Pavia"], "corretta":1 },
+  { "argomento":"GEOGRAFIA", "domanda":"Non interessa il territorio di Sondrio:", "risposte":["La SS N. 33 del Sempione","La linea ferroviaria Lecco-Colico-Tirano","Il fiume Adda"], "corretta":0 },
+  { "argomento":"GEOGRAFIA", "domanda":"E’ collegata al capoluogo di regione, oltre che dalle ferrovie dello stato, anche dalle F.N.M. Trattasi di:", "risposte":["Lecco","Como","Lodi"], "corretta":1 }
 ];
