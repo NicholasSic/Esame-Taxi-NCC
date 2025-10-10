@@ -192,6 +192,7 @@ body.lb-open { overflow: hidden; }
     <button onclick="riprovaErrori()">Riprova solo errori</button>
     <button onclick="mostraSezioneArticoli()">Leggi Articoli del Regolamento</button>
     <button onclick="mostraSezionePercorsi()">Visualizza Percorsi Principali</button>
+<button class="btn" onclick="openConfluenze()">Confluenze piazze</button>
 <button class="btn" onclick="openDocumenti()">Apri Documenti PDF</button>
     <button onclick="logout()">Esci</button>
   </div>
@@ -279,6 +280,50 @@ body.lb-open { overflow: hidden; }
   </div>
 </div>
 
+<!-- Sezione Confluenze -->
+<section id="sezioneConfluenze" style="display:none;padding:24px 16px;">
+  <button class="btn secondary" onclick="tornaAllaHome()">← Torna alla Home</button>
+  <h2 style="margin:12px 0;">Confluenze delle piazze</h2>
+
+  <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:8px 0;">
+    <label>Seleziona piazza:</label>
+    <select id="selPiazza" onchange="renderConfluenzeStudio()"></select>
+
+    <button class="btn" onclick="startConfluenzeTest()">Avvia test su questa piazza</button>
+    <button class="btn secondary" onclick="startConfluenzeTestRandom()">Test casuale</button>
+  </div>
+
+  <!-- Pannello studio -->
+  <div id="confStudio" style="margin-top:12px;">
+    <h3 id="confPiazzaTitle" style="margin:8px 0;"></h3>
+    <ul id="confLista" style="padding-left:20px;line-height:1.7;"></ul>
+  </div>
+
+  <hr style="margin:16px 0;">
+
+  <!-- Pannello test -->
+  <div id="confTest" style="display:none;">
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+      <h3 id="confTestTitle" style="margin:8px 0;"></h3>
+      <button class="btn secondary" onclick="riempiConSuggerimenti()">Suggerisci (50%)</button>
+      <button class="btn secondary" onclick="svuotaRisposta()">Svuota input</button>
+    </div>
+
+    <p style="margin:6px 0 8px;">Scrivi le strade che confluiscono, separate da virgola. Es.: <i>“Via Torino, Via Orefici, Corso Europa”</i></p>
+    <textarea id="confInput" rows="4" style="width:100%;max-width:800px;padding:10px;border-radius:8px;border:1px solid #ccd;"></textarea>
+
+    <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn" onclick="correggiConfluenze()">Correggi</button>
+      <button class="btn secondary" onclick="mostraSoluzione()">Mostra soluzione</button>
+      <button class="btn secondary" onclick="nuovoTestStessa()">Nuova prova stessa piazza</button>
+      <button class="btn secondary" onclick="startConfluenzeTestRandom()">Nuova prova casuale</button>
+<button class="btn secondary" onclick="tornaAlloStudio()">Torna allo studio</button>
+    </div>
+
+    <div id="confEsito" style="margin-top:12px;"></div>
+  </div>
+</section>
+
   <!-- Quiz & Esercitazione -->
   <div id="quiz">
     <button onclick="tornaAllaHome()">Torna alla Home</button>
@@ -312,6 +357,7 @@ body.lb-open { overflow: hidden; }
   <script src="domande.js"></script>
   <script src="Articoli.js"></script>
   <script src="Percorsi.js"></script>
+<script src="confluenze.js"></script>
 
   <script>
     // --- Riferimenti DOM e stato ---
@@ -1141,7 +1187,8 @@ function previewDoc(id) {
 
 function hideAllSections() {
   ['home','quiz','esercitazione','risultati','riepilogoRisposte',
-   'selezioneLinguaSimulazione','sezioneArticoli','sezionePercorsi','sezioneDocumenti']
+   'selezioneLinguaSimulazione','sezioneArticoli','sezionePercorsi',
+   'sezioneDocumenti','sezioneConfluenze']  // ← aggiunto
   .forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
@@ -1151,6 +1198,152 @@ function hideAllSections() {
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, m =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+// ====== Controller Confluenze ======
+function openConfluenze() {
+  hideAllSections();
+  // popola select piazze
+  const sel = document.getElementById('selPiazza');
+  sel.innerHTML = (window.CONFLUENZE || []).map((c,i)=>`<option value="${i}">${escapeHtml(c.piazza)}</option>`).join('');
+  document.getElementById('sezioneConfluenze').style.display = 'block';
+  renderConfluenzeStudio();
+}
+
+function renderConfluenzeStudio() {
+  const data = window.CONFLUENZE || [];
+  if (!data.length) return;
+  const idx = +document.getElementById('selPiazza').value || 0;
+  const entry = data[idx];
+  document.getElementById('confPiazzaTitle').textContent = entry.piazza;
+  document.getElementById('confLista').innerHTML = entry.strade.map(s => `<li>${escapeHtml(s)}</li>`).join('');
+  
+  // reset test
+  document.getElementById('confTest').style.display = 'none';
+  document.getElementById('confEsito').innerHTML = '';
+  document.getElementById('confInput').value = '';
+  
+  // 🔹 Mostra di nuovo lo studio quando si cambia piazza
+  showStudioAgain();
+}
+
+let _confCorrente = null;
+
+function startConfluenzeTest() {
+  const idx = +document.getElementById('selPiazza').value || 0;
+  _confCorrente = (window.CONFLUENZE || [])[idx];
+  setupTestUI();
+}
+function startConfluenzeTestRandom() {
+  const arr = window.CONFLUENZE || [];
+  if (!arr.length) return;
+  const idx = Math.floor(Math.random() * arr.length);
+  document.getElementById('selPiazza').value = String(idx);
+  _confCorrente = arr[idx];
+  setupTestUI();
+}
+function setupTestUI() {
+  if (!_confCorrente) return;
+
+  // 🔹 Nasconde la parte di studio (lista e select)
+  document.getElementById('confStudio').style.display = 'none';
+  document.getElementById('selPiazza').disabled = true;
+
+  // 🔹 Mostra la parte del test
+  document.getElementById('confTest').style.display = 'block';
+  document.getElementById('confTestTitle').textContent = `Test: ${_confCorrente.piazza}`;
+  document.getElementById('confInput').value = '';
+  document.getElementById('confEsito').innerHTML = '';
+}
+function svuotaRisposta() {
+  document.getElementById('confInput').value = '';
+  document.getElementById('confEsito').innerHTML = '';
+}
+function riempiConSuggerimenti() {
+  if (!_confCorrente) return;
+  const half = Math.ceil(_confCorrente.strade.length/2);
+  const arr = shuffleArray(_confCorrente.strade).slice(0, half);
+  document.getElementById('confInput').value = arr.join(', ');
+}
+function mostraSoluzione() {
+  if (!_confCorrente) return;
+  const sol = _confCorrente.strade.join(', ');
+  document.getElementById('confEsito').innerHTML = `<div style="margin-top:8px"><b>Soluzione:</b> ${escapeHtml(sol)}</div>`;
+}
+function nuovoTestStessa() {
+  if (!_confCorrente) return;
+  showStudioAgain(); // mostra di nuovo la sezione studio
+  setupTestUI();
+}
+
+function showStudioAgain() {
+  document.getElementById('confStudio').style.display = 'block';
+  document.getElementById('selPiazza').disabled = false;
+  document.getElementById('confTest').style.display = 'none';
+}
+
+function tornaAlloStudio() {
+  // mostra di nuovo la lista + abilita la select
+  showStudioAgain();
+  // porta lo scroll sulla lista
+  const anchor = document.getElementById('confStudio');
+  if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// --- Normalizzazione + alias ---
+function normStr(s) {
+  return String(s)
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'') // accenti
+    .replace(/[\.\-–—']/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function applyAlias(entry, nome) {
+  const key = normStr(nome);
+  const aliases = entry.alias || {};
+  for (const [k,v] of Object.entries(aliases)) {
+    if (normStr(k) === key) return v;
+  }
+  return nome.trim();
+}
+
+function correggiConfluenze() {
+  if (!_confCorrente) return;
+  // input → array
+  let proposti = (document.getElementById('confInput').value || '')
+    .split(',')
+    .map(s=>s.trim())
+    .filter(Boolean)
+    .map(n => applyAlias(_confCorrente, n));
+
+  const target = _confCorrente.strade.map(s=>s.trim());
+  const N = new Set(target.map(normStr));
+
+  const giusti = [];
+  const extra  = [];
+  const P = proposti.map(x=>({raw:x, n:normStr(x)}));
+  P.forEach(p => (N.has(p.n) ? giusti : extra).push(p.raw));
+
+  const mancanti = target.filter(t => !P.some(p => normStr(t)===p.n));
+  const score = Math.max(0, Math.round(100 * giusti.length / target.length));
+
+  const out = [];
+  out.push(`<div><b>Punteggio:</b> ${score}/100</div>`);
+  out.push(`<div><b>Corrette (${giusti.length}/${target.length}):</b> ${giusti.map(escapeHtml).join(', ') || '—'}</div>`);
+  out.push(`<div><b>Mancanti (${mancanti.length}):</b> ${mancanti.map(escapeHtml).join(', ') || '—'}</div>`);
+  out.push(`<div><b>Extra (${extra.length}):</b> ${extra.map(escapeHtml).join(', ') || '—'}</div>`);
+  document.getElementById('confEsito').innerHTML = out.join('');
+}
+
+// util
+function shuffleArray(a){
+  const arr = a.slice();
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  return arr;
 }
 
     // ------------------------- Login (PBKDF2) -------------------------
