@@ -10,7 +10,7 @@ window.CONFLUENZE = [
     "Via Cerva",
     "Via Durini",
     "Via Cavallotti",
-    "Via Cerziere",
+    "Via Verziere",
     "Via della Signora"
   ],
   "alias": {

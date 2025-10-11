@@ -6651,7 +6651,7 @@ const tutteLeDomande = [
   { "argomento":"GEOGRAFIA", "domanda":"Quale capoluogo di provincia lombardo è il più vicino al confine di stato?", "risposte":["Como","Varese","Sondrio"], "corretta":0 },
 
   { "argomento":"REGOLAMENTO", "domanda":"In caso di sospensione o ritiro temporaneo della patente si può:", "risposte":["ricevere un sussidio","incorrere nella revoca","farsi sostituire"], "corretta":2 },
-  { "argomento":"REGOLAMENTO", "domanda":"Se si smarrisce il tariffario:", "risposte":["si richiede un nuovo tariffario alla Ripartizione Traffico e Viabilità","si denuncia lo smarrimento ai carabinieri o alla polizia e quindi di richiede un duplicato al Comune"], "corretta":2 },
+  { "argomento":"REGOLAMENTO", "domanda":"Se si smarrisce il tariffario:", "risposte":["si richiede un nuovo tariffario alla Ripartizione Traffico e Viabilità","si espone una fotocopia dello stesso fino all’annuale visita di controllo","si denuncia lo smarrimento ai carabinieri o alla polizia e quindi di richiede un duplicato al Comune",], "corretta":2 },
   { "argomento":"REGOLAMENTO", "domanda":"Il tassista può svolgere il servizio con una persona accanto:", "risposte":["si","si, solo per il periodo di affiancamento","no"], "corretta":1 },
   { "argomento":"REGOLAMENTO", "domanda":"Il turno 1 inizia e finisce alle ore:", "risposte":["06:00 – 14:00","07:00 – 16:00","01:00 – 11:00"], "corretta":2 },
 
@@ -6738,7 +6738,6 @@ const tutteLeDomande = [
   { "argomento":"REGOLAMENTO", "domanda":"L’Autorità Comunale può revocare la licenza di esercizio nei confronti del titolare che:", "risposte":["ha interrotto il servizio senza giustificato motivo per un periodo di 120 giorni al di fuori dei casi disciplinati dall’art. 16 del Regolamento comunale","ha interrotto il servizio senza giustificato motivo per un periodo di 180 giorni al di fuori dei casi disciplinati dall’art. 16 del Regolamento comunale","ha interrotto il servizio senza giustificato motivo per un periodo di 180 giorni al di fuori dei casi disciplinati dall’art. 15 del Regolamento comunale"], "corretta":1 },
   { "argomento":"REGOLAMENTO", "domanda":"L’Autorità Comunale dichiara la decadenza della licenza nel caso:", "risposte":["di perdita dei requisiti di cui all’art. 9 del Regolamento comunale lettere b, c, d, e,g","non abbia trasferito la licenza ad altri al compimento del sessantesimo anno di età","di perdita dei requisiti di cui all’art. 9 del Regolamento comunale lettere a, b, c, d,e"], "corretta":0 },
 
-  { "argomento":"GEOGRAFIA", "domanda":"E’ nota, oltre che per la sua stupenda piazza su cui si affacciano il Duomo e un Castello antico, anche quale importante centro calzaturiero della lombardia; parliamo di?", "risposte":["Varese","Brescia","Como"], "corretta":0 },
   { "argomento":"GEOGRAFIA", "domanda":"La Lombardia è:", "risposte":["Regione a statuto ordinario","Regione a statuto straordinario","Regione autonoma"], "corretta":0 },
   { "argomento":"GEOGRAFIA", "domanda":"Quale città è collegata da una linea delle F.N.M., in partenza da Milano?", "risposte":["Mantova","Novara","Sondrio"], "corretta":1 },
 
