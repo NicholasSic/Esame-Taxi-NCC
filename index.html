@@ -444,9 +444,17 @@ body.lb-open { overflow: hidden; }
         }
       });
 
-      scelte = scelte.sort(() => 0.5 - Math.random());
-      if (scelte.length > 16) scelte = scelte.slice(0, 16);
-      return scelte;
+      // ✅ ORDINA PER BLOCCHI: GEO → NORM → REG → LINGUA
+const geo  = scelte.filter(d => d.argomento === "GEOGRAFIA");
+const norm = scelte.filter(d => d.argomento === "NORMATIVA");
+const reg  = scelte.filter(d => d.argomento === "REGOLAMENTO");
+const lang = scelte.filter(d => d.argomento === lingua);
+
+// mantieni l’ordine dei blocchi; dentro ogni blocco l’ordine rimane casuale
+const ordered = [...geo, ...norm, ...reg, ...lang];
+
+// (di norma sono già 16 esatte; taglio di sicurezza)
+return ordered.slice(0, 16);
     }
 
     function mostraDomanda() {
