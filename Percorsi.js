@@ -302,7 +302,9 @@ const percorsi = {
     "Usciamo a Busto Arsizio",
     "Prendiamo la Strada Statale 336 per Malpensa",
     "Troviamo Terminal 2 e poi Terminal 1"
-  ]
+  ],
+        image: "images/DM.png",
+      caption: "Milano"
 },
     {
   "nomePercorso": "MALPENSA ALTERNATIVA DA A4 DIREZIONE TORINO",
@@ -324,8 +326,8 @@ const percorsi = {
     "Usciamo a Marcallo Mesero",
     "Prendiamo la SS 336 direzione Malpensa Aereoporto",
     "Troviamo Terminal 1 e poi Terminal 2"
-  ]
-},
+      ]
+    },
 {
   "nomePercorso": "DUOMO > CENTRALE",
   "tappe": [
@@ -342,7 +344,9 @@ const percorsi = {
     "Piazza della Repubblica",
     "Via Vittor Pisani",
     "Piazza Duca D'Aosta"
-  ]
+  ],
+        image: "images/DC.png",
+      caption: "Milano"
 },
 {
   "nomePercorso": "DUOMO > LINATE",

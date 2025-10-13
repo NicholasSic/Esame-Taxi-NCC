@@ -286,8 +286,13 @@ body.lb-open { overflow: hidden; }
   <h2 style="margin:12px 0;">Confluenze delle piazze</h2>
 
   <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:8px 0;">
-    <label>Seleziona piazza:</label>
-    <select id="selPiazza" onchange="renderConfluenzeStudio()"></select>
+   <label>Seleziona piazza:</label>
+<div style="display:flex;flex-direction:column;gap:6px;">
+  <input id="searchPiazza" type="search" placeholder="Cerca piazza..."
+         oninput="filterPiazze(this.value)"
+         style="padding:6px 8px;border-radius:6px;border:1px solid #ccc;max-width:260px;">
+  <select id="selPiazza" onchange="renderConfluenzeStudio()"></select>
+</div>
 
     <button class="btn" onclick="startConfluenzeTest()">Avvia test su questa piazza</button>
     <button class="btn secondary" onclick="startConfluenzeTestRandom()">Test casuale</button>
@@ -1208,6 +1213,27 @@ function openConfluenze() {
   sel.innerHTML = (window.CONFLUENZE || []).map((c,i)=>`<option value="${i}">${escapeHtml(c.piazza)}</option>`).join('');
   document.getElementById('sezioneConfluenze').style.display = 'block';
   renderConfluenzeStudio();
+}
+
+function filterPiazze(q) {
+  const sel = document.getElementById('selPiazza');
+  const term = (q || '').toLowerCase().trim();
+  const data = window.CONFLUENZE || [];
+  
+  sel.innerHTML = data
+    .map((c, i) => ({ name: c.piazza, i }))
+    .filter(p => !term || p.name.toLowerCase().includes(term))
+    .map(p => `<option value="${p.i}">${escapeHtml(p.name)}</option>`)
+    .join('');
+
+  // Se il filtro ha risultati, mostra subito il primo
+  if (sel.options.length > 0) {
+    sel.value = sel.options[0].value;
+    renderConfluenzeStudio();
+  } else {
+    document.getElementById('confPiazzaTitle').textContent = 'Nessuna piazza trovata';
+    document.getElementById('confLista').innerHTML = '';
+  }
 }
 
 function renderConfluenzeStudio() {
