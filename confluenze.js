@@ -2403,15 +2403,17 @@ window.CONFLUENZE = [
   "piazza": "PIAZZA MEDAGLIE D'ORO",
   "strade": [
     "Viale Sabotino",
+    "Via Crema",
     "Corso Lodi",
     "Via Muratori",
     "Viale Monte Nero",
-    "Viale Caladara",
+    "Viale Caldara",
     "Corso di Porta Romana",
     "Via Filippetti"
   ],
   "alias": {
     "Sabotino": "Viale Sabotino",
+    "Crema": "Via Crema",
     "V.le Sabotino": "Viale Sabotino",
     "C.so Lodi": "Corso Lodi",
     "Lodi": "Corso Lodi",
@@ -2423,7 +2425,7 @@ window.CONFLUENZE = [
     "Caladara": "Viale Caladara",
     "V.le Caladara": "Viale Caladara",
     "C.so di Porta Romana": "Corso di Porta Romana",
-    "di Porta Romana": "Corso di Porta Romana",
+    "Porta Romana": "Corso di Porta Romana",
     "Romana": "Corso di Porta Romana",
     "Filippetti": "Via Filippetti",
     "V. Filippetti": "Via Filippetti"
