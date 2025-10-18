@@ -2995,7 +2995,7 @@ window.CONFLUENZE = [
   "strade": [
     "Corso Indipendenza",
     "Via Carlo Pisacane",
-    "Via Perio",
+    "Via Poerio",
     "Corso Concordia",
     "Via Calvi",
     "Via Fiamma"
@@ -3006,8 +3006,8 @@ window.CONFLUENZE = [
     "Carlo Pisacane": "Via Carlo Pisacane",
     "Pisacane": "Via Carlo Pisacane",
     "V. Carlo Pisacane": "Via Carlo Pisacane",
-    "Perio": "Via Perio",
-    "V. Perio": "Via Perio",
+    "Poerio": "Via Poerio",
+    "V. Poerio": "Via Poerio",
     "C.so Concordia": "Corso Concordia",
     "Concordia": "Corso Concordia",
     "Calvi": "Via Calvi",
